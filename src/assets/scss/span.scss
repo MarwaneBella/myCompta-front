@@ -1,0 +1,13 @@
+@tailwind components;
+@tailwind utilities;
+@tailwind base;
+@tailwind variants;
+
+@layer components{
+    .rounded-full-white{
+        @apply p-1 bg-white-1 rounded-full ;
+    }
+    .rounded-lg-white{
+        @apply p-3 bg-white-1 rounded-lg;
+    }
+}

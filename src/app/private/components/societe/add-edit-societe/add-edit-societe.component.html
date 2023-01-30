@@ -1,0 +1,86 @@
+
+<app-top-bar for="s" type="add"></app-top-bar>
+
+<section class="grid-container ">
+
+    <!-- Informations column -->
+
+    <div class="col-flex-6">
+        <div>
+            <span class="secondary-title">{{'FORM.TITLE.INF' | translate}}</span>
+        </div>
+        <div class="col-flex-6 ">
+            <input type="text" placeholder="{{'FORM.INPUT.NS' | translate}}" class="common-input">
+            <input type="text" placeholder="{{'FORM.INPUT.NTVA' | translate}}" class="common-input">
+            <input type="text" placeholder="{{'FORM.INPUT.SIREN' | translate}}" class="common-input">
+            <input type="text" placeholder="{{'FORM.INPUT.NAF' | translate}}" class="common-input">
+            <input type="text" placeholder="{{'FORM.INPUT.LANG' | translate}}" class="common-input">
+        </div>
+    </div>
+
+    <!-- Coordonnées du client column -->
+
+    <div class="col-flex-6">
+        <div>
+            <span class="secondary-title">{{'FORM.TITLE.CC' | translate}}</span>
+        </div>
+        <div class="col-flex-6 ">
+            <input type="text" placeholder="{{'FORM.INPUT.ADD' | translate}}" class="common-input">
+            <div class="col-grid-5">
+
+                <input type="text" placeholder="{{'FORM.INPUT.CADD' | translate}} 1" class="common-input col-span-4">
+
+                <div class="flex-icons">
+                    <button class="common-btn-gray">
+                        <svg-icon svgClass="i-3" name="plus"></svg-icon>
+                    </button>
+                    <button class="common-btn-gray">
+                        <svg-icon svgClass="i-3" name="minus"></svg-icon>
+                    </button>
+                </div>
+            </div>
+            <input type="text" placeholder="{{'FORM.INPUT.CP' | translate}}" class="common-input">
+            <div class="grid-col-2">
+                <input type="text" placeholder="{{'FORM.INPUT.V' | translate}}" class="common-input ">
+                <input type="text" placeholder="{{'FORM.INPUT.P' | translate}}" class="common-input">
+            </div>
+            <input type="text" placeholder="{{'FORM.INPUT.SI' | translate}}" class="common-input">
+            <div class="grid-icons  ">
+
+                <input type="number" placeholder="{{'FORM.INPUT.NT' | translate}}" class="common-input col-span-4">
+
+                <div class="flex-icons">
+                    <button class="common-btn-gray">
+                        <svg-icon svgClass="i-3" name="plus"></svg-icon>
+                    </button>
+                    <button class=" common-btn-gray">
+                        <svg-icon svgClass="i-3" name="minus"></svg-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- client and Mots clés column -->
+
+    <div class="col-flex-11 relative">
+        <div class="col-flex-6">
+            <span class="secondary-title">{{'FORM.TITLE.C' | translate}}</span>
+            <input type="text" placeholder="{{'FORM.INPUT.SPC' | translate}}" class="common-input">
+        </div>
+
+        <div class="col-flex-6 ">
+            <span class="secondary-title">{{'FORM.TITLE.MC' | translate}}</span>
+            <input type="text" placeholder="{{'FORM.INPUT.ASMC' | translate}}" class="common-input">
+        </div>
+
+        <div class="col-flex-6 mt-10 ">
+            <div class="grid-btns">
+                <button class="common-btn-black col-span-2 ">{{'FORM.BUTTON.C' | translate}}</button>
+                <button class="common-btn-gray">{{'FORM.BUTTON.A' | translate}}</button>
+            </div>
+        </div>
+
+    </div>
+
+</section>

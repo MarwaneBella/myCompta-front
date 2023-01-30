@@ -1,0 +1,33 @@
+{
+  "TITLE": {
+    "S": "Sociétés"
+  },
+  "FORM": {
+    "TITLE": {
+      "INF": "Informations",
+      "CC": "Coordonnées du client",
+      "C": "Clients",
+      "MC": "Mots clés"
+    },
+    "INPUT": {
+      "NS": "Nome de la société",
+      "NTVA": "Numéro de TVA",
+      "SIREN": "SIREN, SIRET...",
+      "NAF": "Code NAF, NACE, NOGA...",
+      "LANG": "Langue",
+      "ADD": "Adresse",
+      "CADD": "Complément d’adresse ",
+      "CP": "Code postal",
+      "V": "Ville",
+      "P": "Pays",
+      "SI": "Site internet",
+      "NT": "Numéro de téléphone",
+      "SPC": "Sélectionner un ou plusieurs clients",
+      "ASMC": "Ajouter / Sélectionner des mots clés"
+    },
+    "BUTTON": {
+      "C": "Créer",
+      "A": "Annuler"
+    }
+  }
+}

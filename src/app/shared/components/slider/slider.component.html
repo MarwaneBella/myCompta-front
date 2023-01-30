@@ -1,0 +1,125 @@
+<div>
+    <div class="flex w-full justify-between items-center">
+        <button *ngIf="this.slideConfig.showLeftRightArrow" (click)="prev()" class="w-8 sm:w-10 sm:h-10 h-8 rounded-full flex bg-white text-slate-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 sm:w-6 h-5 sm:h-6 m-auto">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+            </svg>
+        </button>
+        <div #slideContainer class="w-full overflow-hidden">
+            <ul #slider class="flex transition-all duration-300" [style.width.px]="this.sliderWidth"
+                [style.marginLeft.px]="this.sliderMarginLeft">
+                <li class="cursor-pointer" (click)="this.onSelect.emit(category)" [style.width.px]="this.slideWidth"
+                    *ngFor="let category of this.getItems()">
+                    <ng-content *ngTemplateOutlet="template || defaultTemplate;
+                context:{$implicit:category}"></ng-content>
+                </li>
+            </ul>
+        </div>
+        <button *ngIf="this.slideConfig.showLeftRightArrow" (click)="next()" class="w-8 sm:w-10 sm:h-10 h-8 rounded-full flex bg-white text-slate-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 sm:w-6 h-5 sm:h-6 m-auto">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+            </svg>
+        </button>
+    </div>
+    <div *ngIf="this.slideConfig.showDots && this.dots.length>1" class="flex justify-center mt-10">
+        <ul class="flex gap-2">
+            <li (click)="move(i+1)" *ngFor="let dot of dots;let i=index" >
+                <span class="w-4 h-4 rounded-full bg-emerald-600 {{i+1===this.activeSlideID?'':'bg-opacity-20'}} flex"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<!--ttttttttttttttttttttttttttttttt -->
+
+<ng-template #defaultTemplate let-item let-width="slideWidth">
+    <div class="card mx-5 "  >
+        <div class="grid grid-cols-3  ">
+            <a class="flex space-x-3 col-span-2" href="#">
+                <div class="rounded-lg-white">
+                    <svg-icon svgClass="i-6" name="clients"></svg-icon>
+                </div>
+                <div class="flex flex-col justify-center ">
+                    <span class="text-sm font-semibold">Adam Smith</span>
+                    <span class="text-gray-2" >Particulier</span>
+                </div>
+            </a>
+            
+
+            <div class=" flex items-center justify-self-end" >
+                <div class="relative" >
+
+                    <button class="w-8 h-8 common-btn-white " >
+                        <svg-icon name ="3dots"></svg-icon>
+                    </button>
+        
+                    <div class="drop-menu" *ngIf="false" >
+                        <a class="item-menu-xs" href="#"  >
+                            <svg-icon name="edit" ></svg-icon>
+                            <span >Modifier</span>
+                        </a>
+
+                        <a  class="item-menu-xs" href="#">
+                            <svg-icon name="delete" ></svg-icon>
+                            <span>Supprimer</span>
+                        </a>
+                        <div class="flex flex-col space-y-2">
+                            <hr class="drop-menu-line"> 
+                            <span class="text-gray-2 mt-10 text-[10px]">POUR CE CLIENT :</span>
+                        </div>
+
+                        <a class="item-menu-xs" href="#">
+                            <span>Créer une activité</span>
+                        </a>
+
+                        <a  class="item-menu-xs" href="#">
+                            <span>Créer un devis</span>
+                        </a>
+                        <a  class="item-menu-xs" href="#">
+                            <span>Créer une facture</span>
+                        </a>
+
+                    </div>
+                    
+                </div> 
+            </div>
+            
+
+        </div>
+        <div>
+            <p class="text-gray-2 text-justify">
+                Lorem ipsum dolor sit amet, tetuer adipiscing elit, sed diam nonummy nibh euismod..
+            </p>
+        </div>
+        <div >
+            <div class="flex space-x-2">
+                <span class="rounded-full-white" > 
+                    <svg-icon svgClass="i-3" name="phone"></svg-icon> 
+                </span>
+                <span class="flex items-center">+212 600 000 000</span>
+            </div>
+            <div class="flex space-x-2">
+                <span class="rounded-full-white" > 
+                    <svg-icon svgClass="i-3" name="email"></svg-icon> 
+                </span>
+                <span class="flex items-center">adam.smith@email.com</span>
+            </div>
+            <div class="flex space-x-2">
+                <span class="rounded-full-white" > 
+                    <svg-icon svgClass="i-3" name="map"></svg-icon> 
+                </span>
+                <span class="flex items-center">Agadir, Maroc</span>
+            </div>
+            
+        </div>
+        <div class="flex space-x-1">
+            <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " >me</span>
+            <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " >+6</span>
+        </div>
+
+    </div>
+</ng-template>

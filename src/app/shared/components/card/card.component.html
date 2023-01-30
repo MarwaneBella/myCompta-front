@@ -1,0 +1,53 @@
+<div class="card">
+
+    <div class="grid grid-cols-3  ">
+        <a class="flex space-x-3 col-span-2" routerLink="/societes/show/1">
+            <div class="rounded-lg-white">
+                <svg-icon svgClass="i-6" name="clients"></svg-icon>
+            </div>
+            <div class="flex flex-col justify-center">
+                <span class="text-sm font-semibold">Adam Smith</span>
+                <span class="text-gray-2" >Particulier</span>
+            </div>
+        </a>
+
+        <div class="flex items-center justify-self-end">
+            <app-drop-menu type="edit" size = "xs" [for]="for" ></app-drop-menu>
+        </div>
+        
+    </div>
+    <div>
+        <p class="text-gray-2 text-justify">
+            Lorem ipsum dolor sit amet, tetuer adipiscing elit, sed diam nonummy nibh euismod..
+        </p>
+    </div>
+    <div >
+        <div class="flex space-x-2">
+            <span class="rounded-full-white" > 
+                <svg-icon svgClass="i-3" name="phone"></svg-icon> 
+            </span>
+            <span class="flex items-center">+212 600 000 000</span>
+        </div>
+        <div class="flex space-x-2">
+            <span class="rounded-full-white" > 
+                <svg-icon svgClass="i-3" name="email"></svg-icon> 
+            </span>
+            <span class="flex items-center">adam.smith@email.com</span>
+        </div>
+        <div class="flex space-x-2">
+            <span class="rounded-full-white" > 
+                <svg-icon svgClass="i-3" name="map"></svg-icon> 
+            </span>
+            <span class="flex items-center">Agadir, Maroc</span>
+        </div>
+        
+    </div>
+    <div class="flex space-x-1">
+        <!-- <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " *ngFor="let mot of motCle | slice:0:3">{{mot}}</span>
+        <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " >+{{motCle.length-3}}</span> -->
+
+        <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " >dev</span>
+        <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " >+10</span>
+    </div>
+
+</div>

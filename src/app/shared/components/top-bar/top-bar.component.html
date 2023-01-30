@@ -1,0 +1,6 @@
+<section class="flex justify-between mb-5">
+    <span class="text-xl font-black">{{'TITLE.S' | translate}}</span>
+
+    <app-drop-menu [type]="type" [size]="sizeMenu" [for]="for" *ngIf ="type !== 'add'"></app-drop-menu>
+
+</section>
