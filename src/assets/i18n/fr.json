@@ -7,13 +7,17 @@
       "INF": "Informations",
       "CC": "Coordonnées du client",
       "C": "Clients",
-      "MC": "Mots clés"
+      "MC": "Mots clés",
+      "A": "Activités"
     },
     "INPUT": {
       "NS": "Nome de la société",
       "NTVA": "Numéro de TVA",
       "SIREN": "SIREN, SIRET...",
       "NAF": "Code NAF, NACE, NOGA...",
+      "F": "Fonction",
+      "EMAIL": "Adresse email",
+      "S": "Société",
       "LANG": "Langue",
       "ADD": "Adresse",
       "CADD": "Complément d’adresse ",
@@ -22,6 +26,7 @@
       "P": "Pays",
       "SI": "Site internet",
       "NT": "Numéro de téléphone",
+      "N": "Notes",
       "SPC": "Sélectionner un ou plusieurs clients",
       "ASMC": "Ajouter / Sélectionner des mots clés"
     },

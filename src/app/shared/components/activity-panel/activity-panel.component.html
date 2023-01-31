@@ -1,0 +1,42 @@
+<section>
+    <div class="flex flex-col gap-6">
+        <div>
+            <div class="secondary-title">
+                {{'FORM.TITLE.A'|translate}}
+                <span class="text-gray-2 text-xs">({{activities.length}})</span>
+            </div>
+        </div>
+        <div class="flex flex-col gap-2">
+
+            <div class="flex gap-4" *ngFor="let activity of activities|slice:0:slice ; let i = index">
+                <div class="flex flex-col gap-2 items-center">
+                    <span class="rounded-full-gray ">
+                        <svg-icon name="plus" svgClass="i-4" *ngIf="activity.action ==='C' "></svg-icon>
+                        <svg-icon name="minus" svgClass="i-4" *ngIf="activity.action ==='S' "></svg-icon>
+                    </span>
+                    <div class="border-l-[1.5px] h-8" *ngIf=" i !== activities.length-1 "></div>
+                </div>
+                <div class="flex flex-col text-sm">
+
+                    <div class="flex">
+                        <span *ngIf=" activity.action === 'C' ">Nouvelle &nbsp;</span>
+                        <span *ngIf=" activity.action === 'S' ">Le &nbsp;</span>
+                        <span class="text-gray-2">{{activity.target}}&nbsp;{{activity.code}}&nbsp;</span>
+                        <span>de&nbsp;</span>
+                        <span>{{activity.price | number:'.2'}}&nbsp;</span>
+                        <span>DH HT</span>
+                        <span *ngIf=" activity.action === 'S' ">&nbsp;à été signé</span>
+                    </div>
+                    <span class="text-gray-2 text-xs">{{activity.date | date: 'Le dd MMMM yyyy à HH:mm ' }}</span>
+                </div>
+
+            </div>
+        </div>
+        <button class="common-btn-gray w-fit text-sm px-4" (click)="toggleDropActivity()">
+            <span *ngIf="slice === lengthFix">Afficher toutes les activités </span>
+            <span *ngIf="slice === activities.length">Masquer certaines activités </span>
+        </button>
+    </div>
+
+    
+</section>

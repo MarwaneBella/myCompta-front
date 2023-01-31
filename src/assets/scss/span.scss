@@ -4,10 +4,19 @@
 @tailwind variants;
 
 @layer components{
+    .rounded-full-gray{
+        @apply p-3 bg-gray-1 rounded-full ;
+    }
     .rounded-full-white{
         @apply p-1 bg-white-1 rounded-full ;
     }
+    
     .rounded-lg-white{
         @apply p-3 bg-white-1 rounded-lg;
     }
+
+    .rounded-full-black{
+        @apply bg-black-1 text-white-2 py-1 px-2 rounded-full ;
+    }
+    
 }

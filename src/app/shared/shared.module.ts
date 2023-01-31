@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
@@ -11,6 +11,7 @@ import {  TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { LanguageService } from './services/language.service';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { ActivityPanelComponent } from './components/activity-panel/activity-panel.component';
 
 
 
@@ -21,13 +22,15 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     CardComponent,
     DropMenuComponent,
     TopBarComponent,
+    ActivityPanelComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     AngularSvgIconModule,
     HttpClientModule,
-    TranslateModule
+    TranslateModule,
+    
     
   ],
   exports : [
@@ -39,6 +42,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     HttpClientModule,
     TopBarComponent,
     DropMenuComponent,
+    ActivityPanelComponent,
     IvyCarouselModule
   ],
   providers :[
