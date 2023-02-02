@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LanguageService } from './services/language.service';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { ActivityPanelComponent } from './components/activity-panel/activity-panel.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AddressFormComponent } from './components/address-form/address-form.component';
 
 
 
@@ -23,6 +26,7 @@ import { ActivityPanelComponent } from './components/activity-panel/activity-pan
     DropMenuComponent,
     TopBarComponent,
     ActivityPanelComponent,
+    AddressFormComponent,
   ],
   imports: [
     CommonModule,
@@ -30,8 +34,9 @@ import { ActivityPanelComponent } from './components/activity-panel/activity-pan
     AngularSvgIconModule,
     HttpClientModule,
     TranslateModule,
-    
-    
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   exports : [
     ClickOutsideDirective,
@@ -42,7 +47,11 @@ import { ActivityPanelComponent } from './components/activity-panel/activity-pan
     HttpClientModule,
     TopBarComponent,
     DropMenuComponent,
+    AddressFormComponent,
     ActivityPanelComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
     IvyCarouselModule
   ],
   providers :[

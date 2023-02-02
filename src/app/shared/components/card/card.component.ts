@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Societe } from 'src/app/private/models/societe';
 
 @Component({
   selector: 'app-card',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input()
-  Data :object
+  data : Societe 
 
   @Input()
   for : 'c'|'s'|'d'|'f'

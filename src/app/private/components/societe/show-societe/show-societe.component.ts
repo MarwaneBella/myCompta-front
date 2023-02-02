@@ -1,5 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { firstValueFrom, interval, lastValueFrom } from 'rxjs';
+import { SocieteService } from 'src/app/private/http/societe.service';
 import { Activity } from 'src/app/private/models/activity';
+import { Societe } from 'src/app/private/models/societe';
 
 @Component({
   selector: 'app-show-societe',
@@ -9,10 +14,36 @@ import { Activity } from 'src/app/private/models/activity';
 export class ShowSocieteComponent implements OnInit {
   
   motCle : string[] = ['dev','marketing','ecommerce','dev','marketing','ecommerce','dev','marketing','ecommerce']
-  constructor() { }
-  
+  id : number; 
+  slug : string
+  societe : Societe
+
+  constructor(private route: ActivatedRoute, private router : Router, private societeService : SocieteService) {
+  }
+
   ngOnInit(){
-  
+    this.setSociete();
+  }
+
+  async setSociete(){
+
+    [this.id, this.slug] = await this.route.snapshot.params['id-slug'].split('-');
+    
+    this.societeService.getSocieteById(this.id).subscribe({  
+      next: data => this.societe = data,
+      error: err => console.log(err),  
+      complete: () => this.checkSlug(),
+    })
+
+  }
+
+  checkSlug(){
+    if(this.societe.slug == this.slug){
+      console.log('true')
+    }
+    else{
+      this.router.navigateByUrl(`societes/show/${this.id}-${this.societe.slug}`);
+    }
   }
 
 
@@ -44,3 +75,15 @@ export class ShowSocieteComponent implements OnInit {
 // }
 
 }
+
+
+// this.societe = await firstValueFrom(this.societeService .getSocieteById(this.id))
+    // .catch(
+    //   error =>{
+    //     console.log(error.error.ResourceNotFound);
+    //   }
+    // );
+    // console.log(this.societe)
+    
+    
+    // console.log(this.societe);

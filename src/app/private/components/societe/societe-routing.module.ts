@@ -14,12 +14,12 @@ const routes: Routes = [
     component: AddEditSocieteComponent
   },
   {
-    path:'edit/:id',
+    path:'edit/:id-slug',
     component: AddEditSocieteComponent
   },
   {
     
-    path:'show/:id',
+    path:'show/:id-slug',
     component: ShowSocieteComponent
   }
 ];

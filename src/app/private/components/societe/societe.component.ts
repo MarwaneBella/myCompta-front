@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SocieteService } from '../../http/societe.service';
+import { Societe } from '../../models/societe';
 
 @Component({
   selector: 'app-societe',
@@ -6,31 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./societe.component.scss']
 })
 export class SocieteComponent implements OnInit {
-  dropMenuAdd : boolean = false
   isEmpty: boolean = false;
   list = [1,2,3,4,5,6,7,8]
   motCle = ["Dev","Design","Brand", "more","more"]
+  societes :Societe[] =[]
   
-  constructor() { }
+  constructor(private societeService : SocieteService) { }
   
 
   ngOnInit(): void {
-    // for(let i=0; i>this.list.length ;i++){
-    //   this.dropMenuEdit[i] = false;
-    // }
-    
-    // console.log(this.dropMenuEdit)
-    
+    this.setAllSocietes();
   }
 
-  toggleDropMenuAdd(){
-      this.dropMenuAdd = !this.dropMenuAdd
-      
+  setAllSocietes(){
+    this.societeService.getSocieteList().subscribe( (res :Societe[])=>{
+      this.societes  = res;
+    })
   }
 
-  closeMenuAdd(){
-    this.dropMenuAdd = false
-  }
+  
 
   
 
