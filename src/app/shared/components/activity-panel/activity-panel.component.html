@@ -11,8 +11,8 @@
             <div class="flex gap-4" *ngFor="let activity of activities|slice:0:slice ; let i = index">
                 <div class="flex flex-col gap-2 items-center">
                     <span class="rounded-full-gray ">
-                        <svg-icon name="plus" svgClass="i-4" *ngIf="activity.action ==='C' "></svg-icon>
-                        <svg-icon name="minus" svgClass="i-4" *ngIf="activity.action ==='S' "></svg-icon>
+                        <svg-icon name="plus" svgClass="w-4" *ngIf="activity.action ==='C' "></svg-icon>
+                        <svg-icon name="minus" svgClass="w-4" *ngIf="activity.action ==='S' "></svg-icon>
                     </span>
                     <div class="border-l-[1.5px] h-8" *ngIf=" i !== activities.length-1 "></div>
                 </div>

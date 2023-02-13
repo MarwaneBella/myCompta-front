@@ -1,6 +1,15 @@
 {
+  "DATA_NAME": {
+    "S": "Société",
+    "C": "Client",
+    "D": "Devis",
+    "F": "Facture"
+  },
   "TITLE": {
-    "S": "Sociétés"
+    "S": "Sociétés",
+    "C": "Clients",
+    "D": "Devis",
+    "F": "Factures"
   },
   "FORM": {
     "TITLE": {
@@ -8,16 +17,20 @@
       "CC": "Coordonnées du client",
       "C": "Clients",
       "MC": "Mots clés",
-      "A": "Activités"
+      "A": "Activités",
+      "N" : "Note"
     },
     "INPUT": {
       "NS": "Nom de la société",
       "NTVA": "Numéro de TVA",
-      "SIREN": "SIREN, SIRET...",
-      "NAF": "Code NAF, NACE, NOGA...",
-      "F": "Fonction",
+      "SIREN": "SIREN, SIRET, ICE...",
+      "NAF": "Code NAF, NACE, NOGA, Taxe professionnelle...",
+      "FN" : "Nom",
+      "LN" : "Prénom",
       "EMAIL": "Adresse email",
+      "F": "Fonction",
       "S": "Société",
+      
       "LANG": "Langue",
       "ADD": "Adresse",
       "CADD": "Complément d’adresse ",
@@ -30,9 +43,93 @@
       "SPC": "Sélectionner un ou plusieurs clients",
       "ASMC": "Ajouter / Sélectionner des mots clés"
     },
+    "SELECT":{
+      "NF" : "Pas trouvé",
+      "CN" : "Créer un nouveau"
+    },
     "BUTTON": {
       "C": "Créer",
-      "A": "Annuler"
+      "A": "Annuler",
+      "E": "Editer"
+    }
+  },
+  "EMPTY_DATA_MESSAGE": {
+    "COMMON": "Cliquez sur le bouton pour l'ajouter",
+    "S": {
+      "M1": "Aucun société a afficher",
+      "M2": "Ajouter une société"
+    },
+    "C": {
+      "M1": "Aucun client a afficher",
+      "M2": "Ajouter un client"
+    },
+    "D": {
+      "M1": "Aucun devis a afficher",
+      "M2": "Ajouter un devis"
+    },
+    "F": {
+      "M1": "Aucun facture a afficher",
+      "M2": "Ajouter une facture"
+    }
+  },
+  "DROP_MENU":{
+    "LIST":{
+      "C" :{
+        "L1" : "Ajouter un client",
+        "L2" : "Exporter les clients"
+      },
+      "S" :{
+        "L1" : "Ajouter une société",
+        "L2" : "Exporter les sociétés"
+      },
+      "D" :{
+        "L1" : "Ajouter un devis",
+        "L2" : "Exporter les devis"
+      },
+      "F" :{
+        "L1" : "Ajouter une facture",
+        "L2" : "Exporter les factures"
+      }
+    },
+    "EDIT":{
+      "L1": "Modifier",
+      "L2": "Supprimer",
+      "C":{
+        "L3": "POUR CE CLIENT :",
+        "L4": "Créer une activité",
+        "L5": "Créer un devis",
+        "L6": "Créer une facture"
+      },
+      "S":{
+        "L3": "POUR CETTE SOCIETE :",
+        "L4": "Créer une activité",
+        "L5": "Créer un devis",
+        "L6": "Créer une facture"
+      },
+      "D":{
+        "L3": "POUR CE DEVIS :",
+        "L4": "Créer une activité",
+        "L5": "Créer un devis",
+        "L6": "Créer une facture"
+      },
+      "F":{
+        "L3": "POUR CETTE FACTURE :",
+        "L4": "Créer une activité",
+        "L5": "Créer un devis",
+        "L6": "Créer une facture"
+      }
+    }
+  },
+  "CLIENT_CARD":{
+    "TYPE" : {
+      "PAR":{
+        "L1" : "Particulier",
+        "L2" : "Client sans société"
+      },
+      "PRO":{
+        "L1" : "Professionel",
+        "L2" : "Client avec société"
+      }
     }
   }
 }

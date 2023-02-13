@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../http/client.service';
+import { Client } from '../../models/client';
 
 @Component({
   selector: 'app-client',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientComponent implements OnInit {
 
-  constructor() { }
+  clients :Array<Client> = []
+  isEmpty : boolean = false;
+  
+  constructor(private clientService : ClientService) { }
+  
 
   ngOnInit(): void {
+    this.setAllClients();
   }
+
+  setAllClients(){
+    
+    this.clientService.getClientList().subscribe({
+      next : data => this.clients  = data,
+      error : err => console.log(err.error),
+      complete: () => {
+        if(this.clients.length == 0) this.isEmpty = true
+      }
+    })
+
+  }
+
 
 }

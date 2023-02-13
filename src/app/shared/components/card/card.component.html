@@ -1,53 +1,40 @@
-<div class="card">
+
+<div class="card h-52">
 
     <div class="grid grid-cols-3  ">
-        <a class="flex space-x-3 col-span-2" routerLink="/societes/show/{{data.id}}-{{data.slug}}">
+        <a class="flex space-x-3 col-span-2" [routerLink]="navigate.toShowPath(for,data.id,data.slug)">
             <div class="rounded-lg-white">
-                <svg-icon svgClass="i-6" name="clients"></svg-icon>
+                <svg-icon svgClass="w-6" [name]="card.mainIcon" *ngIf="card.mainIcon" ></svg-icon>
             </div>
             <div class="flex flex-col justify-center">
-                <span class="text-sm font-semibold">Adam Smith</span>
-                <span class="text-gray-2" >Particulier</span>
+                <span class="text-sm font-semibold   w-32 " *ngIf="card.primaryTitle">{{card.primaryTitle}}</span>
+                <span class="text-gray-2" *ngIf="card.secondaryTitle" >{{card.secondaryTitle}}</span>
             </div>
         </a>
 
         <div class="flex items-center justify-self-end">
-            <app-drop-menu type="edit" size = "xs" [for]="for" ></app-drop-menu>
+            <app-drop-menu type="edit" size = "xs" [for]="for" [param]="[data.id,data.slug]"></app-drop-menu>
         </div>
         
     </div>
-    <div>
+    <div *ngIf="card.paragraph">
         <p class="text-gray-2 text-justify">
-            Lorem ipsum dolor sit amet, tetuer adipiscing elit, sed diam nonummy nibh euismod..
+            {{card.paragraph}}
         </p>
     </div>
-    <div >
-        <div class="flex space-x-2">
+    <div class="space-y-1" *ngIf="card.secondaryData">
+        <div class="flex space-x-2" *ngFor="let element of card.secondaryData ">
             <span class="rounded-full-white" > 
-                <svg-icon svgClass="i-3" name="phone"></svg-icon> 
+                <svg-icon svgClass="w-3" [name]="element.icon"></svg-icon> 
             </span>
-            <span class="flex items-center">+212 600 000 000</span>
+            <span class="flex items-center">{{element.data}}</span>
         </div>
-        <div class="flex space-x-2">
-            <span class="rounded-full-white" > 
-                <svg-icon svgClass="i-3" name="email"></svg-icon> 
-            </span>
-            <span class="flex items-center">adam.smith@email.com</span>
-        </div>
-        <div class="flex space-x-2">
-            <span class="rounded-full-white" > 
-                <svg-icon svgClass="i-3" name="map"></svg-icon> 
-            </span>
-            <span class="flex items-center">Agadir, Maroc</span>
-        </div>
-        
     </div>
-    <div class="flex space-x-1">
-        <!-- <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " *ngFor="let mot of motCle | slice:0:3">{{mot}}</span>
-        <span class="bg-black-1 text-white-2 py-1 px-2 rounded-full " >+{{motCle.length-3}}</span> -->
-
-        <span class="rounded-full-black" >dev</span>
-        <span class="rounded-full-black " >+10</span>
+    <div class="flex space-x-1" *ngIf="this.card.keyWord">
+        
+        
+        <span class="rounded-full-black" *ngFor="let word of card.keyWord | slice:0:3 ">{{word}}</span>
+        <span class="rounded-full-black" *ngIf="card.keyWord.length > 3">+{{card.keyWord.length-3}}</span>
     </div>
 
 </div>

@@ -29,11 +29,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/list-page.scss",
-              "src/assets/scss/add-edit-page.scss",
-              "src/assets/scss/button.scss",
-              "src/assets/scss/icon.scss",
-              "src/assets/scss/span.scss"
+              "src/assets/scss/default-theme.scss"
             ],
             "scripts": [
             ]

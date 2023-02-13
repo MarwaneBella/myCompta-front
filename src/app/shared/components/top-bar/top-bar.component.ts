@@ -9,7 +9,10 @@ export class TopBarComponent implements OnInit {
   dropMenuAdd : boolean = false
 
   @Input()
-  for: 's'|'c'|'d'|'f'
+  param : [id : number, slug : string]
+
+  @Input()
+  for: 'C'|'S'|'D'|'F'
 
   @Input()
   type : 'add'|'edit'|'show'|'list'

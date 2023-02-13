@@ -1,30 +1,20 @@
+import { Address } from "./address"
+import { Client } from "./client"
+import { MotCle } from "./mot-cle"
+import { Phone } from "./phone"
 
 export class Societe {
-
+    
     id : number
     slug :string
     name : string
-    nTva : string
+    ntva : string
     siren : string
     codeNaf : string
     website : string
-    Language : string
-
-//   constructor(
-//     name: string, 
-//     nTva?: string, 
-//     siren?: string, 
-//     codeNaf?: string, 
-//     website?: string, 
-//     Language?: string
-// ) {
-
-//     this.slug = uniqueSlug()
-//     this.name = name
-//     this.nTva = nTva
-//     this.siren = siren
-//     this.codeNaf = codeNaf
-//     this.website = website
-//     this.Language = Language
-//   }
+    language : string
+    clientList : Client[]
+    phoneList : Phone[]
+    motCleList : MotCle[]
+    address : Address
 }

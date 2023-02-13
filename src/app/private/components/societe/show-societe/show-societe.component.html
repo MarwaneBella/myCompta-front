@@ -1,80 +1,130 @@
-<app-top-bar for="s" type="show" sizeMenu="sm"></app-top-bar>
-
-
-
+<app-top-bar for="S" type="show" sizeMenu="sm" [param]="[id,slug]"></app-top-bar>
 
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-24 ">
 	<!-- Informations column -->
 
-	<div class="col-flex-6 ">
+	<div class="flex flex-col gap-6 ">
 		<div>
 			<span class="secondary-title">{{'FORM.TITLE.INF'|translate}}</span>
 		</div>
-		<div class="flex flex-col space-y-8 ">
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
-					<span class="text-gray-2">{{'FORM.INPUT.F' | translate}} :</span>
-					<div class="col-span-3">comptable </div>
-				</div>
-				<hr>
-			</div>
+		<div class="flex flex-col space-y-8 " >
 
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
-					<span class="text-gray-2">{{'FORM.INPUT.EMAIL' | translate}} :</span>
-					<div class="col-span-3">adam.smith@email.com</div>
-				</div>
-				<hr>
-			</div>
-
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+			<div class="flex flex-col space-y-3 " *ngIf="societe.name">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.S' | translate}} :</span>
-					<div class="col-span-3">Coding Art </div>
+					<div class="col-span-3">{{societe.name}}</div>
 				</div>
 				<hr>
 			</div>
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+
+			<div class="flex flex-col space-y-3" *ngIf="societe.ntva">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.NT' | translate}} :</span>
+					<div class="col-span-3">{{societe.ntva}}</div>
+				</div>
+				<hr>
+			</div>
+
+			<div class="flex flex-col space-y-3 " *ngIf="societe.siren">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.SIREN' | translate}} :</span>
+					<div class="col-span-3">{{societe.siren}}</div>
+				</div>
+				<hr>
+			</div>
+			<div class="flex flex-col space-y-3 " *ngIf="societe.codeNaf">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.NAF' | translate}} :</span>
+					<div class="col-span-3">{{societe.codeNaf}}</div>
+				</div>
+				<hr>
+			</div>
+
+
+
+			<div class="flex flex-col space-y-3 " *ngIf="societe.clientList && societe.clientList.length">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.TITLE.C' | translate}} :</span>
+					<div class="col-span-3 flex flex-wrap gap-2">
+						<span class="rounded-full-black" *ngFor="let client of societe.clientList"> {{client.firstName+ " "+client.lastName}}</span>
+					</div>
+				</div>
+				<hr>
+			</div>
+
+			<div class="flex flex-col space-y-3" *ngIf=" societe.address && (societe.address.address || societe.address.complementAddress)">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.ADD' | translate}} :</span>
-					<div class="col-span-3">Hay Tilila Agadir </div>
+					<div class="col-span-3 flex flex-col">
+						<span *ngIf="societe.address.address">{{societe.address.address}}</span>
+						<ng-container *ngIf="societe.address.complementAddress && societe.address.complementAddress.length">					
+							<div  *ngFor="let complementAddress of societe.address.complementAddress">
+								{{complementAddress}}
+							</div>
+						</ng-container>
+					</div>
 				</div>
 				<hr>
 			</div>
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+
+			<div class="flex flex-col space-y-3" *ngIf="societe.phoneList && societe.phoneList.length">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.NT' | translate}} :</span>
+					<div class="col-span-3 flex flex-col">		
+						<div  *ngFor="let phone of societe.phoneList">
+							{{phone.phoneNumber}}
+						</div>
+						
+					</div>
+				</div>
+				<hr>
+			</div>
+
+			<div class="flex flex-col space-y-3 " *ngIf="societe.address && societe.address.city">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.V' | translate}} :</span>
+					<div class="col-span-3"> {{societe.address.city}} </div>
+				</div>
+				<hr>
+			</div> 
+			<div class="flex flex-col space-y-3" *ngIf="societe.address && societe.address.country">
+				<div class=" grid grid-cols-4 gap-4 ">
 					<span class="text-gray-2">{{'FORM.INPUT.P' | translate}} :</span>
-					<div class="col-span-3">Maroc </div>
+					<div class="col-span-3">{{societe.address.country}} </div>
 				</div>
 				<hr>
 			</div>
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+
+			<div class="flex flex-col space-y-3" *ngIf="societe.website">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.EMAIL' | translate}} :</span>
+					<div class="col-span-3">{{societe.website}}</div>
+				</div>
+				<hr>
+			</div>
+			<div class="flex flex-col space-y-3" *ngIf="societe.language">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.LANG' | translate}} :</span>
-					<div class="col-span-3 ">Français </div>
+					<div class="col-span-3 ">{{societe.language}} </div>
 				</div>
 				<hr>
 			</div>
-		</div>
 
-		<div class="flex flex-col space-y-3 ">
-			<div class=" grid grid-cols-4">
-				<span class="text-gray-2">{{'FORM.TITLE.MC' | translate}} :</span>
-				<div class="col-span-3 flex flex-wrap gap-2">
-					<span class="rounded-full-black" *ngFor="let mot of motCle"> {{mot}}</span>
+			<div class="flex flex-col space-y-3" *ngIf="societe.motCleList && societe.motCleList.length">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.TITLE.MC' | translate}} :</span>
+					<div class="col-span-3 flex flex-wrap gap-2">
+						<span class="rounded-full-black" *ngFor="let motCle of societe.motCleList"> {{motCle.mot}}</span>
+					</div>
 				</div>
+				<hr>
 			</div>
-			<hr>
+
+
 		</div>
 
-		<div class="flex flex-col space-y-3 ">
-			<div class=" grid grid-cols-4">
-				<span class="text-gray-2">{{'FORM.INPUT.N' | translate}} :</span>
-				<div class="col-span-3">my note </div>
-			</div>
-			<hr>
-		</div>
+		
 
 
 	</div>

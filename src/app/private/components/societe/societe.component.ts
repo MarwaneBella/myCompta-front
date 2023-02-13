@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
+import { firstValueFrom, isEmpty } from 'rxjs';
 import { SocieteService } from '../../http/societe.service';
 import { Societe } from '../../models/societe';
 
@@ -7,23 +8,26 @@ import { Societe } from '../../models/societe';
   templateUrl: './societe.component.html',
   styleUrls: ['./societe.component.scss']
 })
-export class SocieteComponent implements OnInit {
-  isEmpty: boolean = false;
-  list = [1,2,3,4,5,6,7,8]
-  motCle = ["Dev","Design","Brand", "more","more"]
-  societes :Societe[] =[]
+export class SocieteComponent implements OnInit{
+  societes :Societe[] = [];
+  isEmpty : boolean = false;
   
   constructor(private societeService : SocieteService) { }
   
-
-  ngOnInit(): void {
-    this.setAllSocietes();
+  async ngOnInit(): Promise<void> {
+    await this.setAllSocietes();
   }
 
-  setAllSocietes(){
-    this.societeService.getSocieteList().subscribe( (res :Societe[])=>{
-      this.societes  = res;
+
+  async setAllSocietes(){
+    await firstValueFrom(this.societeService.getSocieteList())
+    .then(res => this.societes = res )
+    .catch(console.log)
+    .finally( () =>{
+      if(this.societes.length == 0) this.isEmpty = true
+      console.log(this.societes)
     })
+    
   }
 
   

@@ -1,1 +1,15 @@
-<p>client works!</p>
+<section>
+    <app-top-bar for="C" type="list"></app-top-bar>
+
+    <div class="flex justify-center items-center " *ngIf="isEmpty">
+        <app-empty-data-message for="C"></app-empty-data-message>
+    </div>
+
+    <div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
+            <app-card *ngFor="let client of clients" for="C" [data]="client"></app-card>
+        </div>
+
+    </div>
+</section>

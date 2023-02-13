@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center h-96">
+    <div class="flex flex-col text-center space-y-5  ">
+        <span>{{'EMPTY_DATA_MESSAGE.'+for+'.M1' | translate}}<br>{{'EMPTY_DATA_MESSAGE.COMMON'|translate}}</span>
+
+        <div class="flex justify-center items-center">
+
+            <button class="common-btn-gray space-x-2 flex" [routerLink]="navigate.toAddPath(for)">
+                <svg-icon name="add" class="w-5 pt-0.5"></svg-icon>
+                <span>{{'EMPTY_DATA_MESSAGE.'+for+'.M2' | translate}}</span>
+            </button>
+
+        </div>
+    </div>
+</div>

@@ -22,24 +22,28 @@ export class ShowSocieteComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.setSociete();
+    this.checkRouteAndGetSociete();
   }
 
-  async setSociete(){
-
+  async checkRouteAndGetSociete(){
     [this.id, this.slug] = await this.route.snapshot.params['id-slug'].split('-');
-    
-    this.societeService.getSocieteById(this.id).subscribe({  
-      next: data => this.societe = data,
-      error: err => console.log(err),  
-      complete: () => this.checkSlug(),
-    })
-
+    this.id = +this.id
+    if(this.id){
+      this.societeService.getSocieteById(this.id).subscribe({  
+        next: data => this.societe = data,
+        error: err => console.log(err),  
+        complete: () => this.checkSlug(),
+      })
+    }
+    else{
+      this.router.navigateByUrl('societes');
+    }
+  
   }
 
   checkSlug(){
-    if(this.societe.slug == this.slug){
-      console.log('true')
+    if(this.societe.slug === this.slug){
+      console.log(this.societe)
     }
     else{
       this.router.navigateByUrl(`societes/show/${this.id}-${this.societe.slug}`);
@@ -47,43 +51,6 @@ export class ShowSocieteComponent implements OnInit {
   }
 
 
-//   images = [
-//     {path: '/assets/img/photo-1548625149-9129dad5eef7.jpg'},
-//     {path: '/assets/img/photo-1548625149-d37da68f9a7f.jpg'},
-//     {path: '/assets/img/photo-1489365091240-6a18fc761ec2.jpg'},
-//     {path: '/assets/img/photo-1547691889-841a6f1c5ca6.jpg'},
-//     {path: '/assets/img/photo-1595433562696-a8b1cb8bdad1.jpg'},
-//     {path: '/assets/img/photo-1495563381401-ecfbcaaa60f2.jpg'},
-//     {path: '/assets/img/photo-1534801022022-6e319a11f249.jpg'},
-//     {path: '/assets/img/photo-1524324463413-57e3d8392df1.jpg'},
-//     {path: '/assets/img/photo-1506086679524-493c64fdfaa6.jpg'},
-//     {path: '/assets/img/photo-1569749450723-1836b067fb64.jpg'}
-// ];   
-
-// imagesForSlider = [
-//     {path: '/assets/img/photo-1444065707204-12decac917e8.jfif'},
-//     {path: '/assets/img/photo-1445452916036-9022dfd33aa8.jfif'},
-//     {path: '/assets/img/photo-1443996104801-80c82e789b18.jfif'},
-//     {path: '/assets/img/photo-1505839673365-e3971f8d9184.jfif'},
-//     {path: '/assets/img/photo-1545420333-23a22b18b8fa.jfif'}
-// ];
-
-
-
-// handleCarouselEvents(event:any) {
-// console.log(event);
-// }
-
 }
 
 
-// this.societe = await firstValueFrom(this.societeService .getSocieteById(this.id))
-    // .catch(
-    //   error =>{
-    //     console.log(error.error.ResourceNotFound);
-    //   }
-    // );
-    // console.log(this.societe)
-    
-    
-    // console.log(this.societe);

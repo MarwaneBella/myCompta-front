@@ -11,24 +11,24 @@ export class SocieteService {
 
   constructor(private http : HttpClient, private constant : ConstantUrl) { }
 
-  getSocieteById(id :number):Observable<any>{
-    return this.http.get<any>(`${this.constant.societeUrl}/${id}`);
+  getSocieteById(id :number):Observable<Societe>{
+    return this.http.get<Societe>(`${this.constant.societeUrl}/${id}`);
   }
 
   getSocieteList(): Observable<Societe[]>{
     return this.http.get<Societe[]>(`${this.constant.societeUrl}`);
   }
 
-  addSociete(bonAchat: Societe): Observable<any> {
-    return this.http.post(`${this.constant.societeUrl}`, bonAchat);
+  addSociete(societe: Societe): Observable<any> {
+    return this.http.post(`${this.constant.societeUrl}`, societe);
   }
   
-  updateSociete( id :number, bonAchat: Societe) :Observable<Societe>{
-    return this.http.put<Societe>(`${this.constant.societeUrl}/${id}`,bonAchat);
+  updateSocieteById( id :number, societe: Societe) :Observable<Societe>{
+    return this.http.put<Societe>(`${this.constant.societeUrl}/${id}`,societe);
   }
 
-  deleteBonAchatById(id :number):Observable<Societe>{
-   return this.http.delete<Societe>(`${this.constant.societeUrl}/${id}`);
+  deleteSocieteById(id :number):Observable<string>{
+   return this.http.delete(`${this.constant.societeUrl}/${id}`,{ responseType: 'text'});
   }
 
   

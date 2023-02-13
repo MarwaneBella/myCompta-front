@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { NgSelectConfig } from '@ng-select/ng-select';
 import { TranslateService } from '@ngx-translate/core';
 import { SvgIconRegistryService } from 'angular-svg-icon';
-import { LanguageService } from './shared/services/language.service';
+import { forkJoin } from 'rxjs';
 
+const listIconsvg :string[]  =  ['dashboard', 'clients', 'societes', 'devis', 'factures', 'search',
+  'notification', 'message', 'arrowdown', 'arrowup', 'help', 'logout', 'feedback', 'settings',
+  'add', '3dots', 'plus', 'minus', 'export', 'phone', 'email', 'map', 'edit', 'delete','par','pro'];
 
 @Component({
   selector: 'app-root',
@@ -12,17 +16,26 @@ import { LanguageService } from './shared/services/language.service';
 export class AppComponent {
   title = 'MyCompta-Front';
 
-  listIconsvg :string[]  =  ['dashboard', 'clients', 'societes', 'devis', 'factures', 'search',
-  'notification', 'message', 'arrowdown', 'arrowup', 'help', 'logout', 'feedback', 'settings',
-  'add', '3dots', 'plus', 'minus', 'export', 'phone', 'email', 'map', 'edit', 'delete'];
+  
 
-  constructor(private svgIconRegistryService : SvgIconRegistryService) {
+  constructor(private svgIconRegistryService : SvgIconRegistryService, private config: NgSelectConfig, private translateService : TranslateService) {
     
-    this.listIconsvg.forEach(name=>{
+    listIconsvg.forEach(name=>{
       this.svgIconRegistryService.loadSvg(`./assets/svg/${name}.svg`,name);
     })
 
     
+    forkJoin({
+    source1 : this.translateService.get('FORM.SELECT.NF'),
+    source2 : this.translateService.get('FORM.SELECT.CN')
+    }).subscribe({
+      next : ({source1, source2}) =>{
+        this.config.notFoundText = source1
+        this.config.addTagText = source2
+      },
+      error : e => console.log(e)
+    })
+
 
     
     

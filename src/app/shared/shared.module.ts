@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
@@ -14,7 +14,10 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { ActivityPanelComponent } from './components/activity-panel/activity-panel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { AddressFormComponent } from './components/address-form/address-form.component';
+import { EmptyDataMessageComponent } from './components/empty-data-message/empty-data-message.component';
+import { TagInputModule } from 'ngx-chips';
+import { ChipsInputComponent } from './components/chips-input/chips-input.component';
+import { DebounceClickDirective } from './directives/debounce-click.directive';
 
 
 
@@ -26,7 +29,10 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     DropMenuComponent,
     TopBarComponent,
     ActivityPanelComponent,
-    AddressFormComponent,
+    EmptyDataMessageComponent,
+    EmptyDataMessageComponent,
+    ChipsInputComponent,
+    DebounceClickDirective,
   ],
   imports: [
     CommonModule,
@@ -36,9 +42,11 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    TagInputModule
   ],
   exports : [
+    DebounceClickDirective,
     ClickOutsideDirective,
     AngularSvgIconModule,
     SliderComponent,
@@ -47,11 +55,13 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     HttpClientModule,
     TopBarComponent,
     DropMenuComponent,
-    AddressFormComponent,
     ActivityPanelComponent,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    EmptyDataMessageComponent,
+    TagInputModule,
+    ChipsInputComponent,
     IvyCarouselModule
   ],
   providers :[
