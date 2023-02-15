@@ -1,16 +1,15 @@
-<section>
-
+<form [formGroup]="clientForm">
     <div class="flex justify-between mb-5">
         <span class="primary-title">{{'TITLE.C' | translate}}</span>
 
-        <div class="flex gap-2 text-sm" *ngIf="isParticulier != null">
-            <button class="common-btn-gray flex gap-2 " (click)="isParticulier=true" [class.btn-active]="isParticulier">
+        <div class="flex gap-2 text-sm" *ngIf="isPar != null">
+            <button class="common-btn-gray flex gap-2 " (click)="toParticulier()" [class.btn-active]="isPar">
                 <svg-icon name="par" svgClass="w-5"></svg-icon>
                 <span>{{ 'CLIENT_CARD.TYPE.PAR.L1'| translate}}</span>
             </button>
 
-            <button class="common-btn-gray flex gap-2" (click)="isParticulier=false"
-                [class.btn-active]="!isParticulier">
+            <button class="common-btn-gray flex gap-2" (click)="toProfessionel()"
+                [class.btn-active]="!isPar">
                 <svg-icon name="pro" svgClass="w-5"></svg-icon>
                 <span>{{ 'CLIENT_CARD.TYPE.PRO.L1'| translate}}</span>
             </button>
@@ -19,9 +18,9 @@
     </div>
 
     <div class=" sm:h-[400px] flex flex-col py-8 sm:flex-row sm:justify-center items-center gap-6"
-        *ngIf="isParticulier == null">
+        *ngIf="isPar == null && this.isAddMode" >
 
-        <button class="type-client-card" (click)="isParticulier=true">
+        <button class="type-client-card" (click)="toParticulier()">
             <div class="rounded-lg bg-white-1 p-5">
                 <svg-icon name="par" svgClass="w-11 stroke-1"></svg-icon>
             </div>
@@ -31,7 +30,7 @@
             </div>
         </button>
 
-        <button class="type-client-card" (click)="isParticulier=false">
+        <button class="type-client-card" (click)="toProfessionel()">
             <div class="rounded-lg bg-white-1 p-5">
                 <svg-icon name="pro" svgClass="w-11 stroke-1"></svg-icon>
             </div>
@@ -44,12 +43,12 @@
     </div>
 
 
-    <form [formGroup]="clientForm" class="grid grid-cols-1 gap-9 sm:grid-cols-2 md:grid-cols-3"
-        *ngIf="isParticulier != null">
+    <div class="grid grid-cols-1 gap-9 sm:grid-cols-2 md:grid-cols-3"
+        *ngIf="isPar != null">
 
         <!-- Informations column -->
 
-        <div class="flex flex-col gap-6">
+        <form [formGroup]="clientForm" class="flex flex-col gap-6">
             <div>
                 <span class="secondary-title">{{'FORM.TITLE.INF' | translate}}</span>
             </div>
@@ -63,12 +62,12 @@
                 <input type="text" placeholder="{{'FORM.INPUT.F' | translate}}" class="common-input"
                     formControlName="function">
                 <input type="text" placeholder="{{'FORM.INPUT.SI' | translate}} " class="common-input"
-                    formControlName="website">
+                    formControlName="website" *ngIf="isPar">
                 <ng-select class="custom " placeholder="{{'FORM.INPUT.LANG' | translate}} *" [items]="languages"
                     formControlName="language">
                 </ng-select>
             </div>
-        </div>
+        </form>
 
         <!-- Coordonnées du client column -->
         <div class="flex flex-col gap-6">
@@ -77,24 +76,32 @@
             </div>
 
 
-
-            <ng-container *ngIf="isParticulier; else pro">
+            <ng-container *ngIf="isPar; else pro">
                 <!-- address form  -->
-                <app-address-form for="S"></app-address-form>
+                <app-address-form for="C"></app-address-form>
 
                 <!-- phone Form -->
-                <app-phone-form for="S"></app-phone-form>
+                <app-phone-form for="C"></app-phone-form>
+                
             </ng-container>
             <ng-template #pro>
                 <div class="gap-11 flex flex-col">
                     <!-- phone Form -->
-                    <app-phone-form for="S"></app-phone-form>
+                    <app-phone-form for="C"></app-phone-form>
 
                     <!-- select client form -->
-                    <app-select-client-form for="S"></app-select-client-form>
+
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <span class="secondary-title">{{'FORM.TITLE.S' | translate}}</span>
+                        </div>
+                        <ng-select [items]="societes" bindLabel="name" class="custom w-full text-sm"
+                            placeholder="{{'FORM.INPUT.SS' | translate}}" formControlName="societe">
+                        </ng-select>
+                    </div>
 
                     <!-- Mots clés Form -->
-                    <app-key-word-form for="S"></app-key-word-form>
+                    <app-key-word-form for="C"></app-key-word-form>
                 </div>
             </ng-template>
 
@@ -112,14 +119,14 @@
 
 
             <!-- Mots clés Form -->
-            <app-key-word-form for="S" *ngIf="isParticulier"></app-key-word-form>
+            <app-key-word-form for="C" *ngIf="isPar"></app-key-word-form>
 
             <!-- Note area -->
             <div class="flex flex-col gap-6">
                 <div>
                     <span class="secondary-title">{{'FORM.TITLE.N' | translate}}</span>
                 </div>
-                <textarea class="common-textarea resize-none " rows="6"  formControlName="firstName" >
+                <textarea class="common-textarea resize-none " placeholder="{{'FORM.INPUT.N' | translate}}" rows="6" formControlName="note">
                 </textarea>
             </div>
 
@@ -136,6 +143,7 @@
 
         </div>
 
-    </form>
+    </div>
 
-</section>
+</form>
+

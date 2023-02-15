@@ -18,7 +18,8 @@
       "C": "Clients",
       "MC": "Mots clés",
       "A": "Activités",
-      "N" : "Note"
+      "N" : "Notes",
+      "S" : "Société"
     },
     "INPUT": {
       "NS": "Nom de la société",
@@ -39,9 +40,10 @@
       "P": "Pays",
       "SI": "Site internet",
       "NT": "Numéro de téléphone",
-      "N": "Notes",
+      "N": "Écrivez votre note",
       "SPC": "Sélectionner un ou plusieurs clients",
-      "ASMC": "Ajouter / Sélectionner des mots clés"
+      "ASMC": "Ajouter / Sélectionner des mots clés",
+      "SS":"Sélectionner une société"
     },
     "SELECT":{
       "NF" : "Pas trouvé",

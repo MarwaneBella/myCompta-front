@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavigateService } from 'src/app/private/services/navigate.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -12,6 +13,9 @@ export class TopBarComponent implements OnInit {
   param : [id : number, slug : string]
 
   @Input()
+  showData :[string, string?]
+
+  @Input()
   for: 'C'|'S'|'D'|'F'
 
   @Input()
@@ -20,9 +24,12 @@ export class TopBarComponent implements OnInit {
   @Input()
   sizeMenu : 'sm'|'xs'
 
-  constructor() { }
+  constructor(
+    protected navigate : NavigateService
+  ) { }
 
   ngOnInit(): void {
+    
   }
 
   toggleDropMenuAdd(){

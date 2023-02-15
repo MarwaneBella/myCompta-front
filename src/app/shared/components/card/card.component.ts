@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Address } from 'src/app/private/models/address';
 import { Client } from 'src/app/private/models/client';
 import { Devis } from 'src/app/private/models/devis';
 import { Facture } from 'src/app/private/models/facture';
 import { MotCle } from 'src/app/private/models/mot-cle';
+import { Phone } from 'src/app/private/models/phone';
 import { Societe } from 'src/app/private/models/societe';
 import { NavigateService } from 'src/app/private/services/navigate.service';
 
@@ -34,6 +36,7 @@ export class CardComponent implements OnInit {
     public navigate: NavigateService
   ) {}
 
+
   myArray = [];
 
   ngOnInit(): void {
@@ -50,55 +53,34 @@ export class CardComponent implements OnInit {
 
   getFromClient() {
     var client: Client = this.data as Client;
-    this.card.mainIcon = 'clients';
-    this.card.primaryTitle = client.firstName + ' ' + client.lastName;
-    this.card.secondaryTitle = "Particulier"
-    this.card.line = false;
-    this.setMotCleToCard(client.motCleList);
     this.card.secondaryData = [];
-
-    if (client.phoneList.length) {
-      this.card.secondaryData.push({
-        icon: 'phone',
-        data: client.phoneList[0].phoneNumber,
-      });
+    this.card.primaryTitle = client.firstName + ' ' + client.lastName;
+    this.card.line = false;
+    this.card.paragraph = client.note
+    if(client.societe){
+      this.card.mainIcon = 'pro';
+      this.card.secondaryTitle = "Professionel"
+      this.setAddressToCard(client.societe.address)
+    }else{
+      this.card.mainIcon = 'par';
+      this.card.secondaryTitle = "Particulier"
+      this.setAddressToCard(client.address)
     }
-    if (client.email) {
-      this.card.secondaryData.push({
-        icon: 'email',
-        data: client.email,
-      });
-    }
-    if (client.address) {
-      this.card.secondaryData.push({
-        icon: 'map',
-        data: client.address.city + ', ' + client.address.country,
-      });
-    }
-
+    this.setMotCleToCard(client.motCleList);
+    this.setEmailToCard(client.email)
+    this.setPhoneToCard(client.phoneList)
     
   }
 
   getFromSociete() {
     var societe: Societe = this.data as Societe;
+    this.card.secondaryData = [];
     this.card.mainIcon = 'societes';
     this.card.primaryTitle = societe.name;
     this.card.line = false;
     this.setMotCleToCard(societe.motCleList);
-    this.card.secondaryData = [];
-    if (societe.phoneList.length != 0) {
-      this.card.secondaryData.push({
-        icon: 'phone',
-        data: societe.phoneList[0].phoneNumber,
-      });
-    }
-
-    if (societe.address != null) {
-      this.card.secondaryData.push({
-        icon: 'map',
-        data: societe.address.city + ', ' + societe.address.country,
-      });
-    }
+    this.setPhoneToCard(societe.phoneList)
+    this.setAddressToCard(societe.address)
   }
 
   setMotCleToCard(motCleList: MotCle[]) {
@@ -109,4 +91,38 @@ export class CardComponent implements OnInit {
       });
     }
   }
+
+  setAddressToCard(address:Address){
+    if (address) {
+      var data: string 
+      if(address.city && !address.country) data = address.city
+      else if(!address.city && address.country) data = address.country
+      else if(address.city && address.country)  data = address.city+', '+address.country
+      else return
+      this.card.secondaryData.push({
+        icon: 'map',
+        data: data,
+      });
+    }
+  }
+
+  setPhoneToCard(phoneList :Phone[]){
+    if (phoneList.length) {
+      this.card.secondaryData.push({
+        icon: 'phone',
+        data: phoneList[0].phoneNumber,
+      });
+    }
+  }
+
+  setEmailToCard(email : string){
+    if (email) {
+      this.card.secondaryData.push({
+        icon: 'email',
+        data: email,
+      });
+    }
+  }
+
+
 }

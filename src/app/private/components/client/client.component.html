@@ -7,9 +7,8 @@
 
     <div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
-            <app-card *ngFor="let client of clients" for="C" [data]="client"></app-card>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr p-3"  >
+            <app-card  for="C" [data]="client" *ngFor="let client of clients " ></app-card>
         </div>
-
     </div>
 </section>

@@ -1,9 +1,6 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom, interval, lastValueFrom } from 'rxjs';
 import { SocieteService } from 'src/app/private/http/societe.service';
-import { Activity } from 'src/app/private/models/activity';
 import { Societe } from 'src/app/private/models/societe';
 
 @Component({
@@ -13,10 +10,10 @@ import { Societe } from 'src/app/private/models/societe';
 })
 export class ShowSocieteComponent implements OnInit {
   
-  motCle : string[] = ['dev','marketing','ecommerce','dev','marketing','ecommerce','dev','marketing','ecommerce']
   id : number; 
   slug : string
-  societe : Societe
+  societe : Societe = new Societe()
+  topBarData : [string,string?] = ['']
 
   constructor(private route: ActivatedRoute, private router : Router, private societeService : SocieteService) {
   }
@@ -32,7 +29,10 @@ export class ShowSocieteComponent implements OnInit {
       this.societeService.getSocieteById(this.id).subscribe({  
         next: data => this.societe = data,
         error: err => console.log(err),  
-        complete: () => this.checkSlug(),
+        complete: () => {
+          this.checkSlug()
+          this.getTopBarData()
+        },
       })
     }
     else{
@@ -42,12 +42,13 @@ export class ShowSocieteComponent implements OnInit {
   }
 
   checkSlug(){
-    if(this.societe.slug === this.slug){
-      console.log(this.societe)
-    }
-    else{
+    if(this.societe.slug != this.slug){
       this.router.navigateByUrl(`societes/show/${this.id}-${this.societe.slug}`);
     }
+  }
+
+  getTopBarData(){
+    this.topBarData[0] = this.societe.name
   }
 
 

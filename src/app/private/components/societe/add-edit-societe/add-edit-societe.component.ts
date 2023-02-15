@@ -153,7 +153,6 @@ export class AddEditSocieteComponent implements OnInit {
   }
 
   setFormValues() {
-    
     this.societeForm.patchValue({
       name: this.societe.name,
       ntva: this.societe.ntva,

@@ -73,15 +73,14 @@ export class AddressFormComponent implements OnInit {
   async onSubmit(data: Societe | Client, isAddMode : boolean){
 
     
+    
     this.addressForm = this.formSevice.trimFormValues(this.addressForm)
     if (this.formSevice.checkForm(this.addressForm)) {
-
-      if (this.for ='S') this.address.societe = data as Societe
-      else if (this.for ='C') this.address.client = data as Client
+      
+      if (this.for =='S') this.address.societe = data as Societe
+      else if (this.for =='C') this.address.client = data as Client
       else return 
-
       this.getFormValue()
-
 
       if(isAddMode || !this.address.id){
         this.createNewAddress();
@@ -102,8 +101,11 @@ export class AddressFormComponent implements OnInit {
       })
   }
   async deleteAddress(){
-    await firstValueFrom( this.addressService.deleteAddressById(this.address.id) )
+    if(this.address.id){
+      await firstValueFrom( this.addressService.deleteAddressById(this.address.id) )
     .catch(e => console.log(e))
+    }
+    
   }
 
   updateAddress(){
@@ -128,6 +130,7 @@ export class AddressFormComponent implements OnInit {
   }
 
   setFormValues(address : Address) {
+    console.log(address)
     this.address = address
     this.addressForm.patchValue({
       address: this.address.address,
@@ -141,6 +144,10 @@ export class AddressFormComponent implements OnInit {
       this.addAddressInput(i)
       this.addressForm.controls['complementAddress'+i].setValue(this.address.complementAddress[i])
     }
+    
+  }
+
+  test(){
     
   }
 

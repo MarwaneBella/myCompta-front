@@ -1,6 +1,6 @@
 <div class="relative" clickOutside (clickOutside)="closeMenu()">
     <button class="common-btn-white "  (click)="toggleDropMenu()" *ngIf=" type === 'edit' ">
-        <svg-icon name ="3dots" svgClass ="w-3" ></svg-icon>
+        <svg-icon name ="3dots" svgClass ="w-4" ></svg-icon>
     </button>
 
     <button class="common-btn-gray" (click)="toggleDropMenu()" *ngIf="type === 'list' || type === 'show' ">
@@ -13,26 +13,26 @@
 
     <div class="drop-menu" *ngIf="dropMenu && type === 'list' "  >
         <a class="item-menu-sm" [routerLink]="navigate.toAddPath(for)">
-            <svg-icon name="add"></svg-icon>
+            <svg-icon name="add" svgClass="w-4" ></svg-icon>
             <span>{{'DROP_MENU.LIST.'+for+'.L1' |translate}}</span>
             
         </a>
         <a href="#" class="item-menu-sm ">
-            <svg-icon name="export"></svg-icon>
+            <svg-icon name="export" svgClass="w-4" ></svg-icon>
             <span>{{'DROP_MENU.LIST.'+for+'.L2' |translate}}</span>
         </a>
     </div>
     
     <!-- drop menu edit -->
-    <div class="drop-menu" *ngIf="dropMenu  && (type === 'edit' || type === 'show') ">
+    <div class="drop-menu" *ngIf="dropMenu  && (type == 'edit' || type == 'show') ">
         
         <a class="item-menu-{{size}}" [routerLink]="navigate.toEditPath(for,param[0],param[1])"  >
-            <svg-icon name="edit" ></svg-icon>
+            <svg-icon name="edit" [ngClass]="type == 'edit'? 'w-3' : 'w-4' " ></svg-icon>
             <span >{{'DROP_MENU.EDIT.L1' |translate}}</span>
         </a>
 
         <a  class="item-menu-{{size}}" href="#">
-            <svg-icon name="delete"></svg-icon>
+            <svg-icon name="delete" [ngClass]="type == 'edit'? 'w-3' : 'w-4' " ></svg-icon>
             <span>{{'DROP_MENU.EDIT.L2' |translate}}</span>
         </a>
         <div class="flex flex-col space-y-2">

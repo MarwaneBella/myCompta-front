@@ -25,7 +25,6 @@ export class SocieteComponent implements OnInit{
     .catch(console.log)
     .finally( () =>{
       if(this.societes.length == 0) this.isEmpty = true
-      console.log(this.societes)
     })
     
   }

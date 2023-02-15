@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ClientService } from '../../http/client.service';
 import { Client } from '../../models/client';
 
@@ -11,6 +11,7 @@ export class ClientComponent implements OnInit {
 
   clients :Array<Client> = []
   isEmpty : boolean = false;
+  
   
   constructor(private clientService : ClientService) { }
   

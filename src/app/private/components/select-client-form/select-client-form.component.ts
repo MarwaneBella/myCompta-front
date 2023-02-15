@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { AddressService } from '../../http/address.service';
 import { ClientService } from '../../http/client.service';
 import { Address } from '../../models/address';
 import { Client } from '../../models/client';
@@ -20,7 +21,8 @@ export class SelectClientFormComponent implements OnInit {
   clientForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private addressService: AddressService
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,8 @@ export class SelectClientFormComponent implements OnInit {
 
       this.clientForm.controls['clients'].value.forEach((client: Client) => {
         client.societe = data as Societe;
+        delete client.website
+        this.deleteAddress(client.address)
         this.clientService.updateClientById(client.id, client).subscribe({
           error: (e) => console.log(e),
         });
@@ -86,5 +90,13 @@ export class SelectClientFormComponent implements OnInit {
     }
     
 
+  }
+
+  deleteAddress(address : Address){
+    if(address && address.id){
+      this.addressService.deleteAddressById(address.id).subscribe({
+        error : e=> console.log(e)
+      })
+    }
   }
 }

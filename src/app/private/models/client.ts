@@ -11,8 +11,9 @@ export class Client {
     lastName : string
     email: string
     function: string
-    website : string
+    website? : string
     language : string
+    note : string
     societe? : Societe
     motCleList : MotCle[]
     phoneList : Phone[]

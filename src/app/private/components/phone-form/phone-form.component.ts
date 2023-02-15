@@ -86,8 +86,8 @@ export class PhoneFormComponent implements OnInit {
 
       this.phones.forEach((phone) => {
 
-        if ((this.for = 'S')) phone.societe = data as Societe;
-        else if ((this.for = 'C')) phone.client = data as Client;
+        if (this.for == 'S') phone.societe = data as Societe;
+        else if (this.for == 'C') phone.client = data as Client;
         else return
 
         this.phoneService.addPhone(phone).subscribe({
@@ -133,5 +133,9 @@ export class PhoneFormComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  test(){
+    
   }
 }

@@ -1,79 +1,122 @@
-<app-top-bar for="C" type="show" sizeMenu="xs"></app-top-bar>
+<app-top-bar for="C" type="show" sizeMenu="sm" [param]="[id,slug]" [showData]="topBarData"></app-top-bar>
 
 
-
-
-<section class="grid grid-cols-1 md:grid-cols-2 gap-24 ">
+<section class="grid grid-cols-1 md:grid-cols-2 gap-24 mt-11">
 	<!-- Informations column -->
 
-	<div class="flex flex-col gap-6 ">
+	<div class="flex flex-col gap-6 text-sm">
 		<div>
-			<span class="secondary-title">{{'FORM.TITLE.INF'|translate}}</span>
+			<span class="secondary-title text-base">{{'FORM.TITLE.INF'|translate}}</span>
 		</div>
-		<div class="flex flex-col space-y-8 ">
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+		<div class="flex flex-col space-y-8 " >
+
+			<div class="flex flex-col space-y-3 " *ngIf="client.function">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.F' | translate}} :</span>
-					<div class="col-span-3">comptable </div>
+					<div class="col-span-3">{{client.function}}</div>
 				</div>
 				<hr>
 			</div>
 
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+			<div class="flex flex-col space-y-3" *ngIf="client.email">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.EMAIL' | translate}} :</span>
-					<div class="col-span-3">adam.smith@email.com</div>
+					<div class="col-span-3">{{client.email}}</div>
 				</div>
 				<hr>
 			</div>
 
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+			<div class="flex flex-col space-y-3 " *ngIf="client.societe && client.societe.name">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.S' | translate}} :</span>
-					<div class="col-span-3">Coding Art </div>
+					<div class="col-span-3">
+						<button class="common-btn-black py-1 whitespace-nowrap" routerLink="/societes/show/{{client.societe.id+'-'+client.societe.slug}}" > {{client.societe.name}}</button>
+					</div>
+					
 				</div>
 				<hr>
 			</div>
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+			
+
+			<div class="flex flex-col space-y-3" *ngIf=" client.address && (client.address.address || (client.address.complementAddress && client.address.complementAddress.length))">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.ADD' | translate}} :</span>
-					<div class="col-span-3">Hay Tilila Agadir </div>
+					<div class="col-span-3 flex flex-col">
+						<span *ngIf="client.address.address">{{client.address.address}}</span>
+						<ng-container *ngIf="client.address.complementAddress && client.address.complementAddress.length">					
+							<div  *ngFor="let complementAddress of client.address.complementAddress">
+								{{complementAddress}}
+							</div>
+						</ng-container>
+					</div>
 				</div>
 				<hr>
 			</div>
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+
+			<div class="flex flex-col space-y-3" *ngIf="client.phoneList && client.phoneList.length">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.NT' | translate}} :</span>
+					<div class="col-span-3 flex flex-col">		
+						<div  *ngFor="let phone of client.phoneList">
+							{{phone.phoneNumber}}
+						</div>
+					</div>
+				</div>
+				<hr>
+			</div>
+
+			<div class="flex flex-col space-y-3 " *ngIf="client.address && client.address.city">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.V' | translate}} :</span>
+					<div class="col-span-3"> {{client.address.city}} </div>
+				</div>
+				<hr>
+			</div> 
+			<div class="flex flex-col space-y-3" *ngIf="client.address && client.address.country">
+				<div class=" grid grid-cols-4 gap-4 ">
 					<span class="text-gray-2">{{'FORM.INPUT.P' | translate}} :</span>
-					<div class="col-span-3">Maroc </div>
+					<div class="col-span-3">{{client.address.country}} </div>
 				</div>
 				<hr>
 			</div>
-			<div class="flex flex-col space-y-3 ">
-				<div class=" grid grid-cols-4">
+
+			<div class="flex flex-col space-y-3" *ngIf="client.website">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.INPUT.SI' | translate}} :</span>
+					<div class="col-span-3">{{client.website}}</div>
+				</div>
+				<hr>
+			</div>
+			<div class="flex flex-col space-y-3" *ngIf="client.language">
+				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.LANG' | translate}} :</span>
-					<div class="col-span-3 ">Français </div>
+					<div class="col-span-3 ">{{client.language}} </div>
 				</div>
 				<hr>
 			</div>
-		</div>
 
-		<div class="flex flex-col space-y-3 ">
-			<div class=" grid grid-cols-4">
-				<span class="text-gray-2">{{'FORM.TITLE.MC' | translate}} :</span>
-				<div class="col-span-3 flex flex-wrap gap-2">
-					<!-- <span class="rounded-full-black" *ngFor="let mot of motCle"> {{mot}}</span> -->
+			<div class="flex flex-col space-y-3 " *ngIf="client.note">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.TITLE.N' | translate}} :</span>
+					<div class="col-span-3">{{client.note}}</div>
 				</div>
+				<hr>
 			</div>
-			<hr>
+
+			<div class="flex flex-col space-y-3" *ngIf="client.motCleList && client.motCleList.length">
+				<div class=" grid grid-cols-4 gap-4">
+					<span class="text-gray-2">{{'FORM.TITLE.MC' | translate}} :</span>
+					<div class="col-span-3 flex flex-wrap gap-2">
+						<span class="rounded-full-black" *ngFor="let motCle of client.motCleList"> {{motCle.mot}}</span>
+					</div>
+				</div>
+				<hr>
+			</div>
+
+
 		</div>
 
-		<div class="flex flex-col space-y-3 ">
-			<div class=" grid grid-cols-4">
-				<span class="text-gray-2">{{'FORM.INPUT.N' | translate}} :</span>
-				<div class="col-span-3">my note </div>
-			</div>
-			<hr>
-		</div>
+		
 
 
 	</div>
@@ -82,3 +125,6 @@
 	<app-activity-panel></app-activity-panel>
 	
 </section>
+
+
+

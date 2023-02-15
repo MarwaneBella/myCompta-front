@@ -1,12 +1,12 @@
-<app-top-bar for="S" type="show" sizeMenu="sm" [param]="[id,slug]"></app-top-bar>
+<app-top-bar for="S" type="show" sizeMenu="sm" [param]="[id,slug]" [showData]="topBarData"></app-top-bar>
 
 
-<section class="grid grid-cols-1 md:grid-cols-2 gap-24 ">
+<section class="grid grid-cols-1 md:grid-cols-2 gap-24 mt-11">
 	<!-- Informations column -->
 
-	<div class="flex flex-col gap-6 ">
+	<div class="flex flex-col gap-6 text-sm">
 		<div>
-			<span class="secondary-title">{{'FORM.TITLE.INF'|translate}}</span>
+			<span class="secondary-title text-base">{{'FORM.TITLE.INF'|translate}}</span>
 		</div>
 		<div class="flex flex-col space-y-8 " >
 
@@ -47,13 +47,13 @@
 				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.TITLE.C' | translate}} :</span>
 					<div class="col-span-3 flex flex-wrap gap-2">
-						<span class="rounded-full-black" *ngFor="let client of societe.clientList"> {{client.firstName+ " "+client.lastName}}</span>
+						<button class="common-btn-black py-1 whitespace-nowrap" routerLink="/clients/show/{{client.id+'-'+client.slug}}" *ngFor="let client of societe.clientList" > {{client.firstName+' '+client.lastName}}</button>
 					</div>
 				</div>
 				<hr>
 			</div>
 
-			<div class="flex flex-col space-y-3" *ngIf=" societe.address && (societe.address.address || societe.address.complementAddress)">
+			<div class="flex flex-col space-y-3" *ngIf=" societe.address && (societe.address.address || (societe.address.complementAddress && societe.address.complementAddress.length))">
 				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.ADD' | translate}} :</span>
 					<div class="col-span-3 flex flex-col">

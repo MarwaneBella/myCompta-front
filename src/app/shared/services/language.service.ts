@@ -20,9 +20,7 @@ export class LanguageService {
 
   checkLang(){
     if(localStorage.getItem('lang')){
-      console.log(localStorage.getItem('lang'));
       if(localStorage.getItem('lang') != 'en' && localStorage.getItem('lang') != 'fr' ){
-        console.log(false)
           localStorage.removeItem('lang');
       }
       
