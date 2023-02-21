@@ -1,16 +1,16 @@
 <section>
-    <app-top-bar for="S" type="list"  ></app-top-bar>
-    <app-empty-data-message for="S" *ngIf="isEmpty"></app-empty-data-message>
+    <app-top-bar for="D" type="list"  ></app-top-bar>
+    <app-empty-data-message for="D" *ngIf="isEmpty"></app-empty-data-message>
 
     <div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr p-3">
-            <app-card *ngFor="let societe of societes | paginate : {
+            <app-card *ngFor="let devi of devis | paginate : {
                 itemsPerPage: pageSize,
                 currentPage: page,
                 totalItems: count
-              };
-            let i = index" for="S" [data]="societe"></app-card>
+              }; let i = index" 
+            for="D" [data]="devi"></app-card>
         </div>
 
         

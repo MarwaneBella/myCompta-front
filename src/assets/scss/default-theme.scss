@@ -30,10 +30,11 @@
     //START BUTTONS STYLE
 
     .common-btn-gray{
-        @apply bg-gray-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1 disabled:opacity-50 disabled:ring-0 ;
+        @apply bg-gray-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1 disabled:opacity-50 disabled:ring-0;
     }
-
-    
+    .common-btn-gray-active{
+        @apply text-white-1 bg-black-1;
+    }
     .common-btn-black{
         @apply bg-black-1 text-white-1 hover:bg-white-1  hover:text-black-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 disabled:opacity-70 disabled:ring-0 disabled:bg-black-1 disabled:text-white-1;
         
@@ -161,7 +162,18 @@
         stroke-linejoin:round;
     }
 
-    //END ICONS STYLE
+    // END ICONS STYLE
+
+
+
+
+    // Start pagination-templte  Style
+
+    .page-btn{
+        @apply text-sm bg-gray-1 rounded-full p-2 h-fit w-fit hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1 disabled:opacity-50 disabled:ring-0 ;
+    }
+
+    // End pagination-templte Style
 
 
 

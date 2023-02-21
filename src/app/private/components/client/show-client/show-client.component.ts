@@ -13,7 +13,6 @@ export class ShowClientComponent implements OnInit {
   id: number;
   slug: string;
   client: Client = new Client();
-  topBarData : [string,string?] = ['','']
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +38,6 @@ export class ShowClientComponent implements OnInit {
         error: (e) => console.log(e),
         complete: () => {
           this.checkSlug()
-          this.getTopBarData();
         },
       });
     } else {
@@ -53,10 +51,6 @@ export class ShowClientComponent implements OnInit {
     }
   }
 
-  getTopBarData(){
-    this.topBarData[0] = this.client.firstName+' '+this.client.lastName
-    if(this.client.societe) this.topBarData[1] = "Professionel"
-    else this.topBarData[1] = "Particulier"
-  }
+  
 
 }

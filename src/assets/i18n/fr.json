@@ -133,5 +133,12 @@
         "L2" : "Client avec société"
       }
     }
+  },
+  "STATUS" :{
+    "NOT_DESTINED" : "Aucun destinataire",
+    "PROVISIONAL" : "PROVISOIRE",
+    "SIGNED" : "SIGNÉ",
+    "FINALIZED" : "FINALISÉ",
+    "REFUSED" : "REFUSÉ"
   }
 }

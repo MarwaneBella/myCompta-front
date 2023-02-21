@@ -18,6 +18,8 @@ import { EmptyDataMessageComponent } from './components/empty-data-message/empty
 import { TagInputModule } from 'ngx-chips';
 import { ChipsInputComponent } from './components/chips-input/chips-input.component';
 import { DebounceClickDirective } from './directives/debounce-click.directive';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -33,6 +35,7 @@ import { DebounceClickDirective } from './directives/debounce-click.directive';
     EmptyDataMessageComponent,
     ChipsInputComponent,
     DebounceClickDirective,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { DebounceClickDirective } from './directives/debounce-click.directive';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    TagInputModule
+    TagInputModule,
+    NgxPaginationModule
   ],
   exports : [
     DebounceClickDirective,
@@ -62,6 +66,8 @@ import { DebounceClickDirective } from './directives/debounce-click.directive';
     EmptyDataMessageComponent,
     TagInputModule,
     ChipsInputComponent,
+    NgxPaginationModule,
+    PaginationComponent,
     IvyCarouselModule
   ],
   providers :[

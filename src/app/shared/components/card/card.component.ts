@@ -1,16 +1,21 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 import { Address } from 'src/app/private/models/address';
 import { Client } from 'src/app/private/models/client';
 import { Devis } from 'src/app/private/models/devis';
+import { DevisStatus } from 'src/app/private/models/enums/devis-status';
 import { Facture } from 'src/app/private/models/facture';
 import { MotCle } from 'src/app/private/models/mot-cle';
 import { Phone } from 'src/app/private/models/phone';
 import { Societe } from 'src/app/private/models/societe';
 import { NavigateService } from 'src/app/private/services/navigate.service';
+import { AlertifyService } from '../../services/alertify.service';
 
 interface Card {
   mainIcon: string;
-  primaryTitle: string;
+  primaryTitle1: string;
+  primaryTitle2: string;
   secondaryTitle: string;
   paragraph: string;
   line: boolean;
@@ -24,6 +29,7 @@ interface Card {
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  
   @Input()
   data: Societe | Client | Devis | Facture;
 
@@ -31,9 +37,11 @@ export class CardComponent implements OnInit {
   for: 'C' | 'S' | 'D' | 'F';
 
   card: Card = {} as Card;
+  textColor: string = 'text-green'
 
   constructor(
-    public navigate: NavigateService
+    public navigate: NavigateService,
+    private translate : TranslateService
   ) {}
 
 
@@ -44,26 +52,27 @@ export class CardComponent implements OnInit {
   }
 
   setCardData() {
-    if (this.for == 'C') {
-      this.getFromClient()
-    } else if (this.for == 'S') {
-      this.getFromSociete();
-    }
+    if (this.for == 'C') this.getFromClient()
+    else if (this.for == 'S') this.getFromSociete();
+    else if (this.for =='D') this.getFromDevis()
   }
 
-  getFromClient() {
+  async getFromClient() {
     var client: Client = this.data as Client;
     this.card.secondaryData = [];
-    this.card.primaryTitle = client.firstName + ' ' + client.lastName;
+    this.card.primaryTitle1 = client.firstName + ' ' + client.lastName;
     this.card.line = false;
     this.card.paragraph = client.note
+    console.log(client)
     if(client.societe){
       this.card.mainIcon = 'pro';
-      this.card.secondaryTitle = "Professionel"
+      console.log("Pro")
+      this.card.secondaryTitle = await firstValueFrom(this.translate.get('CLIENT_CARD.TYPE.PRO.L1')).catch(console.log)
       this.setAddressToCard(client.societe.address)
     }else{
+      console.log("Par")
       this.card.mainIcon = 'par';
-      this.card.secondaryTitle = "Particulier"
+      this.card.secondaryTitle = await firstValueFrom(this.translate.get('CLIENT_CARD.TYPE.PAR.L1')).catch(console.log)
       this.setAddressToCard(client.address)
     }
     this.setMotCleToCard(client.motCleList);
@@ -72,16 +81,43 @@ export class CardComponent implements OnInit {
     
   }
 
-  getFromSociete() {
+  async getFromSociete() {
     var societe: Societe = this.data as Societe;
     this.card.secondaryData = [];
     this.card.mainIcon = 'societes';
-    this.card.primaryTitle = societe.name;
+    this.card.primaryTitle1 = societe.name
+
+    if(societe.clientList && societe.clientList.length) 
+    this.card.secondaryTitle = societe.clientList.length +' '+ await firstValueFrom(this.translate.get('TITLE.C')).catch(console.log)
+    else
+    this.card.secondaryTitle = 0 +' '+ await firstValueFrom(this.translate.get('TITLE.C')).catch(console.log)
+    
     this.card.line = false;
     this.setMotCleToCard(societe.motCleList);
     this.setPhoneToCard(societe.phoneList)
     this.setAddressToCard(societe.address)
   }
+
+  async getFromDevis() {
+    var devi: Devis = this.data as Devis;
+    this.card.secondaryData = [];
+    this.card.mainIcon = 'devis';
+    this.card.primaryTitle1 = devi.code
+    this.setRecipientToCard(devi.client, devi.societe)
+    this.card.line = false;
+    this.setMotCleToCard(devi.motCleList);
+
+    await this.setStatusToCard(devi.status);
+
+    // Object.keys(DevisStatus).filter((v) => isNaN(Number(v)))
+    // .forEach(async status =>{
+    //   if(devi.status.toString() == status){
+    //     this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.'+status))
+    //   }
+    // })
+
+  }
+  
 
   setMotCleToCard(motCleList: MotCle[]) {
     if (motCleList.length != 0) {
@@ -124,5 +160,42 @@ export class CardComponent implements OnInit {
     }
   }
 
+  async setRecipientToCard(client : Client, societe: Societe){
+    if(client || societe){
+      if(client && !societe){
+        this.card.secondaryTitle =  await firstValueFrom(this.translate.get('DATA_NAME.C')) +
+        ': ' + client.firstName + ' '+ client.lastName
+      }
+      
+      if(societe && !client){
+        this.card.secondaryTitle =  await firstValueFrom(this.translate.get('DATA_NAME.S')) + 
+        ': ' + societe.name
+      }
+      
+    }
+    else{
+      this.card.secondaryTitle =  await firstValueFrom(this.translate.get('STATUS.NOT_DESTINED'))
+    }
+  }
+
+  async setStatusToCard(status : DevisStatus) {
+    if(status === DevisStatus.PROVISIONAL){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.PROVISIONAL'))
+      this.textColor = 'text-gray-4'
+    }
+    else if(status === DevisStatus.FINALIZED){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.FINALIZED'))
+      this.textColor = 'text-green'
+    }
+    else if(status === DevisStatus.SIGNED){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.SIGNED'))
+      this.textColor = 'text-yellow'
+    }
+    else if(status === DevisStatus.REFUSED){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.REFUSED'))
+      this.textColor = 'text-red'
+    }
+    
+  }
 
 }

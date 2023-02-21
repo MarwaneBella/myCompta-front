@@ -131,7 +131,7 @@ export class AddEditClientComponent implements OnInit{
   }
 
   setSocietes(){
-    this.societeService.getSocieteList().subscribe({
+    this.societeService.getAllSocietes().subscribe({
       next : res => this.societes = res,
       error : e => console.log(e),
     })

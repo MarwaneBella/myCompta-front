@@ -7,13 +7,16 @@
                 <svg-icon svgClass="w-6" [name]="card.mainIcon" *ngIf="card.mainIcon" ></svg-icon>
             </div>
             <div class="flex flex-col justify-center">
-                <span class="text-sm font-semibold   w-32 " *ngIf="card.primaryTitle">{{card.primaryTitle}}</span>
-                <span class="text-gray-2" *ngIf="card.secondaryTitle" >{{card.secondaryTitle}}</span>
+                <div >
+                    <span class="text-sm font-semibold w-32 " *ngIf="card.primaryTitle1">{{card.primaryTitle1}}</span>
+                    <span class="text-sm font-semibold ml-2 w-32   {{textColor}} " *ngIf="card.primaryTitle2">{{card.primaryTitle2}}</span>
+                </div>
+                <span class="text-gray-2 whitespace-nowrap" *ngIf="card.secondaryTitle" >{{card.secondaryTitle}}</span>
             </div>
         </a>
 
         <div class="flex items-center justify-self-end">
-            <app-drop-menu type="edit" size = "xs" [for]="for" [param]="[data.id,data.slug]"></app-drop-menu>
+            <app-drop-menu type="edit" size = "xs" [for]="for" [data]="data"></app-drop-menu>
         </div>
         
     </div>

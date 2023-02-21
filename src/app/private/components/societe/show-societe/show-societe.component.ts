@@ -13,7 +13,6 @@ export class ShowSocieteComponent implements OnInit {
   id : number; 
   slug : string
   societe : Societe = new Societe()
-  topBarData : [string,string?] = ['']
 
   constructor(private route: ActivatedRoute, private router : Router, private societeService : SocieteService) {
   }
@@ -31,7 +30,6 @@ export class ShowSocieteComponent implements OnInit {
         error: err => console.log(err),  
         complete: () => {
           this.checkSlug()
-          this.getTopBarData()
         },
       })
     }
@@ -47,9 +45,7 @@ export class ShowSocieteComponent implements OnInit {
     }
   }
 
-  getTopBarData(){
-    this.topBarData[0] = this.societe.name
-  }
+  
 
 
 }

@@ -13,4 +13,5 @@ export class ConstantUrl {
     public readonly phoneUrl :string = this.baseUrl+"/phones";
     public readonly motCleUrl :string = this.baseUrl+"/mots-cle";
     public readonly addressUrl :string = this.baseUrl+"/addresses";
+    public readonly devisUrl :string = this.baseUrl+"/devis";
 }

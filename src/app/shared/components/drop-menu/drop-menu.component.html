@@ -1,4 +1,17 @@
-<div class="relative" clickOutside (clickOutside)="closeMenu()">
+<div class="relative flex gap-5" clickOutside (clickOutside)="closeMenu()">
+
+    <!-- Filter Menu -->
+
+    <div *ngIf="type == 'list' && for == 'D' " class="flex gap-2 text-sm">
+        <button class="common-btn-gray" (click)="changeFilterStatus(null)" [class.common-btn-gray-active]="!statusActive">TOUS</button>
+        <button class="common-btn-gray" (click)="changeFilterStatus(DevisStatus.PROVISIONAL)" [class.common-btn-gray-active]="statusActive == DevisStatus.PROVISIONAL">{{ 'STATUS.PROVISIONAL' |translate }}</button>
+        <button class="common-btn-gray"(click)="changeFilterStatus(DevisStatus.FINALIZED)" [class.common-btn-gray-active]="statusActive == DevisStatus.FINALIZED">{{ 'STATUS.FINALIZED' |translate }}</button>
+        <button class="common-btn-gray"(click)="changeFilterStatus(DevisStatus.SIGNED)" [class.common-btn-gray-active]="statusActive == DevisStatus.SIGNED">{{ 'STATUS.SIGNED' |translate }}</button>
+        <button class="common-btn-gray"(click)="changeFilterStatus(DevisStatus.REFUSED)" [class.common-btn-gray-active]="statusActive == DevisStatus.REFUSED">{{ 'STATUS.REFUSED' |translate }}</button>
+    </div>
+
+    
+
     <button class="common-btn-white "  (click)="toggleDropMenu()" *ngIf=" type === 'edit' ">
         <svg-icon name ="3dots" svgClass ="w-4" ></svg-icon>
     </button>
@@ -6,8 +19,6 @@
     <button class="common-btn-gray" (click)="toggleDropMenu()" *ngIf="type === 'list' || type === 'show' ">
         <svg-icon name="3dots" svgClass="w-5"></svg-icon>
     </button>
-
-
 
     <!-- drop menu add -->
 
@@ -26,15 +37,15 @@
     <!-- drop menu edit -->
     <div class="drop-menu" *ngIf="dropMenu  && (type == 'edit' || type == 'show') ">
         
-        <a class="item-menu-{{size}}" [routerLink]="navigate.toEditPath(for,param[0],param[1])"  >
+        <a class="item-menu-{{size}}" [routerLink]="navigate.toEditPath(for,data.id,data.slug)"  >
             <svg-icon name="edit" [ngClass]="type == 'edit'? 'w-3' : 'w-4' " ></svg-icon>
             <span >{{'DROP_MENU.EDIT.L1' |translate}}</span>
         </a>
 
-        <a  class="item-menu-{{size}}" href="#">
+        <button  class="item-menu-{{size}}" (click)="delete()">
             <svg-icon name="delete" [ngClass]="type == 'edit'? 'w-3' : 'w-4' " ></svg-icon>
             <span>{{'DROP_MENU.EDIT.L2' |translate}}</span>
-        </a>
+        </button>
         <div class="flex flex-col space-y-2">
             <hr class="drop-menu-line"> 
             <span class="text-gray-2 mt-10 text-[10px]">{{'DROP_MENU.EDIT.'+for+'.L3' |translate}}</span>

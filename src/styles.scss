@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+@import "~alertifyjs/build/css/alertify.min.css";
+@import "~alertifyjs/build/css/themes/semantic.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,6 +46,10 @@
     
 }
 
+.alertify .ajs-footer .ajs-buttons .ajs-button.ajs-ok {
+    color: red
+}
+
 
 
 .ng-select.custom {
@@ -62,6 +69,23 @@
     box-shadow: none !important;
     padding-bottom: 6px;
     
+}
+
+.ngx-pagination {
+    padding-left: 0px !important;
+}
+
+.ngx-pagination .current,.btn-info {
+    background: red !important;
+    border: transparent !important;
+    border-radius: 20px !important;
+    
+}
+
+.ngx-pagination .current:hover {
+    background: green !important;
+    border-radius: 20px !important; 
+    border: transparent !important;
 }
 
 

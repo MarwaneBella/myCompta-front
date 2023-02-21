@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from 'src/app/shared/services/language.service';
-
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -14,7 +13,10 @@ export class SettingsComponent implements OnInit {
     {code: 'fr', label: 'French'}
   ];
 
-  constructor(private  translate: TranslateService ) {
+  constructor(
+    private  translate: TranslateService,
+    private alertify: AlertifyService
+  ) {
     
   }
 
@@ -26,5 +28,9 @@ export class SettingsComponent implements OnInit {
     this.translate.use(code);
   }
   
+  showAlert(){
+    // alertifyjs.alert('Ready!');
+    this.alertify.confirm("nice")
+  }
 
 }

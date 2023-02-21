@@ -15,8 +15,12 @@ export class SocieteService {
     return this.http.get<Societe>(`${this.constant.societeUrl}/${id}`);
   }
 
-  getSocieteList(): Observable<Societe[]>{
+  getAllSocietes(): Observable<Societe[]>{
     return this.http.get<Societe[]>(`${this.constant.societeUrl}`);
+  }
+
+  getSocieteList(params?: any): Observable<any> {
+    return this.http.get<any>(`${this.constant.societeUrl}/pagination`, { params });
   }
 
   addSociete(societe: Societe): Observable<any> {
@@ -30,6 +34,9 @@ export class SocieteService {
   deleteSocieteById(id :number):Observable<string>{
    return this.http.delete(`${this.constant.societeUrl}/${id}`,{ responseType: 'text'});
   }
+
+
+  
 
   
 

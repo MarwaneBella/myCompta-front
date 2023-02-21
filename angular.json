@@ -32,6 +32,7 @@
               "src/assets/scss/default-theme.scss"
             ],
             "scripts": [
+              "node_modules/alertifyjs/build/alertify.min.js"
             ]
           },
           "configurations": {

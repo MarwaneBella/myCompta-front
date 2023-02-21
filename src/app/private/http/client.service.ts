@@ -14,8 +14,12 @@ export class ClientService {
     return this.http.get<Client>(`${this.constant.clientUrl}/${id}`);
   }
 
-  getClientList(): Observable<Client[]>{
+  getAllClients(): Observable<Client[]>{
     return this.http.get<Client[]>(`${this.constant.clientUrl}`)
+  }
+
+  getClientList(params: any): Observable<any> {
+    return this.http.get<any>(`${this.constant.clientUrl}/pagination`, { params });
   }
 
   addClient(client: Client): Observable<any> {

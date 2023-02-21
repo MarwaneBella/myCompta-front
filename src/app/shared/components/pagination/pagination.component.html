@@ -1,0 +1,114 @@
+<section class=" flex justify-between my-2 w-full ">
+
+    <pagination-template #p="paginationApi"
+                    (pageChange)="handlePageChange($event)"
+                    class="grid grid-flow-col gap-2 items-center">
+
+        
+        <button class="common-btn-gray" [disabled]="p.isFirstPage()" (click)="p.previous()"> 
+            <svg-icon name="arrowdown" svgClass="w-5 rotate-90"></svg-icon>
+            </button>
+        
+
+        <ng-container class="flex" *ngIf="p.pages.length <= maxSize ; else moreSize" >
+            
+                <div   *ngFor="let page of p.pages; let index i">
+                    <div class="rounded-full-black px-4 py-2 flex items-center" *ngIf="p.getCurrent() === page.value">
+                        <span >{{ page.label }}</span>
+                    </div>
+    
+                    <button class="common-btn-gray px-4 py-2 flex items-center" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                        <span>{{ page.label }}</span>
+                    </button>
+                </div>
+            
+            
+        </ng-container>
+
+        <ng-template #moreSize>
+            <div class="flex gap-2" *ngFor="let page of p.pages; let i = index ">
+
+                <button class="common-btn-gray px-4 py-2 flex items-center" (click)="p.setCurrent(page.value)" *ngIf=" i === 0 && p.getCurrent() !== page.value ">
+                    {{ page.label}}
+                </button>
+
+                <div class="rounded-full-gray px-4 py-2 flex items-center" *ngIf="i === 2 && p.getCurrent() !== 2">
+                    ...
+                </div>
+
+                <div class="rounded-full-black px-4 py-2 flex items-center " *ngIf="p.getCurrent() === page.value">
+                    {{ page.label}}
+                </div>
+                
+
+                <div class="rounded-full-gray px-4 py-2 flex items-center" *ngIf="i === (p.pages.length-1) && p.getCurrent() !== (p.pages.length-1) && p.getCurrent() !== 1 && p.getCurrent() !==  p.pages.length">
+                    ...
+                </div>
+
+                <button class="common-btn-gray px-4 py-2 flex items-center" (click)="p.setCurrent(page.value)" *ngIf="i === (p.pages.length-1)  && p.getCurrent() !== page.value">
+                    {{ page.label}}
+                </button>
+                
+            </div>
+        </ng-template>
+        
+        <button class="common-btn-gray px-2.5" [disabled]="p.isLastPage()" (click)="p.next()">
+            <svg-icon name="arrowup" svgClass="w-5 rotate-90"></svg-icon>
+        </button>
+        
+        
+    
+    </pagination-template>
+
+    <select (change)="handlePageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size" [selected]="size == 8">
+        {{ size }}
+        </option>
+    </select>
+
+</section>
+
+
+
+
+
+<!-- <div class=" fixed bottom-0 flex justify-between my-5 w-full bg-pink">
+        <pagination-controls
+        (pageChange)="handlePageChange($event)"
+        (pageBoundsCorrection)="handlePageChange($event)"
+        [maxSize]="3"
+        [directionLinks]="true"
+        [autoHide]="true"
+        [responsive]="true"
+        previousLabel="Previous"
+        nextLabel="Next"            
+        ></pagination-controls>
+    
+        <select (change)="handlePageSizeChange($event)">
+            <option *ngFor="let size of pageSizes" [ngValue]="size">
+              {{ size }}
+            </option>
+        </select>
+
+
+    </div> -->
+
+    <!-- <div class="input-group mb-3">
+        <input
+          type="text"
+          class="common-input"
+          
+          placeholder="Search by title"
+          [(ngModel)]="data"
+          (ngModelChange)="searchData()"
+        />
+        <div class="input-group-append">
+          <button
+            class="common-btn-black"
+            type="button"
+            
+          >
+            Search
+          </button>
+        </div>
+    </div> -->

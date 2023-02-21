@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SocieteComponent } from 'src/app/private/components/societe/societe.component';
+import { FilterService } from 'src/app/shared/services/filter.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   dropMenuMobile = false;
   dropMenuProfile = false;
-  constructor() { }
-
+  data :string = '';
+  constructor(private filterService : FilterService) { 
+  }
 
   ngOnInit(): void {
+    
+  }
+
+  dataSearchChange(){
+    this.filterService.callMethodSearch(this.data);
   }
 
   toggleDropMenuMobile(event:Event){

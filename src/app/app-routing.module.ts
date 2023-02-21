@@ -1,24 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './shared/components/home/home.component';
+import { PrivateComponent } from './private/private.component';
+import { PrivateModule } from './private/private.module';
 
 const routes: Routes = [
   {
     path: '',
-    component:HomeComponent,
-    children:[
-      {
-        path:'',
-        loadChildren: () => import('./private/private.module').then(m => m.PrivateModule)
-      }
-    ]
+    loadChildren: () =>
+      import('./private/private.module').then((m) => m.PrivateModule),
   },
-  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
- }
+export class AppRoutingModule {}

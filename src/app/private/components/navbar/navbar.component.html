@@ -55,7 +55,7 @@
               </div>
               <span class="span-text ">Sociétés</span>
             </a>
-            <a class="item-style flex space-x-2" href="#" >
+            <a class="item-style flex space-x-2" routerLink="/devis"  routerLinkActive="is-active" >
               <div class=" div-icon w-4  mt-1" >
                 <svg-icon name="devis" svgClass="myicon " aria-hidden="true"></svg-icon>
               </div>
@@ -81,10 +81,10 @@
         
         <div class="hidden sm:block ">
           <div class="flex h-10 mr-3">
-          <button type="submit" class="search-btn h-full rounded-l-full px-3 " >
-            <svg-icon name="search" svgClass="myicon "></svg-icon>
-          </button>
-          <input type="search" name="search" placeholder="Rechercher" class=" text-sm h-full focus:outline-none rounded-r-full ">
+          <span class="bg-white-1 rounded-l-full px-3 flex items-center"  >
+            <svg-icon name="search" svgClass="w-5"></svg-icon>
+          </span>
+          <input  type="search" name="search" placeholder="Rechercher" [(ngModel)]="data" (ngModelChange)="dataSearchChange()" class=" text-sm h-full focus:outline-none rounded-r-full " >
         </div>
         </div>
         

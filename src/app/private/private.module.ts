@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { KeyWordFormComponent } from './components/key-word-form/key-word-form.component';
 import { PhoneFormComponent } from './components/phone-form/phone-form.component';
 import { SelectClientFormComponent } from './components/select-client-form/select-client-form.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SelectClientFormComponent } from './components/select-client-form/selec
     AddressFormComponent,
     KeyWordFormComponent,
     PhoneFormComponent,
-    SelectClientFormComponent
+    SelectClientFormComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
