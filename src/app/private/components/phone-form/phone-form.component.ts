@@ -127,15 +127,12 @@ export class PhoneFormComponent implements OnInit {
     }
   }
 
-  numberOnly(event : any): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 43) {
-      return false;
-    }
-    return true;
-  }
+  // numberOnly(event : any): boolean {
+  //   const charCode = event.which ? event.which : event.keyCode;
+  //   if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 43) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
-  test(){
-    
-  }
 }

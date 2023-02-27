@@ -1,1 +1,58 @@
-<p>add-edit-devis works!</p>
+<section >
+    <app-top-bar for="D" type="add"></app-top-bar>
+    <form [formGroup]="devisForm" class="grid grid-cols-1 gap-9 md:grid-cols-3 " >
+        
+        <div class="flex flex-col gap-6">
+            <app-select-recipient (selected)="isSelected = true"></app-select-recipient>
+
+            <div class="flex flex-col gap-6">
+                <span class="secondary-title">{{'FORM.TITLE.INF' | translate}}</span>
+                <div class="flex flex-col gap-6">
+                    <div class="relative flex gap-4 items-center">
+                        <label class="common-label " >{{'FORM.INPUT.DV' | translate}}</label>
+                        <input type="number" appAllowInput allow="integer" placeholder="{{'FORM.INPUT.DV' | translate}} " class="common-input"
+                        formControlName="name" required>
+                        <span>{{ 'FORM.TEXT.J' | translate}}</span>
+                    </div>
+                    
+                    <ng-select class="custom" placeholder="{{'FORM.INPUT.DS' | translate}} *" [items]="languages"
+                        formControlName="language" [clearable]="false" >
+                    </ng-select>
+                    <div class="relative">
+                        <label class="common-label">{{'FORM.INPUT.T' | translate}}</label>
+                        <ng-select class="custom" placeholder="{{'FORM.INPUT.DS' | translate}}" [items]="languages"
+                            bindLabel="name_fr" [clearable]="false" formControlName="typeArticle">
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex flex-col gap-6  md:col-span-2" [ngClass]="true ? 'visible' : 'invisible' ">
+
+            <app-article-panel></app-article-panel>
+            <div class="grid sm:grid-cols-2">
+                <app-reglement-form></app-reglement-form>
+            </div>
+            <app-text-field-form></app-text-field-form>
+            <div class="grid grid-cols-1 sm:grid-cols-2">
+                <app-key-word-form for="D" ></app-key-word-form>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 ">
+                <div class="sm:col-start-2 grid grid-cols-3 gap-5 w-full">
+                    <button class="common-btn-black col-span-2 " [disabled]="devisForm.invalid" appDebounceClick
+                        (debounceClick)="onSubmit()">
+                        <ng-container *ngIf="isAddMode  else editButton">{{'FORM.BUTTON.C' | translate}}</ng-container>
+                        <ng-template #editButton>{{'FORM.BUTTON.E' | translate}}</ng-template>
+                    </button>
+                    <button #add class="common-btn-gray" routerLink="/devis">{{'FORM.BUTTON.A' | translate}}</button>
+                </div>
+            </div>
+            
+        </div>
+
+    </form>
+</section>
+

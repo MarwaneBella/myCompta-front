@@ -1,0 +1,33 @@
+<section  class="flex flex-col gap-6">
+
+    <div>
+        <span class="secondary-title">{{'FORM.TITLE.D' | translate}}</span>
+    </div>
+    
+    <ng-select  [items]="items" [searchable]="true" groupBy="group" [clearable]="false"
+        bindLabel="name"  bindValue="data" class="custom w-full text-sm" placeholder="{{'FORM.INPUT.SD' | translate}}"
+        [(ngModel)]="data" (change)="selectChange() "
+    >
+
+    <!-- <ng-template ng-label-tmp let-item="item" let-clear="clear">
+        <span class="ng-value-label">
+            <div class="flex gap-2 items-center">
+                
+                <svg-icon [name]="item.icon" svgClass="w-4" ></svg-icon> 
+                
+            </div>
+        </span>
+        <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+    </ng-template> -->
+
+    <ng-template ng-option-tmp let-item="item" >
+        <div class="flex gap-2 items-center">
+            <svg-icon [name]="item.icon" svgClass="w-4"></svg-icon> 
+            <span>{{item.name}}</span>
+        </div>
+    </ng-template>
+
+    </ng-select>
+
+
+</section>

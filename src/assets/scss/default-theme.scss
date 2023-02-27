@@ -51,12 +51,25 @@
         svg-icon{
             @apply stroke-white-1;
         }
-        
+
     }
-    
     .common-btn-white{
         @apply bg-white-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1;
     }
+
+    .common-btn-hover-gray{
+        @apply px-2 py-1 flex gap-2 items-center hover:bg-gray-1 rounded-full;
+
+        &:hover > .icon-span{
+            @apply bg-white-1
+            
+        }
+    }
+
+    .common-btn-arrow{
+        @apply p-1 bg-gray-1 rounded-t-full hover:ring-1 hover:ring-black-1 disabled:opacity-40 disabled:ring-0
+    }
+
 
     // END BUTTONS 
 
@@ -66,10 +79,15 @@
     // START INPUTS STYLE 
 
     .common-input{
-        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full  ;
+        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full ;
     }
     .common-textarea{
-        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl ;
+        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full ;
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        @apply appearance-none m-0
     }
     
     // END INPUTS STYLE
@@ -175,7 +193,13 @@
 
     // End pagination-templte Style
 
+    // Start Label Style
 
+    .common-label{
+        @apply absolute text-xs py-0.5 px-2 text-gray-2 rounded-full  bg-white-1 z-10 top-[-10px] left-3;
+    }
+
+    // End label Style 
 
 
 }

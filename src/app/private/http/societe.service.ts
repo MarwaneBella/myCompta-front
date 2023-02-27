@@ -36,7 +36,9 @@ export class SocieteService {
   }
 
 
-  
+  getSocieteByName(): Observable<Societe[]>{
+    return this.http.get<Societe[]>(`${this.constant.societeUrl}/recipient`)
+  }
 
   
 

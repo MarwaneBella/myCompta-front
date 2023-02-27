@@ -19,19 +19,22 @@
       "MC": "Mots clés",
       "A": "Activités",
       "N" : "Notes",
-      "S" : "Société"
+      "S" : "Société",
+      "D" : "Destinataire",
+      "AR" : "Articles",
+      "R": "Règlement",
+      "TAD":"Textes affichés sur le documen"
     },
     "INPUT": {
       "NS": "Nom de la société",
       "NTVA": "Numéro de TVA",
       "SIREN": "SIREN, SIRET, ICE...",
       "NAF": "Code NAF, NACE, NOGA, Taxe professionnelle...",
-      "FN" : "Nom",
-      "LN" : "Prénom",
+      "FN" : "Prénom",
+      "LN" : "Nom",
       "EMAIL": "Adresse email",
       "F": "Fonction",
       "S": "Société",
-      
       "LANG": "Langue",
       "ADD": "Adresse",
       "CADD": "Complément d’adresse ",
@@ -43,7 +46,29 @@
       "N": "Écrivez votre note",
       "SPC": "Sélectionner un ou plusieurs clients",
       "ASMC": "Ajouter / Sélectionner des mots clés",
-      "SS":"Sélectionner une société"
+      "SS":"Sélectionner une société",
+      "SD": "Sélectionner un destinataire",
+      "D": "Description",
+      "Q":"Quantité",
+      "PHT": "Prix HT",
+      "TVA": "TVA",
+      "R" : "Réduction",
+      "THT":"Total HT",
+      "TTC": "Total TTC",
+      "RG" : "Remise générale",
+      "DV": "Durée de validité",
+      "T": "Type",
+      "DS" : "Devise",
+      "TEXT_FIELD":{
+        "TI": "Texte d'introduction",
+        "TC": "Texte de conclusion",
+        "PP": "Pied de page",
+        "CGV": "Conditions générales de vente",
+        "VISIBLE": {
+          "D": "(visible sur le devis)",
+          "F": "(visible sur la facture)"
+        }
+      }
     },
     "SELECT":{
       "NF" : "Pas trouvé",
@@ -52,7 +77,16 @@
     "BUTTON": {
       "C": "Créer",
       "A": "Annuler",
-      "E": "Editer"
+      "E": "Editer",
+      "AL" : "Ajouter une ligne"
+    },
+    "TEXT":{
+      "THT": "Total HT",
+      "RG": "Remise Générale",
+      "THTF": "Total HT final",
+      "TVA": "TVA",
+      "T": "Total",
+      "J" : "jours"
     }
   },
   "EMPTY_DATA_MESSAGE": {

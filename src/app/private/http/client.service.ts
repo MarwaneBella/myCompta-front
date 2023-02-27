@@ -40,4 +40,8 @@ export class ClientService {
   getClientListPro(): Observable<Client[]>{
     return this.http.get<Client[]>(`${this.constant.clientUrl}/pro`)
   }
+
+  getClientsByFirstNameAndLastName(): Observable<Client[]>{
+    return this.http.get<Client[]>(`${this.constant.clientUrl}/recipient`)
+  }
 }

@@ -4,7 +4,7 @@
     <ng-template #show>
     <div class="flex gap-4 items-center">
         <button class="common-btn-gray">
-            <svg-icon name="plus" svgClass="w-5" [routerLink]="navigate.toBasePath(for)" ></svg-icon>
+            <svg-icon name="arrowdown"  svgClass="w-5 rotate-90" [routerLink]="navigate.toBasePath(for)" ></svg-icon>
         </button>
         <div class="flex flex-col">
             <span class="text-sm font-semibold" *ngIf="showData[0]">{{showData[0]}}</span>

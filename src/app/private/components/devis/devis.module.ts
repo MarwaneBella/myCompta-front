@@ -6,18 +6,20 @@ import { DevisComponent } from './devis.component';
 import { AddEditDevisComponent } from './add-edit-devis/add-edit-devis.component';
 import { ShowDevisComponent } from './show-devis/show-devis.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { PrivateModule } from "../../private.module";
 
 
 @NgModule({
-  declarations: [
-    DevisComponent,
-    AddEditDevisComponent,
-    ShowDevisComponent
-  ],
-  imports: [
-    CommonModule,
-    DevisRoutingModule,
-    SharedModule
-  ]
+    declarations: [
+        DevisComponent,
+        AddEditDevisComponent,
+        ShowDevisComponent
+    ],
+    imports: [
+        CommonModule,
+        DevisRoutingModule,
+        SharedModule,
+        PrivateModule
+    ]
 })
 export class DevisModule { }

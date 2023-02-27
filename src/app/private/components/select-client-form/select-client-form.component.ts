@@ -23,7 +23,7 @@ export class SelectClientFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private clientService: ClientService,
     private addressService: AddressService
-  ) {}
+  ){}
 
   ngOnInit(): void {
     this.inializeForm();

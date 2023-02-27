@@ -1,0 +1,162 @@
+<section class="flex flex-col gap-6  p-1 ">
+    <div class="flex flex-col gap-2">
+        <span class="secondary-title">{{'FORM.TITLE.AR' | translate}}</span>
+
+        <form [formGroup]="articleForm" *ngFor="let articleForm of articleForms; let i = index"
+            class="flex flex-row gap-3 px-1 py-5 rounded-2xl transition-colors duration-500"
+            [class.bg-gray-5]="bgPanel.colored && bgPanel.id == i ">
+            <div class="flex flex-col gap-2 w-fit">
+                <span class=" rounded-full-black  px-3">{{(i+1)}}</span>
+                <div class="flex flex-col gap-1 w-fit ">
+                    <button class="common-btn-arrow" (click)="movePanelToAbove(i)"
+                        [disabled]="articleForms.length == 1 || i == 0">
+                        <svg-icon name="arrowup" svgClass="w-5"></svg-icon>
+                    </button>
+                    <button class="common-btn-arrow rotate-180" (click)="movePanelToBottom(i)"
+                        [disabled]="articleForms.length == 1 || i == articleForms.length-1 ">
+                        <svg-icon name="arrowup" svgClass="w-5"></svg-icon>
+                    </button>
+                </div>
+                <div class="h-full flex justify-center">
+                    <hr class=" rounded-full h-full w-fit border-gray-2 border-t-0 border-l-[2px]">
+                </div>
+
+            </div>
+
+            <div class="flex flex-col gap-6 w-full ">
+                <div class="flex flex-row gap-2">
+                    <div class="relative grow">
+                        <label class="common-label">{{'FORM.INPUT.T' | translate}}</label>
+                        <ng-select class="custom" placeholder="{{'FORM.INPUT.LANG' | translate}}" [items]="typesArticle"
+                            bindLabel="name_fr" [clearable]="false" [searchable]="false" formControlName="typeArticle">
+                        </ng-select>
+                    </div>
+
+                    <div class="flex gap-1 justify-center items-center w-fit">
+                        <button class="common-btn-gray" (click)="duplicateArticleForm(i)">
+                            <svg-icon svgClass="w-3" name="plus"></svg-icon>
+                        </button>
+                        <button class="common-btn-gray rotate-45" (click)="removeArticleForm(i)"
+                            [disabled]="articleForms.length <= min">
+                            <svg-icon svgClass="w-3" name="plus"></svg-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-x-2 gap-y-5 sm:grid-cols-3 md-lg:grid-cols-7">
+                    <div class="relative">
+                        <label class="common-label "
+                            *ngIf="articleForm.controls['quantity'].value != null">{{'FORM.INPUT.Q' |
+                            translate}} *</label>
+                        <input type="number" appAllowInput allow="integer" class="common-input"
+                            placeholder="{{'FORM.INPUT.Q' | translate}} *" formControlName="quantity"
+                            (ngModelChange)="calculate()">
+                    </div>
+                    <div class="relative">
+                        <label class="common-label"
+                            *ngIf="articleForm.controls['prixHT'].value != null">{{'FORM.INPUT.PHT' |
+                            translate}} *</label>
+                        <input type="number" appAllowInput allow="float" placeholder="{{'FORM.INPUT.PHT' | translate}} *"
+                            class="common-input" formControlName="prixHT" (ngModelChange)="calculate()">
+                    </div>
+                    <div class="relative">
+                        <label class="common-label" *ngIf="articleForm.controls['tva'].value != null">{{'FORM.INPUT.TVA'
+                            | translate}}</label>
+                        <input type="number" appAllowInput allow="float" class="common-input"
+                            placeholder="{{'FORM.INPUT.TVA' | translate}}" formControlName="tva"
+                            (ngModelChange)="calculate()">
+                    </div>
+                    <div class="flex flex-row col-span-1 sm:col-span-3  md-lg:col-span-2 gap-2  ">
+                        <div class="relative grow">
+                            <label class="common-label"
+                                *ngIf="articleForm.controls['reduction'].value != null">{{'FORM.INPUT.R' |
+                                translate}}</label>
+                            <input type="number" appAllowInput allow="float"
+                                placeholder="{{'FORM.INPUT.R' | translate}}" class="common-input"
+                                formControlName="reduction" (ngModelChange)="calculate()">
+                        </div>
+                        <ng-select [searchable]="false" [clearable]="false" class="custom" [items]="reductionType"
+                            formControlName="reductionType" (ngModelChange)="calculate()">
+
+                        </ng-select>
+                    </div>
+
+                    <div class="relative">
+                        <label class="common-label"
+                            *ngIf="articleForm.controls['totalHT'].value != null">{{'FORM.INPUT.THT' |
+                            translate}}</label>
+                        <input type="text" placeholder="{{'FORM.INPUT.THT' | translate}}"
+                            class="common-input hidde-arrows" formControlName="totalHT">
+                    </div>
+                    <div class="relative">
+                        <label class="common-label"
+                            *ngIf="articleForm.controls['totalTTC'].value != null">{{'FORM.INPUT.TTC' |
+                            translate}}</label>
+                        <input type="text" placeholder="{{'FORM.INPUT.TTC' | translate}}"
+                            class="common-input hidde-arrows col-span-1  sm:col-span-2  md-lg:col-span-1"
+                            formControlName="totalTTC">
+                    </div>
+
+                </div>
+                <div class="relative">
+                    <label class="common-label "
+                        *ngIf="articleForm.controls['description'].value != null">{{'FORM.INPUT.D' | translate}}</label>
+                    <textarea class="common-textarea resize-none " placeholder="{{'FORM.INPUT.D' | translate}}" rows="5"
+                        formControlName="description"></textarea>
+                </div>
+            </div>
+        </form>
+        <button class="common-btn-hover-gray w-fit" (click)="addArticleForm(articleForms.length-1)">
+            <span class="icon-span rounded-full-gray p-2">
+                <svg-icon name="plus" svgClass="w-3"></svg-icon>
+            </span>
+            <span class="text-sm">{{'FORM.BUTTON.AL' | translate}}</span>
+        </button>
+    </div>
+
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 ">
+
+        <form [formGroup]="remiseForm" class="flex gap-3 sm:col-start-2">
+            <div class="relative grow">
+                <label class="common-label " *ngIf="remiseForm.controls['remise'].value">{{'FORM.INPUT.RG' |
+                    translate}}</label>
+                <input type="number" appAllowInput allow="float" placeholder="{{'FORM.INPUT.RG' | translate}}"
+                    class="common-input" formControlName="remise" (ngModelChange)="calculate()">
+            </div>
+            <ng-select [searchable]="false" [clearable]="false" class="custom" [items]="reductionType"
+                formControlName="remiseType" (ngModelChange)="calculate()">
+            </ng-select>
+        </form>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 bg-gray-1 rounded-3xl p-5 font-bold text-gray-2  text-sm">
+
+        <div class="flex flex-col gap-2 sm:col-start-2">
+            <div class=" flex justify-between  gap-8">
+                <span>{{'FORM.TEXT.THT' | translate}}</span>
+                <span>{{totals.totalHT | number : '1.2-2'}} $</span>
+            </div>
+            <div class=" flex justify-between  gap-8 ">
+                <span>{{'FORM.TEXT.RG' | translate}}</span>
+                <span>{{totals.remise | number : '1.2-2'}} $</span>
+            </div>
+            <div class=" flex justify-between  gap-8 ">
+                <span>{{'FORM.TEXT.THTF' | translate}}</span>
+                <span>{{totals.totalHTF | number : '1.2-2'}} $</span>
+            </div>
+            <div class=" flex justify-between  gap-8 ">
+                <span>{{'FORM.TEXT.TVA' | translate}}</span>
+                <span>{{totals.tva | number : '1.2-2'}} $</span>
+            </div>
+            <div class=" flex justify-between  gap-8 ">
+                <span>{{'FORM.TEXT.T' | translate}}</span>
+                <span>{{totals.total | number : '1.2-2'}} $</span>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>

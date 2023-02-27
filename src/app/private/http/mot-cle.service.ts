@@ -31,4 +31,5 @@ export class MotCleService {
   deleteMotCleById(id :number):Observable<string>{
    return this.http.delete(`${this.constant.motCleUrl}/${id}`,{ responseType: 'text'});
   }
+  
 }

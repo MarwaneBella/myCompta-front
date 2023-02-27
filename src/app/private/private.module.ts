@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { PrivateRoutingModule } from './private-routing.module';
 import { PrivateComponent } from './private.component';
@@ -10,6 +10,10 @@ import { KeyWordFormComponent } from './components/key-word-form/key-word-form.c
 import { PhoneFormComponent } from './components/phone-form/phone-form.component';
 import { SelectClientFormComponent } from './components/select-client-form/select-client-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SelectRecipientComponent } from './components/select-recipient/select-recipient.component';
+import { ArticlePanelComponent } from './components/article-panel/article-panel.component';
+import { ReglementFormComponent } from './components/reglement-form/reglement-form.component';
+import { TextFieldFormComponent } from './components/text-field-form/text-field-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     KeyWordFormComponent,
     PhoneFormComponent,
     SelectClientFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    SelectRecipientComponent,
+    ArticlePanelComponent,
+    ReglementFormComponent,
+    TextFieldFormComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +38,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AddressFormComponent,
     KeyWordFormComponent,
     PhoneFormComponent,
-    SelectClientFormComponent
+    SelectClientFormComponent,
+    SelectRecipientComponent,
+    ArticlePanelComponent,
+    ReglementFormComponent,
+    TextFieldFormComponent
+  ],
+  providers:[
+    DecimalPipe
   ]
 })
 export class PrivateModule { }

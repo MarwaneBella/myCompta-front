@@ -20,6 +20,7 @@ import { ChipsInputComponent } from './components/chips-input/chips-input.compon
 import { DebounceClickDirective } from './directives/debounce-click.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { AllowInputDirective } from './directives/allow-input.directive';
 
 
 
@@ -36,6 +37,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ChipsInputComponent,
     DebounceClickDirective,
     PaginationComponent,
+    AllowInputDirective,
   ],
   imports: [
     CommonModule,
@@ -68,6 +70,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ChipsInputComponent,
     NgxPaginationModule,
     PaginationComponent,
+    AllowInputDirective,
     IvyCarouselModule
   ],
   providers :[
