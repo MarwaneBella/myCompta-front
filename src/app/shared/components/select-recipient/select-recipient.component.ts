@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
-import { ClientService } from '../../http/client.service';
-import { SocieteService } from '../../http/societe.service';
-import { Client } from '../../models/client';
-import { Societe } from '../../models/societe';
+import { ClientService } from '../../../private/http/client.service';
+import { SocieteService } from '../../../private/http/societe.service';
+import { Client } from '../../../private/models/client';
+import { Societe } from '../../../private/models/societe';
 
 interface Data {
   recipient : Client | Societe

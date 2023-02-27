@@ -2,11 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { FormGroupService } from 'src/app/shared/services/form-group.service';
-import { PhoneService } from '../../http/phone.service';
-import { Address } from '../../models/address';
-import { Client } from '../../models/client';
-import { Phone } from '../../models/phone';
-import { Societe } from '../../models/societe';
+import { PhoneService } from '../../../private/http/phone.service';
+import { Client } from '../../../private/models/client';
+import { Phone } from '../../../private/models/phone';
+import { Societe } from '../../../private/models/societe';
 
 @Component({
   selector: 'app-phone-form',

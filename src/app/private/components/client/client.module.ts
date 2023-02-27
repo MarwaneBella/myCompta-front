@@ -6,7 +6,7 @@ import { ClientComponent } from './client.component';
 import { AddEditClientComponent } from './add-edit-client/add-edit-client.component';
 import { ShowClientComponent } from './show-client/show-client.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AddressFormComponent } from '../address-form/address-form.component';
+import { AddressFormComponent } from '../../../shared/components/address-form/address-form.component';
 import { PrivateModule } from '../../private.module';
 
 @NgModule({

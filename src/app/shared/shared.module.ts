@@ -21,17 +21,33 @@ import { DebounceClickDirective } from './directives/debounce-click.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { AllowInputDirective } from './directives/allow-input.directive';
+import { PhoneFormComponent } from './components/phone-form/phone-form.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
+import { KeyWordFormComponent } from './components/key-word-form/key-word-form.component';
+import { SelectClientFormComponent } from './components/select-client-form/select-client-form.component';
+import { SelectRecipientComponent } from './components/select-recipient/select-recipient.component';
+import { ArticlePanelComponent } from './components/article-panel/article-panel.component';
+import { ReglementFormComponent } from './components/reglement-form/reglement-form.component';
+import { TextFieldFormComponent } from './components/text-field-form/text-field-form.component';
 
 
 
 @NgModule({
   declarations: [
+    AddressFormComponent,
+    KeyWordFormComponent,
+    SelectClientFormComponent,
+    SelectRecipientComponent,
+    ArticlePanelComponent,
+    ReglementFormComponent,
+    TextFieldFormComponent,
     ClickOutsideDirective,
     SliderComponent,
     CardComponent,
     DropMenuComponent,
     TopBarComponent,
     ActivityPanelComponent,
+    PhoneFormComponent,
     EmptyDataMessageComponent,
     EmptyDataMessageComponent,
     ChipsInputComponent,
@@ -52,6 +68,13 @@ import { AllowInputDirective } from './directives/allow-input.directive';
     NgxPaginationModule
   ],
   exports : [
+    AddressFormComponent,
+    KeyWordFormComponent,
+    SelectClientFormComponent,
+    SelectRecipientComponent,
+    ArticlePanelComponent,
+    ReglementFormComponent,
+    TextFieldFormComponent,
     DebounceClickDirective,
     ClickOutsideDirective,
     AngularSvgIconModule,
@@ -62,6 +85,7 @@ import { AllowInputDirective } from './directives/allow-input.directive';
     TopBarComponent,
     DropMenuComponent,
     ActivityPanelComponent,
+    PhoneFormComponent,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
@@ -71,6 +95,7 @@ import { AllowInputDirective } from './directives/allow-input.directive';
     NgxPaginationModule,
     PaginationComponent,
     AllowInputDirective,
+    
     IvyCarouselModule
   ],
   providers :[

@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { MotCleService } from '../../http/mot-cle.service';
-import { Address } from '../../models/address';
-import { Client } from '../../models/client';
-import { Devis } from '../../models/devis';
-import { Facture } from '../../models/facture';
-import { MotCle } from '../../models/mot-cle';
-import { Societe } from '../../models/societe';
+import { MotCleService } from '../../../private/http/mot-cle.service';
+import { Address } from '../../../private/models/address';
+import { Client } from '../../../private/models/client';
+import { Devis } from '../../../private/models/devis';
+import { Facture } from '../../../private/models/facture';
+import { MotCle } from '../../../private/models/mot-cle';
+import { Societe } from '../../../private/models/societe';
 
 @Component({
   selector: 'app-key-word-form',

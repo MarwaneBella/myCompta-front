@@ -9,10 +9,10 @@ import {
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { FormGroupService } from 'src/app/shared/services/form-group.service';
-import { AddressService } from '../../http/address.service';
-import { Address } from '../../models/address';
-import { Client } from '../../models/client';
-import { Societe } from '../../models/societe';
+import { AddressService } from '../../../private/http/address.service';
+import { Address } from '../../../private/models/address';
+import { Client } from '../../../private/models/client';
+import { Societe } from '../../../private/models/societe';
 
 @Component({
   selector: 'app-address-form',

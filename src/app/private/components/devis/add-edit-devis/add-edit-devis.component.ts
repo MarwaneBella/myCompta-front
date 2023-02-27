@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DevisService } from 'src/app/private/http/devis.service';
 import { Devis } from 'src/app/private/models/devis';
-import { KeyWordFormComponent } from '../../key-word-form/key-word-form.component';
+import { KeyWordFormComponent } from '../../../../shared/components/key-word-form/key-word-form.component';
 
 @Component({
   selector: 'app-add-edit-devis',

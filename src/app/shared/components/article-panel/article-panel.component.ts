@@ -2,8 +2,8 @@ import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { TypeArticleService } from '../../http/type-article.service';
-import { TypeArticle } from '../../models/type-article';
+import { TypeArticleService } from '../../../private/http/type-article.service';
+import { TypeArticle } from '../../../private/models/type-article';
 
 class Totals{
   totalHT :number = 0

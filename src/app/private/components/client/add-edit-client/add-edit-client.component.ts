@@ -1,14 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AddressFormComponent } from 'src/app/private/components/address-form/address-form.component';
-import { KeyWordFormComponent } from '../../key-word-form/key-word-form.component';
+import { AddressFormComponent } from 'src/app/shared/components/address-form/address-form.component';
+import { KeyWordFormComponent } from '../../../../shared/components/key-word-form/key-word-form.component';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Client } from 'src/app/private/models/client';
 import { ClientService } from 'src/app/private/http/client.service';
 import { SocieteService } from 'src/app/private/http/societe.service';
 import { Societe } from 'src/app/private/models/societe';
 import { firstValueFrom } from 'rxjs';
-import { PhoneFormComponent } from '../../phone-form/phone-form.component';
+import { PhoneFormComponent } from '../../../../shared/components/phone-form/phone-form.component';
 import { AddressService } from 'src/app/private/http/address.service';
 
 @Component({
