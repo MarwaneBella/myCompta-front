@@ -64,7 +64,7 @@
                             | translate}}</label>
                         <input type="number" appAllowInput allow="float" class="common-input"
                             placeholder="{{'FORM.INPUT.TVA' | translate}}" formControlName="tva"
-                            (ngModelChange)="calculate()">
+                            (ngModelChange)="calculate()" >
                     </div>
                     <div class="flex flex-row col-span-1 sm:col-span-3  md-lg:col-span-2 gap-2  ">
                         <div class="relative grow">
@@ -86,14 +86,14 @@
                             *ngIf="articleForm.controls['totalHT'].value != null">{{'FORM.INPUT.THT' |
                             translate}}</label>
                         <input type="text" placeholder="{{'FORM.INPUT.THT' | translate}}"
-                            class="common-input hidde-arrows" formControlName="totalHT">
+                            class="common-input" formControlName="totalHT" >
                     </div>
                     <div class="relative">
                         <label class="common-label"
                             *ngIf="articleForm.controls['totalTTC'].value != null">{{'FORM.INPUT.TTC' |
                             translate}}</label>
                         <input type="text" placeholder="{{'FORM.INPUT.TTC' | translate}}"
-                            class="common-input hidde-arrows col-span-1  sm:col-span-2  md-lg:col-span-1"
+                            class="common-input col-span-1  sm:col-span-2  md-lg:col-span-1"
                             formControlName="totalTTC">
                     </div>
 
@@ -118,12 +118,12 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 ">
 
-        <form [formGroup]="remiseForm" class="flex gap-3 sm:col-start-2">
+        <form [formGroup]="remiseForm"  class="flex gap-3 sm:col-start-2">
             <div class="relative grow">
                 <label class="common-label " *ngIf="remiseForm.controls['remise'].value">{{'FORM.INPUT.RG' |
                     translate}}</label>
                 <input type="number" appAllowInput allow="float" placeholder="{{'FORM.INPUT.RG' | translate}}"
-                    class="common-input" formControlName="remise" (ngModelChange)="calculate()">
+                    class="common-input" formControlName="remise" (ngModelChange)="calculate()" >
             </div>
             <ng-select [searchable]="false" [clearable]="false" class="custom" [items]="reductionType"
                 formControlName="remiseType" (ngModelChange)="calculate()">
@@ -136,23 +136,23 @@
         <div class="flex flex-col gap-2 sm:col-start-2">
             <div class=" flex justify-between  gap-8">
                 <span>{{'FORM.TEXT.THT' | translate}}</span>
-                <span>{{totals.totalHT | number : '1.2-2'}} $</span>
+                <span>{{totals.totalHT | number : '1.2-2'}} {{currentCurrency}}</span>
             </div>
             <div class=" flex justify-between  gap-8 ">
                 <span>{{'FORM.TEXT.RG' | translate}}</span>
-                <span>{{totals.remise | number : '1.2-2'}} $</span>
+                <span>{{totals.remise | number : '1.2-2'}} {{currentCurrency}}</span>
             </div>
             <div class=" flex justify-between  gap-8 ">
                 <span>{{'FORM.TEXT.THTF' | translate}}</span>
-                <span>{{totals.totalHTF | number : '1.2-2'}} $</span>
+                <span>{{totals.totalHTF | number : '1.2-2'}} {{currentCurrency}}</span>
             </div>
             <div class=" flex justify-between  gap-8 ">
                 <span>{{'FORM.TEXT.TVA' | translate}}</span>
-                <span>{{totals.tva | number : '1.2-2'}} $</span>
+                <span>{{totals.tva | number : '1.2-2'}} {{currentCurrency}}</span>
             </div>
             <div class=" flex justify-between  gap-8 ">
                 <span>{{'FORM.TEXT.T' | translate}}</span>
-                <span>{{totals.total | number : '1.2-2'}} $</span>
+                <span>{{totals.total | number : '1.2-2'}} {{currentCurrency}}</span>
             </div>
         </div>
     </div>

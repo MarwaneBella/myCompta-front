@@ -1,12 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Client } from 'src/app/private/models/client';
 import { Devis } from 'src/app/private/models/devis';
-import { DevisStatus } from 'src/app/private/models/enums/devis-status';
+import { DevisStatus } from 'src/app/private/enums/devis-status';
 import { Facture } from 'src/app/private/models/facture';
 import { Societe } from 'src/app/private/models/societe';
 import { NavigateService } from 'src/app/private/services/navigate.service';
 import { AlertifyService } from '../../services/alertify.service';
 import { FilterService } from '../../services/filter.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { DevisService } from 'src/app/private/http/devis.service';
 
 @Component({
   selector: 'app-drop-menu',
@@ -15,11 +17,14 @@ import { FilterService } from '../../services/filter.service';
 })
 export class DropMenuComponent implements OnInit {
 
+  @Output()
+  refreshListPage : EventEmitter<void> = new EventEmitter(); 
+
   @Input()
   data: Societe | Client | Devis | Facture;
 
   @Input()
-  type :'list'|'edit'|'show'|'global'
+  type :'list'|'edit'|'show'|'settings'|'filter'
 
   @Input()
   size : 'sm'|'xs'
@@ -32,15 +37,17 @@ export class DropMenuComponent implements OnInit {
   statusActive: DevisStatus | null = null;
 
   constructor(
-    public navigate : NavigateService,
     private alertify : AlertifyService,
-    private filterService : FilterService
-  ) {}
+    private filterService : FilterService,
+    private devisService : DevisService
+  ){
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
   }
 
   changeFilterStatus(status : DevisStatus | null){
+    this.dropMenu = false
     this.statusActive = status
     this.filterService.callMethodFilterStatus(status);
   }
@@ -56,6 +63,28 @@ export class DropMenuComponent implements OnInit {
 
   delete(){
     this.alertify.deleteData(this.data, this.for);
+  }
+
+  finalizeIt(){
+    if(this.for == 'D') this.updateDevis(DevisStatus.FINALIZED)
+  }
+
+  signeIt(){
+    if(this.for == 'D') this.updateDevis(DevisStatus.SIGNED)
+  }
+
+  refuseIt(){
+    if(this.for == 'D') this.updateDevis(DevisStatus.REFUSED)
+  }
+
+
+  updateDevis(devisStatus : DevisStatus){
+    (this.data as Devis).status = devisStatus
+    this.devisService.updateDevisById(this.data.id, this.data as Devis).subscribe({
+      // next : res => this.data = res,
+      error : e => console.log(e),
+      complete: () => this.refreshListPage.emit()
+    })
   }
 
 

@@ -1,11 +1,23 @@
 <div class="flex flex-col gap-6">
     <span class="secondary-title">{{'FORM.TITLE.R' | translate}}</span>
-    <div class="flex flex-col gap-3">
-        <ng-select class="custom" placeholder="{{'FORM.INPUT.LANG' | translate}}" >
-        </ng-select>
-        <ng-select class="custom" placeholder="{{'FORM.INPUT.LANG' | translate}}" >
-        </ng-select>
-        <ng-select class="custom" placeholder="{{'FORM.INPUT.LANG' | translate}}" >
-        </ng-select>
-    </div>
+    <form  [formGroup]="this.reglementForm" class="flex flex-col gap-6">
+        <div class="relative">
+            <label class="common-label">{{'FORM.INPUT.CR' | translate}}</label>
+            <ng-select class="custom" placeholder="{{'FORM.INPUT.CR' | translate}}" [items]="conditionsReglement"
+                bindLabel="name" formControlName="conditionReglement" [clearable]="false"  >
+            </ng-select>
+        </div>
+        <div class="relative">
+            <label class="common-label">{{'FORM.INPUT.MR' | translate}}</label>
+            <ng-select class="custom" placeholder="{{'FORM.INPUT.MR' | translate}}" [items]="modesReglement"
+                bindLabel="name" formControlName="modeReglement" [clearable]="false" >
+            </ng-select>
+        </div>
+        <div class="relative">
+            <label class="common-label">{{'FORM.INPUT.I' | translate}}</label>
+            <ng-select class="custom" placeholder="{{'FORM.INPUT.I' | translate}}" [items]="interets"
+                bindLabel="name" formControlName="interet" [clearable]="false" >
+            </ng-select>
+        </div>
+    </form>
 </div>

@@ -21,9 +21,8 @@ export class AppComponent {
   constructor(private svgIconRegistryService : SvgIconRegistryService, private config: NgSelectConfig, private translateService : TranslateService) {
     
     listIconsvg.forEach(name=>{
-      this.svgIconRegistryService.loadSvg(`./assets/svg/${name}.svg`,name);
+      this.svgIconRegistryService.loadSvg(`./assets/svg/${name}.svg`,name)?.subscribe( res => {});
     })
-
     
     forkJoin({
     source1 : this.translateService.get('FORM.SELECT.NF'),
@@ -35,8 +34,6 @@ export class AppComponent {
       },
       error : e => console.log(e)
     })
-
-
     
     
   }

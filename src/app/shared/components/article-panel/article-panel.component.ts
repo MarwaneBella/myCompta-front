@@ -1,7 +1,11 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { ArticleService } from 'src/app/private/http/article.service';
+import { Article } from 'src/app/private/models/article';
+import { Devis } from 'src/app/private/models/devis';
+import { Facture } from 'src/app/private/models/facture';
 import { TypeArticleService } from '../../../private/http/type-article.service';
 import { TypeArticle } from '../../../private/models/type-article';
 
@@ -20,17 +24,25 @@ class Totals{
 })
 export class ArticlePanelComponent implements OnInit {
 
-  typesArticle : TypeArticle[]
+  @Output()
+  isFormValid : EventEmitter<boolean> = new EventEmitter()
   
+  @Input()
+  for : 'D' | 'F'
+  tvaNotApplicable : boolean
+  typesArticle : TypeArticle[]
   articleForms : Array<FormGroup> = new Array<FormGroup>();
+  articles : Array<Article>
   remiseForm : FormGroup
-  reductionType =['%','£']
+  reductionType =['%','MAD']
+  currentCurrency : string = 'MAD'
   totals : Totals = new Totals()
   min: number = 1
   bgPanel = { id : 0, colored: false }
 
   constructor(
     private typeArticleService: TypeArticleService,
+    private articleService : ArticleService,
     private formBuilder : FormBuilder,
     private decimalPipe: DecimalPipe
   ) { }
@@ -53,10 +65,57 @@ export class ArticlePanelComponent implements OnInit {
     this.typesArticle  = await firstValueFrom(this.typeArticleService.getTypeArticleList())
   }
 
+  changeReductionType(currency : string){
+    this.currentCurrency = currency
+    this.reductionType =['%',currency]
+    this.articleForms.forEach(articleForm =>{
+      if(articleForm.controls['reductionType'].value != '%') 
+      articleForm.controls['reductionType'].setValue(this.reductionType[1])
+    })
+    if(this.remiseForm.controls['remiseType'].value != '%') 
+    this.remiseForm.controls['remiseType'].setValue(this.reductionType[1])
+  }
+  
+  getRemiseForm(data : Devis |Facture) : Devis |Facture{
+    if(this.for == 'D'){
+      var devis : Devis  = data as Devis
+      devis.remise = this.remiseForm.controls['remise'].value
+      if(this.remiseForm.controls['remiseType'].value == '%') devis.remIsPercentage = true
+      else devis.remIsPercentage = false
+    }
+    return data;
+  }
+
+  setRemiseForm(data : Devis |Facture) {
+    if(this.for == 'D'){
+      var devis : Devis  = data as Devis
+      if(devis.remIsPercentage) this.remiseForm.controls['remiseType'].setValue(this.reductionType[0])
+      else this.remiseForm.controls['remiseType'].setValue(this.reductionType[1])
+      this.remiseForm.controls['remise'].setValue(devis.remise)
+    }
+  }
+
+  
+
+  setTvaNotApplicable(tvaNotApplicable : boolean){
+    this.tvaNotApplicable = tvaNotApplicable
+    if(this.tvaNotApplicable){
+      this.articleForms.forEach(articleForm =>{
+        articleForm.controls['tva'].disable()
+      })
+    }
+    else{
+      this.articleForms.forEach(articleForm =>{
+        articleForm.controls['tva'].enable()
+      })
+    }
+    this.calculate();
+  }
+
   addArticleForm(i:number){
     var articleForm : FormGroup
     articleForm = this.formBuilder.group({
-      typeArticle: 'Service',
+      typeArticle: this.typesArticle[0] ,
       quantity: [null, Validators.required],
       prixHT: [null, Validators.required],
       tva: 20,
@@ -66,17 +125,28 @@ export class ArticlePanelComponent implements OnInit {
       totalTTC :{value : null , disabled: true},
       description: null,
     });
+    
     i++
     this.articleForms.splice(i, 0, articleForm);
     if(i!=0) this.setBgPanel(i)
-
+    this.setTvaNotApplicable(this.tvaNotApplicable)
   }
 
-  duplicateArticleForm(i:number){
-    this.articleForms.splice(i, 0, this.articleForms[i]);
-    i++
-    this.setBgPanel(i)
-    
+  duplicateArticleForm(i:number){    
+    this.addArticleForm(i)
+    this.articleForms[i+1].patchValue({
+      typeArticle: this.articleForms[i].controls['typeArticle'].value,
+      quantity: this.articleForms[i].controls['quantity'].value,
+      prixHT: this.articleForms[i].controls['prixHT'].value,
+      tva: this.articleForms[i].controls['tva'].value,
+      reduction: this.articleForms[i].controls['reduction'].value ,
+      reductionType: this.articleForms[i].controls['reductionType'].value,
+      totalHT : this.articleForms[i].controls['totalHT'].value,
+      totalTTC :this.articleForms[i].controls['totalTTC'].value,
+      description: this.articleForms[i].controls['description'].value
+    })
+    this.setBgPanel(i+1)
+    this.calculate()
   }
 
   removeArticleForm(i : number ){
@@ -111,19 +181,20 @@ export class ArticlePanelComponent implements OnInit {
   }
 
   calculate(){
-
     this.totals = new Totals()
+    var formValid : boolean = false
     this.articleForms.forEach( articleForm =>{
-      if(articleForm.controls['quantity'].value && articleForm.controls['prixHT'].value){
-        this.calculateOneArticle(articleForm)
-      }
+      this.calculateOneArticle(articleForm) 
+      if(articleForm.controls['quantity'].value && articleForm.controls['prixHT'].value) 
+      formValid = true
+      this.isFormValid.emit(formValid)
     })
 
     if(!this.remiseForm.controls['remise'].value){
       this.totals.remise = 0
     }
     else{
-      if(this.remiseForm.controls['remiseType'].value == '%'){
+      if(this.checkRemiseType(this.remiseForm)){
         if(this.remiseForm.controls['remise'].value > 50){
           this.remiseForm.controls['remise'].setValue(50)
         }
@@ -151,12 +222,12 @@ export class ArticlePanelComponent implements OnInit {
     else quantity = articleForm.controls['quantity'].value
     if(!articleForm.controls['prixHT'].value) prixHT = 0
     else prixHT = articleForm.controls['prixHT'].value
-    if(!articleForm.controls['tva'].value) tva = 0
+    if(!articleForm.controls['tva'].value || this.tvaNotApplicable ) tva = 0
     else tva = articleForm.controls['tva'].value
     if(!articleForm.controls['reduction'].value) reduction = 0
     else reduction = articleForm.controls['reduction'].value
   
-    if(articleForm.controls['reductionType'].value == '%' ){
+    if(this.checkReductionType(articleForm)){
       if(reduction > 50){
         articleForm.controls['reduction'].setValue(50)
         reduction = 50
@@ -181,4 +252,88 @@ export class ArticlePanelComponent implements OnInit {
     
   }
 
+  setFormValues(articles: Article[]) {
+    this.articles = articles
+    for (let i = 0; i < this.articles.length; i++) {
+      if(i != 0) this.addArticleForm(i)
+      this.articleForms[i].patchValue({
+        typeArticle: this.articles[i].typeArticle,
+        quantity: this.articles[i].quantity,
+        prixHT: this.articles[i].prixHT,
+        tva: this.articles[i].tva,
+        reductionType: this.getreductionType(this.articles[i].redIsPercentage),
+        reduction: this.articles[i].reduction ,
+        description: this.articles[i].description,
+      })
+    }
+    this.calculate()
+  }
+
+
+  async onSubmit(data: Devis | Facture, isAddMode : boolean) {
+
+    
+    // if(this.formService.checkForm(this.phoneForm)){
+      
+      if(!isAddMode){
+        await this.deleteOldArticles();
+      }
+      
+      this.getFormValue();
+
+      this.articles.forEach((article) => {
+
+        if (this.for == 'D') article.devis = data as Devis;
+        else if (this.for == 'F') article.facture = data as Facture;
+        else return
+        this.articleService.addArticle(article).subscribe({
+          next: (res) => article = res,
+          error: (e) => console.log(e),
+        });
+
+      });
+  }
+
+  getFormValue(){
+    this.articles = new Array<Article>()
+    this.articleForms.forEach( articleForm => {
+      if (
+        articleForm.controls['quantity'].value && 
+        articleForm.controls['prixHT'].value
+      ) {
+        var article = new Article();
+        article.prixHT = articleForm.controls['prixHT'].value;
+        article.quantity = articleForm.controls['quantity'].value;
+        article.reduction = articleForm.controls['reduction'].value;
+        if(this.tvaNotApplicable) article.tva = 0
+        else article.tva = articleForm.controls['tva'].value;
+        article.reduction = articleForm.controls['reduction'].value;
+        article.redIsPercentage  = this.checkReductionType(articleForm)
+        article.typeArticle = articleForm.controls['typeArticle'].value;
+        article.description = articleForm.controls['description'].value;
+        this.articles.push(article);
+      }
+    });
+  }
+
+  async deleteOldArticles(){
+    for(let i = 0; i < this.articles.length; i++) {
+      await firstValueFrom( this.articleService.deleteArticleById(this.articles[i].id) ).catch( e =>{
+        console.log(e)
+      })
+    }
+  }
+
+  checkReductionType(articleForm :FormGroup) : boolean{
+    return articleForm.controls['reductionType'].value == '%'
+  }
+  checkRemiseType(articleForm :FormGroup) : boolean{
+    return articleForm.controls['remiseType'].value == '%'
+  }
+
+  getreductionType(isPercentage : boolean) : string{
+    if(isPercentage) return this.reductionType[0]
+    else return this.reductionType[1]
+  }
 }
+

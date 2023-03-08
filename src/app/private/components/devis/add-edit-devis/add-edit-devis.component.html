@@ -1,48 +1,65 @@
-<section >
+<section>
     <app-top-bar for="D" type="add"></app-top-bar>
-    <form [formGroup]="devisForm" class="grid grid-cols-1 gap-9 md:grid-cols-3 " >
-        
-        <div class="flex flex-col gap-6">
-            <app-select-recipient (selected)="isSelected = true"></app-select-recipient>
+    <form [formGroup]="devisForm" class="grid grid-cols-1 gap-9 md:grid-cols-3 "  *ngIf="isProvisional ; else isNotProvisional" >
 
-            <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6" >
+            <app-select-recipient (selected)="isSelected = true" for="D"></app-select-recipient>
+
+            <div class="flex flex-col gap-6" [ngClass]="isSelected || !isAddMode ? 'visible' : 'invisible' ">
                 <span class="secondary-title">{{'FORM.TITLE.INF' | translate}}</span>
                 <div class="flex flex-col gap-6">
                     <div class="relative flex gap-4 items-center">
-                        <label class="common-label " >{{'FORM.INPUT.DV' | translate}}</label>
-                        <input type="number" appAllowInput allow="integer" placeholder="{{'FORM.INPUT.DV' | translate}} " class="common-input"
-                        formControlName="name" required>
+                        <label class="common-label ">{{'FORM.INPUT.DV' | translate}}</label>
+                        <input type="number" appAllowInput allow="integer"
+                            placeholder="{{'FORM.INPUT.DV' | translate}} " class="common-input"
+                            formControlName="validationDuration">
                         <span>{{ 'FORM.TEXT.J' | translate}}</span>
                     </div>
-                    
-                    <ng-select class="custom" placeholder="{{'FORM.INPUT.DS' | translate}} *" [items]="languages"
-                        formControlName="language" [clearable]="false" >
-                    </ng-select>
+
                     <div class="relative">
-                        <label class="common-label">{{'FORM.INPUT.T' | translate}}</label>
-                        <ng-select class="custom" placeholder="{{'FORM.INPUT.DS' | translate}}" [items]="languages"
-                            bindLabel="name_fr" [clearable]="false" formControlName="typeArticle">
+                        <label class="common-label">{{'FORM.INPUT.DS' | translate}}</label>
+                        <ng-select class="custom" placeholder="{{'FORM.INPUT.DS' | translate}}" [items]="currencies"
+                            bindLabel="name_symbol" bindValue="name_symbol" [clearable]="false"
+                            formControlName="typeArticle" formControlName="devise" (change)="currencyChanged($event) ">
+
+                            <ng-template ng-option-tmp let-item="item">
+                                <div class="flex gap-2 items-center">
+                                    <span>{{item.name}}</span>
+                                    <span class="text-gray-2">({{item.symbol}})</span>
+                                </div>
+                            </ng-template>
+
                         </ng-select>
+                    </div>
+
+                    <div class="flex gap-3 items-center w-fit cursor-pointer"
+                        (click)="devisForm.controls['tvaNotApplicable'].setValue(!devisForm.controls['tvaNotApplicable'].value) ">
+                        <input type="checkbox" class="w-4 h-4 accent-black-1 cursor-pointer"
+                            (ngModelChange)="tvaApplicableChanged()" formControlName="tvaNotApplicable">
+                        <label class="cursor-pointer text-sm">{{'FORM.INPUT.TNA' | translate}}</label>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="flex flex-col gap-6  md:col-span-2" [ngClass]="true ? 'visible' : 'invisible' ">
+        <div class="flex flex-col gap-6  md:col-span-2" [ngClass]="isSelected || !isAddMode ? 'visible' : 'invisible' ">
 
-            <app-article-panel></app-article-panel>
+            <app-article-panel for="D" (isFormValid)="setValidationArticleForm($event)"></app-article-panel>
+
             <div class="grid sm:grid-cols-2">
-                <app-reglement-form></app-reglement-form>
+                <app-reglement-form for="D"></app-reglement-form>
             </div>
-            <app-text-field-form></app-text-field-form>
+
+            <app-text-field-form for="D"></app-text-field-form>
+
             <div class="grid grid-cols-1 sm:grid-cols-2">
-                <app-key-word-form for="D" ></app-key-word-form>
+                <app-key-word-form for="D"></app-key-word-form>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 ">
                 <div class="sm:col-start-2 grid grid-cols-3 gap-5 w-full">
-                    <button class="common-btn-black col-span-2 " [disabled]="devisForm.invalid" appDebounceClick
+                    <button class="common-btn-black col-span-2 " [disabled]="devisForm.invalid || (!isSelected && isAddMode) || !this.isArticleFormValid" appDebounceClick
                         (debounceClick)="onSubmit()">
                         <ng-container *ngIf="isAddMode  else editButton">{{'FORM.BUTTON.C' | translate}}</ng-container>
                         <ng-template #editButton>{{'FORM.BUTTON.E' | translate}}</ng-template>
@@ -50,9 +67,30 @@
                     <button #add class="common-btn-gray" routerLink="/devis">{{'FORM.BUTTON.A' | translate}}</button>
                 </div>
             </div>
-            
+
         </div>
 
     </form>
+    
+    <ng-template  #isNotProvisional>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 ">
+            <div class="flex flex-col gap-16">
+                
+                <app-key-word-form for="D"></app-key-word-form>
+    
+                <div class="grid grid-cols-3 gap-5 ">
+                    <button class="common-btn-black col-span-2 " *ngIf="!isAddMode" appDebounceClick (debounceClick)="submitOtherForms()">
+                        {{'FORM.BUTTON.E' | translate}}
+                    </button>
+                    <button #add class="common-btn-gray" routerLink="/devis">{{'FORM.BUTTON.A' | translate}}</button>
+                </div>
+            </div>
+            
+
+        </div>
+        
+    </ng-template>
+
 </section>
 

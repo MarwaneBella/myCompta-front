@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DevisStatus } from 'src/app/private/enums/devis-status';
 import { Client } from 'src/app/private/models/client';
 import { Devis } from 'src/app/private/models/devis';
 import { Facture } from 'src/app/private/models/facture';
 import { Societe } from 'src/app/private/models/societe';
 import { NavigateService } from 'src/app/private/services/navigate.service';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -20,22 +22,29 @@ export class TopBarComponent implements OnInit {
   for: 'C'|'S'|'D'|'F'
 
   @Input()
-  type : 'add'|'edit'|'show'|'list'
+  type : 'add'|'edit'|'show'|'list'|'settings'
 
   @Input()
   sizeMenu : 'sm'|'xs'
 
   showData :[string, string?] = ['']
+  DevisStatus = DevisStatus;
+  statusActive: DevisStatus | null = null;
 
   constructor(
-    protected navigate : NavigateService
+    protected navigate : NavigateService,
+    private filterService : FilterService,
   ) { }
 
   ngOnInit(): void {
     
-     
-    
   }
+
+  changeFilterStatus(status : DevisStatus | null){
+    this.statusActive = status
+    this.filterService.callMethodFilterStatus(status);
+  }
+
   ngOnChanges(){
     if(this.type == 'show'){
       if( this.for == 'C' ){

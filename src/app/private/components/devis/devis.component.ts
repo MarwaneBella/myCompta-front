@@ -3,7 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { DevisService } from '../../http/devis.service';
 import { Devis } from '../../models/devis';
-import { DevisStatus } from '../../models/enums/devis-status';
+import { DevisStatus } from '../../enums/devis-status';
 
 @Component({
   selector: 'app-devis',
@@ -33,7 +33,6 @@ export class DevisComponent implements OnInit {
     
     this.filterService.methodFilterStatusCalled$.subscribe(
       (res) => {
-        console.log(res)
         this.filterStatus = res
         this.searchData()
       }
@@ -42,12 +41,16 @@ export class DevisComponent implements OnInit {
   }
   
   async ngOnInit(): Promise<void> {
-    await this.setAllDeviss();
+    await this.setAllDevis();
     if(this.devis.length == 0) this.isEmpty = true
   }
 
+  onRefresh(){
+    this.setAllDevis();
+  }
 
-  async setAllDeviss(){
+
+  async setAllDevis(){
     const params = this.getRequestParams(this.filterStatus,this.data, this.page, this.pageSize);
     await firstValueFrom(this.devisService.getDevisList(params))
     .then(res => {
@@ -66,7 +69,6 @@ export class DevisComponent implements OnInit {
 
     if(filterStatus){
       params[`status`] = filterStatus;
-      console.log(filterStatus)
     }
 
     if (searchData) {
@@ -88,18 +90,18 @@ export class DevisComponent implements OnInit {
 
   pageChange(page: number): void {
     this.page = page;
-    this.setAllDeviss();
+    this.setAllDevis();
   }
 
   pageSizeChange(pageSize: number): void {
     this.pageSize = pageSize;
     this.page = 1;
-    this.setAllDeviss();
+    this.setAllDevis();
   }
 
   searchData(): void {
     this.page = 1;
-    this.setAllDeviss();
+    this.setAllDevis();
   }
 
 }

@@ -16,7 +16,7 @@
         </a>
 
         <div class="flex items-center justify-self-end">
-            <app-drop-menu type="edit" size = "xs" [for]="for" [data]="data"></app-drop-menu>
+            <app-drop-menu type="edit" size = "xs" [for]="for" [data]="data" (refreshListPage)="refreshListPage.emit()"></app-drop-menu>
         </div>
         
     </div>

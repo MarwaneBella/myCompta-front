@@ -79,7 +79,7 @@
     // START INPUTS STYLE 
 
     .common-input{
-        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full ;
+        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full disabled:opacity-50 ;
     }
     .common-textarea{
         @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full ;
@@ -91,7 +91,6 @@
     }
     
     // END INPUTS STYLE
-
 
 
 

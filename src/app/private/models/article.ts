@@ -1,3 +1,5 @@
+import { Devis } from "./devis"
+import { Facture } from "./facture"
 import { TypeArticle } from "./type-article"
 
 export class Article {
@@ -10,4 +12,6 @@ export class Article {
     tva: number
     description: string
     typeArticle : TypeArticle
+    devis : Devis
+    facture : Facture
 }

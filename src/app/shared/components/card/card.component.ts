@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 import { Address } from 'src/app/private/models/address';
 import { Client } from 'src/app/private/models/client';
 import { Devis } from 'src/app/private/models/devis';
-import { DevisStatus } from 'src/app/private/models/enums/devis-status';
+import { DevisStatus } from 'src/app/private/enums/devis-status';
 import { Facture } from 'src/app/private/models/facture';
 import { MotCle } from 'src/app/private/models/mot-cle';
 import { Phone } from 'src/app/private/models/phone';
@@ -29,6 +29,9 @@ interface Card {
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+
+  @Output()
+  refreshListPage : EventEmitter<void> = new EventEmitter(); 
   
   @Input()
   data: Societe | Client | Devis | Facture;
@@ -63,14 +66,11 @@ export class CardComponent implements OnInit {
     this.card.primaryTitle1 = client.firstName + ' ' + client.lastName;
     this.card.line = false;
     this.card.paragraph = client.note
-    console.log(client)
     if(client.societe){
       this.card.mainIcon = 'pro';
-      console.log("Pro")
       this.card.secondaryTitle = await firstValueFrom(this.translate.get('CLIENT_CARD.TYPE.PRO.L1')).catch(console.log)
       this.setAddressToCard(client.societe.address)
     }else{
-      console.log("Par")
       this.card.mainIcon = 'par';
       this.card.secondaryTitle = await firstValueFrom(this.translate.get('CLIENT_CARD.TYPE.PAR.L1')).catch(console.log)
       this.setAddressToCard(client.address)
@@ -106,7 +106,6 @@ export class CardComponent implements OnInit {
     this.setRecipientToCard(devi.client, devi.societe)
     this.card.line = false;
     this.setMotCleToCard(devi.motCleList);
-
     await this.setStatusToCard(devi.status);
 
     // Object.keys(DevisStatus).filter((v) => isNaN(Number(v)))
@@ -160,7 +159,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  async setRecipientToCard(client : Client, societe: Societe){
+  async setRecipientToCard(client : Client |null , societe: Societe | null){
     if(client || societe){
       if(client && !societe){
         this.card.secondaryTitle =  await firstValueFrom(this.translate.get('DATA_NAME.C')) +

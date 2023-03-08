@@ -1,21 +1,25 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { forkJoin } from 'rxjs';
+import { firstValueFrom, forkJoin } from 'rxjs';
+import { DevisService } from 'src/app/private/http/devis.service';
+import { Devis } from 'src/app/private/models/devis';
+import { Facture } from 'src/app/private/models/facture';
 import { ClientService } from '../../../private/http/client.service';
 import { SocieteService } from '../../../private/http/societe.service';
 import { Client } from '../../../private/models/client';
 import { Societe } from '../../../private/models/societe';
 
-interface Data {
-  recipient : Client | Societe
+interface Recipient {
+  data : Client | Societe
   type: 'C'| 'S' 
 }
 
 class Item{
-  data : Data  = {} as Data
+  recipient : Recipient  = {} as Recipient
   name : string
   group : string
-  icon: 'par'|'pro'
+  icon: 'par'|'pro'|'plus'
 }
 
 @Component({
@@ -28,14 +32,18 @@ export class SelectRecipientComponent implements OnInit {
   @Output()
   selected : EventEmitter<void>  = new EventEmitter()
 
+  @Input()
+  for : 'D'|'F'
+
   items : Item[] = []
   clients : Client[]
   societes : Societe[]
-  data : Data
+  recipient : Recipient 
   constructor(
     private clientService: ClientService,
     private societeService : SocieteService,
-    private translate : TranslateService
+    private translate : TranslateService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -61,15 +69,22 @@ export class SelectRecipientComponent implements OnInit {
 
   
 
-  setRecipients() {
+  async setRecipients() {
+
     var item : Item = new Item()
-    // item.name = 'Nouveau'
-    // item.icon = 'add'
-    // this.items = [...this.items,item]
+    item.name = await firstValueFrom(this.translate.get('FORM.SELECT.NC'))
+    item.icon = 'plus'
+    this.items = [...this.items,item]
+
+    var item : Item = new Item()
+    item.name = await firstValueFrom(this.translate.get('FORM.SELECT.NS'))
+    item.icon = 'plus'
+    this.items = [...this.items,item]
+
     this.clients.forEach(client =>{
       item = new Item()
-      item.data.recipient = client 
-      item.data.type = 'C'
+      item.recipient.data = client 
+      item.recipient.type = 'C'
       item.icon = 'par'
       item.name = client.firstName + ' ' +client.lastName
       this.translate.get('TITLE.C').subscribe( res => item.group = res)
@@ -79,17 +94,99 @@ export class SelectRecipientComponent implements OnInit {
 
     this.societes.forEach(async societe =>{
       item = new Item()
-      item.data.recipient = societe 
+      item.recipient.data = societe 
       item.name = societe.name
-      item.data.type = 'S'
+      item.recipient.type = 'S'
       item.icon = 'pro'
       this.translate.get('TITLE.S').subscribe( res => item.group = res)
       this.items = [...this.items,item]
     })
   }
 
-  selectChange(){
-    this.selected.emit();
+  async selectChange(event :Item){
+    if(event.name == await firstValueFrom(this.translate.get('FORM.SELECT.NC')))
+    this.router.navigateByUrl('/clients/add')
+    else if(event.name == await firstValueFrom(this.translate.get('FORM.SELECT.NS')))
+    this.router.navigateByUrl('/societes/add')
+    else this.selected.emit();
   }
+
+  getRecipient(data : Devis |Facture) : Devis |Facture{
+    if(this.for == 'D'){
+      var devis : Devis  = data as Devis
+      if(this.recipient.type == 'C'){
+        devis.client = this.recipient.data as Client
+        devis.societe = null
+      }
+      else if(this.recipient.type == 'S'){
+        devis.societe = this.recipient.data as Societe
+        devis.client = null
+      }
+    }
+    return data;
+  }
+
+  setRecipient(data : Devis |Facture) {
+    if(this.for == 'D'){
+      var devis : Devis  = data as Devis
+      var recipient : Recipient  = {} as Recipient
+      if(devis.client){
+        this.items
+        recipient.data = devis.client as Client
+        recipient.type = 'C'
+        this.recipient = recipient
+      }
+
+      else if(devis.societe){
+        recipient.data = devis.societe as Societe
+        recipient.type = 'S'
+        this.recipient = recipient
+      }
+    }
+  }
+  
+  comparewith(item : Item, selected :Recipient) {
+    return item?.recipient?.data?.id === selected.data.id && item?.recipient?.type === selected.type 
+  }
+
+
+  // onSubmit(data : Devis | Facture){
+    
+  //   if(this.data.type == 'C'){
+  //     var client : Client = this.data.recipient as Client
+      
+  //     if(this.for == 'D'){
+        
+  //       var devis : Devis = data as Devis
+  //       devis.client = client 
+  //       devis.societe = null
+  //       this.updateDevis(devis)
+  //     }
+
+  //   }
+
+  //   else if(this.data.type == 'S'){
+  //     var societe : Societe = this.data.recipient as Societe
+  //     console.log("test")
+  //     if(this.for == 'D'){
+  //       console.log("test")
+  //       console.log(this.data)
+  //       var devis : Devis = data as Devis
+  //       devis.client = null
+  //       devis.societe = societe
+  //       this.updateDevis(devis)
+  //     }
+  //   }
+  // }
+
+  // updateDevis(devis : Devis){
+  //   this.devisService.updateDevisById(devis.id, devis).subscribe({
+  //     error : e => console.log(e)
+  //   })
+  // }
+
+  // updateFacture(){
+
+  // }
 
 }

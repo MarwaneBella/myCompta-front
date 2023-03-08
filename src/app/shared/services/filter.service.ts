@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DevisStatus } from 'src/app/private/models/enums/devis-status';
+import { DevisStatus } from 'src/app/private/enums/devis-status';
 
 @Injectable({
   providedIn: 'root'

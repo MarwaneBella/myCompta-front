@@ -9,7 +9,8 @@
     "S": "Sociétés",
     "C": "Clients",
     "D": "Devis",
-    "F": "Factures"
+    "F": "Factures",
+    "P": "Paramètres" 
   },
   "FORM": {
     "TITLE": {
@@ -59,6 +60,10 @@
       "DV": "Durée de validité",
       "T": "Type",
       "DS" : "Devise",
+      "CR" : "Conditions de Règlement",
+      "MR" : "Mode de Règlement",
+      "I" : "Intérêts de retard",
+      "TNA" : "TVA non applicable",
       "TEXT_FIELD":{
         "TI": "Texte d'introduction",
         "TC": "Texte de conclusion",
@@ -72,7 +77,9 @@
     },
     "SELECT":{
       "NF" : "Pas trouvé",
-      "CN" : "Créer un nouveau"
+      "CN" : "Créer un nouveau",
+      "NC" : "Nouveau client",
+      "NS" : "Nouveau societe"
     },
     "BUTTON": {
       "C": "Créer",
@@ -128,32 +135,43 @@
       }
     },
     "EDIT":{
-      "L1": "Modifier",
-      "L2": "Supprimer",
-      "C":{
-        "L3": "POUR CE CLIENT :",
-        "L4": "Créer une activité",
-        "L5": "Créer un devis",
-        "L6": "Créer une facture"
-      },
-      "S":{
-        "L3": "POUR CETTE SOCIETE :",
-        "L4": "Créer une activité",
-        "L5": "Créer un devis",
-        "L6": "Créer une facture"
-      },
-      "D":{
-        "L3": "POUR CE DEVIS :",
-        "L4": "Créer une activité",
-        "L5": "Créer un devis",
-        "L6": "Créer une facture"
-      },
-      "F":{
-        "L3": "POUR CETTE FACTURE :",
-        "L4": "Créer une activité",
-        "L5": "Créer un devis",
-        "L6": "Créer une facture"
-      }
+      "M": "Modifier",
+      "SP": "Supprimer",
+      "FN" : "Finaliser",
+      "MMC" : "Modifier mot-clés",
+      "MCS" : "Marquer comme signé",
+      "MCR" : "Marquer comme refusé",
+      "AS" : "Annuler La signature",
+      "AR" : "Annuler le refus",
+      "T" : "Télécharger",
+      "EPE" : "Envoyer par email",
+      "CU" : "Copier l'URL",
+      "PC": "POUR CE CLIENT :",
+      "PS": "POUR CETTE SOCIETE :",
+      "PD": "POUR CE DEVIS :",
+      "PF": "POUR CETTE FACTURE :",
+      "CA": "Créer une activité",
+      "CD": "Créer un devis",
+      "CF": "Créer une facture",
+      "CFA": "Créer une facture d'acompte",
+      "DD" : "Dupliquer le devis",
+      "DF" : "Dupliquer en facture"
+    },
+    "SETTINGS" :{
+      "P" : "Préférences",
+      "G" : "Générales",
+      "D" : "Devis",
+      "F" : "Factures",
+      "A" : "Avoirs",
+      "FA" : "Factures d'acompte",
+      "N" : "Numérotation",
+      "TD" : "Thème des documents",
+      "TA" : "Types d'article",
+      "C" : "Coordonnées",
+      "CB" : "Comptes bancaires",
+      "CP" : "Compte",
+      "SC" : "Supprimer mon compte",
+      "AD" : "Aide"
     }
   },
   "CLIENT_CARD":{
@@ -169,6 +187,7 @@
     }
   },
   "STATUS" :{
+    "T" :"Tous",
     "NOT_DESTINED" : "Aucun destinataire",
     "PROVISIONAL" : "PROVISOIRE",
     "SIGNED" : "SIGNÉ",

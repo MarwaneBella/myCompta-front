@@ -130,7 +130,6 @@ export class AddressFormComponent implements OnInit {
   }
 
   setFormValues(address : Address) {
-    console.log(address)
     this.address = address
     this.addressForm.patchValue({
       address: this.address.address,
