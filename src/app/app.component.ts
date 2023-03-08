@@ -6,7 +6,7 @@ import { forkJoin } from 'rxjs';
 
 const listIconsvg :string[]  =  ['dashboard', 'clients', 'societes', 'devis', 'factures', 'search',
   'notification', 'message', 'arrowdown', 'arrowup', 'help', 'logout', 'feedback', 'settings',
-  'add', '3dots', 'plus', 'minus', 'export', 'phone', 'email', 'map', 'edit', 'delete','par','pro'];
+  'add', '3dots', 'plus', 'minus', 'export', 'phone', 'email', 'map', 'edit', 'delete','par','pro','menu'];
 
 @Component({
   selector: 'app-root',

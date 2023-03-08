@@ -34,6 +34,9 @@
     }
     .common-btn-gray-active{
         @apply text-white-1 bg-black-1;
+        svg-icon{
+            @apply stroke-white-1;
+        }
     }
     .common-btn-black{
         @apply bg-black-1 text-white-1 hover:bg-white-1  hover:text-black-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 disabled:opacity-70 disabled:ring-0 disabled:bg-black-1 disabled:text-white-1;
@@ -46,13 +49,6 @@
         }
     }
 
-    .btn-active{
-        @apply bg-black-1 text-white-1 ;
-        svg-icon{
-            @apply stroke-white-1;
-        }
-
-    }
     .common-btn-white{
         @apply bg-white-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1;
     }
@@ -120,6 +116,11 @@
             @apply w-4 h-4;
         }
     }
+
+    .item-menu-active{
+        @apply font-black text-gray-5 ;
+    }
+    
     .drop-menu-line{
         @apply border-black-1 border-b rounded-full border-opacity-50;
         
@@ -144,10 +145,11 @@
             @apply font-black ;
         }
         &:hover > svg-icon{
-            
             @apply stroke-2 ;
         }
     }
+
+    
 
     // END DROP MENU STYLE 
 

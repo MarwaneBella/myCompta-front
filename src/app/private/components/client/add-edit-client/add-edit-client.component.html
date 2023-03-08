@@ -3,13 +3,13 @@
         <span class="primary-title">{{'TITLE.C' | translate}}</span>
 
         <div class="flex gap-2 text-sm" *ngIf="isPar != null">
-            <button class="common-btn-gray flex gap-2 " (click)="toParticulier()" [class.btn-active]="isPar">
+            <button class="common-btn-gray flex gap-2 " (click)="toParticulier()" [class.common-btn-gray-active]="isPar">
                 <svg-icon name="par" svgClass="w-5"></svg-icon>
                 <span>{{ 'CLIENT_CARD.TYPE.PAR.L1'| translate}}</span>
             </button>
 
             <button class="common-btn-gray flex gap-2" (click)="toProfessionel()"
-                [class.btn-active]="!isPar">
+                [class.common-btn-gray-active]="!isPar">
                 <svg-icon name="pro" svgClass="w-5"></svg-icon>
                 <span>{{ 'CLIENT_CARD.TYPE.PRO.L1'| translate}}</span>
             </button>

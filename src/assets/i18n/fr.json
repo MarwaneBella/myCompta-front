@@ -24,7 +24,9 @@
       "D" : "Destinataire",
       "AR" : "Articles",
       "R": "Règlement",
-      "TAD":"Textes affichés sur le documen"
+      "TAD":"Textes affichés sur le documen",
+      "FM" : "Format",
+      "CP" : "Compteurs"
     },
     "INPUT": {
       "NS": "Nom de la société",
@@ -64,6 +66,14 @@
       "MR" : "Mode de Règlement",
       "I" : "Intérêts de retard",
       "TNA" : "TVA non applicable",
+      "FNR" : "Format de la numérotation",
+      "TMC" : "Taille minimale du compteur",
+      "RC" : "Réinitialisation du compteur",
+      "AR" : "Aperçu du résultat",
+      "DCD" : "Débutter le compteur pour les devis à",
+      "DCF" : "Débutter le compteur pour les factures à",
+      "DCA" : "Débutter le compteur pour les avoirs à",
+      "DCFA" : "Débutter le compteur pour les factures d’acompte à",
       "TEXT_FIELD":{
         "TI": "Texte d'introduction",
         "TC": "Texte de conclusion",
@@ -85,6 +95,7 @@
       "C": "Créer",
       "A": "Annuler",
       "E": "Editer",
+      "EN": "Enregistrer",
       "AL" : "Ajouter une ligne"
     },
     "TEXT":{

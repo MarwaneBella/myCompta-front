@@ -22,7 +22,7 @@ export class TopBarComponent implements OnInit {
   for: 'C'|'S'|'D'|'F'
 
   @Input()
-  type : 'add'|'edit'|'show'|'list'|'settings'
+  type : 'add'|'edit'|'show'|'list'
 
   @Input()
   sizeMenu : 'sm'|'xs'

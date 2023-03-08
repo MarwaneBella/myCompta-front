@@ -6,10 +6,6 @@
         <span class="primary-title" *ngIf="for == 'D' " >{{'TITLE.D' | translate}}</span>
         <span class="primary-title" *ngIf="for == 'F' " >{{'TITLE.F' | translate}}</span>
     </ng-container>
-
-    <ng-container *ngIf="type == 'settings'">
-        <span class="primary-title">{{'TITLE.P' | translate}}</span>
-    </ng-container>
     
     <ng-template #show>
     <div class="flex gap-4 items-center">
@@ -25,13 +21,6 @@
 
     <div class="flex gap-4">
 
-        <div class="flex gap-2" *ngIf="type == 'settings' ">
-            <button class="common-btn-gray">{{'DROP_MENU.SETTINGS.P' | translate}}</button>
-            <button class="common-btn-gray">{{'DROP_MENU.SETTINGS.TA' | translate}}</button>
-            <button class="common-btn-gray">{{'DROP_MENU.SETTINGS.C' | translate}}</button>
-            <button class="common-btn-gray">{{'DROP_MENU.SETTINGS.CB' | translate}}</button>
-            <button class="common-btn-gray">{{'DROP_MENU.SETTINGS.CP' | translate}}</button>
-        </div>
             
     
         <!-- Filter menu  -->

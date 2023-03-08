@@ -1,0 +1,87 @@
+<section>
+    <app-top-bar for="D" type="add"></app-top-bar>
+    <form [formGroup]="numerotationForm" class="grid grid-cols-1 gap-9 sm-md:grid-cols-2 " >
+        <div class="flex flex-col gap-6" >
+            <span class="secondary-title">{{'FORM.TITLE.FM' | translate}}</span>
+            <div class="flex flex-col gap-6">
+
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label " *ngIf="numerotationForm.controls['format'].value">{{'FORM.INPUT.FNR' | translate}}</label>
+                    <input type="text" placeholder="{{'FORM.INPUT.FNR' | translate}} " class="common-input"
+                        formControlName="format">
+                </div>
+
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label" *ngIf="numerotationForm.controls['minCounterSize'].value" >{{'FORM.INPUT.TMC' | translate}}</label>
+                    <input type="number" appAllowInput allow="integer"
+                        placeholder="{{'FORM.INPUT.TMC' | translate}} " class="common-input"
+                        formControlName="minCounterSize">
+                </div>
+
+                <div class="relative">
+                    <label class="common-label"  >{{'FORM.INPUT.RC' | translate}}</label>
+                    <ng-select class="custom" placeholder="{{'FORM.INPUT.RC' | translate}}" [items]="resertCounterList" [clearable]="false"
+                         formControlName="resertCounter" >
+                    </ng-select>
+                </div>
+
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label" *ngIf="numerotationForm.controls['formatResult'].value">{{'FORM.INPUT.AR' | translate}}</label>
+                    <input type="text" placeholder="{{'FORM.INPUT.AR' | translate}} " class="common-input disabled:opacity-100"
+                        formControlName="formatResult">
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="flex flex-col gap-6" >
+            <span class="secondary-title">{{'FORM.TITLE.CP' | translate}}</span>
+
+            <div class="flex flex-col gap-6">
+
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterDevis'].value" >{{'FORM.INPUT.DCD' | translate}}</label>
+                    <input type="number" appAllowInput allow="integer"
+                        placeholder="{{'FORM.INPUT.DCD' | translate}} " class="common-input"
+                        formControlName="startCounterDevis">
+                </div>
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterFacture'].value" >{{'FORM.INPUT.DCF' | translate}}</label>
+                    <input type="number" appAllowInput allow="integer"
+                        placeholder="{{'FORM.INPUT.DCF' | translate}} " class="common-input"
+                        formControlName="startCounterFacture">
+                </div>
+
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterAvoir'].value" >{{'FORM.INPUT.DCA' | translate}}</label>
+                    <input type="number" appAllowInput allow="integer"
+                        placeholder="{{'FORM.INPUT.DCA' | translate}} " class="common-input"
+                        formControlName="startCounterAvoir">
+                </div>
+                
+                <div class="relative flex gap-4 items-center">
+                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterAcompte'].value" >{{'FORM.INPUT.DCFA' | translate}}</label>
+                    <input type="number" appAllowInput allow="integer"
+                        placeholder="{{'FORM.INPUT.DCFA' | translate}} " class="common-input"
+                        formControlName="startCounterAcompte">
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-3 gap-8 mt-4 w-full">
+                <button class="common-btn-black col-span-2 " [disabled]="numerotationForm.invalid " appDebounceClick
+                    (debounceClick)="onSave()">
+                    {{'FORM.BUTTON.EN' | translate}}
+                </button>
+                <button #add class="common-btn-gray" routerLink="/..">{{'FORM.BUTTON.A' | translate}}</button>
+            </div>
+        </div>
+
+
+
+    </form>
+</section>
+
+

@@ -24,7 +24,7 @@ export class DropMenuComponent implements OnInit {
   data: Societe | Client | Devis | Facture;
 
   @Input()
-  type :'list'|'edit'|'show'|'settings'|'filter'
+  type :'list'|'edit'|'show'|'filter'
 
   @Input()
   size : 'sm'|'xs'

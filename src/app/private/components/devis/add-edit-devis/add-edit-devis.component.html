@@ -20,7 +20,7 @@
                         <label class="common-label">{{'FORM.INPUT.DS' | translate}}</label>
                         <ng-select class="custom" placeholder="{{'FORM.INPUT.DS' | translate}}" [items]="currencies"
                             bindLabel="name_symbol" bindValue="name_symbol" [clearable]="false"
-                            formControlName="typeArticle" formControlName="devise" (change)="currencyChanged($event) ">
+                            formControlName="devise" (change)="currencyChanged($event) ">
 
                             <ng-template ng-option-tmp let-item="item">
                                 <div class="flex gap-2 items-center">

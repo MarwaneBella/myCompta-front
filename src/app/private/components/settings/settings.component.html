@@ -1,3 +1,119 @@
 <section>
-  <app-top-bar type="settings"></app-top-bar>
+
+  <div class="flex justify-between mb-5 text-sm items-center" >
+    <span class="primary-title">{{'TITLE.P' | translate}}</span>
+
+    <!-- desktop settings menu  -->
+    <div class="hidden sm-md:flex sm-md:gap-2 ">
+      <div class="relative flex gap-5 " clickOutside (clickOutside)="closePreferenceMenu()">
+
+        <button class="common-btn-gray flex items-center gap-2" (click)="togglePreferenceDropMenu()" [ngClass]="{'common-btn-gray-active': checkPreferencesRouteIsActive()}">
+          {{'DROP_MENU.SETTINGS.P' | translate}}
+          <svg-icon name="arrowdown" svgClass="w-5"></svg-icon>
+        </button>
+
+        <div class="drop-menu" *ngIf="dropPreferenceMenu" >
+
+          <a class="item-menu-sm  " (click)="closePreferenceMenu()" routerLink="preferences/general" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.G' |translate}}</span>
+          </a>
+          <a class="item-menu-sm " (click)="closePreferenceMenu()"  routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.D' |translate}}</span>
+          </a>
+
+          <a class="item-menu-sm" (click)="closePreferenceMenu()" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.F' |translate}}</span>
+          </a>
+          <a class="item-menu-sm " (click)="closePreferenceMenu()" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.A' |translate}}</span>
+          </a>
+          <a class="item-menu-sm" (click)="closePreferenceMenu()" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.FA' |translate}}</span>
+          </a>
+          <a class="item-menu-sm" (click)="closePreferenceMenu()" routerLink="preferences/uids" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.N' |translate}}</span>
+          </a>
+          <a class="item-menu-sm"  (click)="closePreferenceMenu()" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.TD' |translate}}</span>
+          </a>
+
+        </div>
+      </div>
+      <button class="common-btn-gray" routerLink="item-types" routerLinkActive="common-btn-gray-active"  >{{'DROP_MENU.SETTINGS.TA' | translate}}</button>
+      <button class="common-btn-gray" routerLink="#" routerLinkActive="common-btn-gray-active">{{'DROP_MENU.SETTINGS.C' | translate}}</button>
+      <button class="common-btn-gray" routerLink="#" routerLinkActive="common-btn-gray-active">{{'DROP_MENU.SETTINGS.CB' | translate}}</button>
+      <button class="common-btn-gray" routerLink="#" routerLinkActive="common-btn-gray-active">{{'DROP_MENU.SETTINGS.CP' | translate}}</button>
+    </div>
+
+
+    <div class=" flex gap-2 sm-md:hidden ">
+      <div class="relative flex gap-5 " clickOutside (clickOutside)="closeMobileMenu()">
+
+        <button class="common-btn-gray flex items-center gap-2 px-2.5" (click)="toggleMobileDropMenu()" >
+          <svg-icon name="menu" svgClass="w-5"></svg-icon>
+        </button>
+
+        <div class="drop-menu" *ngIf="dropMobileMenu" >
+
+          
+
+          <div class="flex flex-col gap-1 ">
+
+            <span class="opacity-60">{{'DROP_MENU.SETTINGS.P' |translate}}</span>
+            <div class="flex flex-col gap-2 ml-4">
+
+              <a class="item-menu-sm  " (click)="closeMobileMenu()" routerLink="preferences/general" routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.G' |translate}}</span>
+              </a>
+              <a class="item-menu-sm " (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.D' |translate}}</span>
+              </a>
+      
+              <a class="item-menu-sm" (click)="closeMobileMenu()" routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.F' |translate}}</span>
+              </a>
+              <a class="item-menu-sm " (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.A' |translate}}</span>
+              </a>
+              <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.FA' |translate}}</span>
+              </a>
+              <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLink="preferences/uids" routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.N' |translate}}</span>
+              </a>
+              <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
+                <span>{{'DROP_MENU.SETTINGS.TD' |translate}}</span>
+              </a>
+
+            </div>
+          </div>
+
+          <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLink="item-types" routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.TA' |translate}}</span>
+          </a>
+          <a class="item-menu-sm"  (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5" >
+            <span>{{'DROP_MENU.SETTINGS.C' |translate}}</span>
+          </a>
+          <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.CB' |translate}}</span>
+          </a>
+
+          <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
+            <span>{{'DROP_MENU.SETTINGS.CP' |translate}}</span>
+          </a>
+
+          
+  
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+
 </section>
