@@ -75,10 +75,18 @@
     // START INPUTS STYLE 
 
     .common-input{
-        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full disabled:opacity-50 ;
+        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full  ;
     }
     .common-textarea{
         @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full ;
+    }
+
+    .input-error{
+        @apply ml-4;
+        > span{
+            @apply text-red text-xs;
+        }
+        
     }
     
     input[type="number"]::-webkit-inner-spin-button,

@@ -1,0 +1,16 @@
+<div class="flex flex-col gap-0.5 ">
+    <div class="relative flex gap-4 items-center">
+        <label class="common-label " *ngIf="control.value && type =='text'">{{placeholder}}</label>
+        <label class="common-label " *ngIf="control.value != null && (type =='integer' || type =='float') ">{{placeholder}}</label>
+        <input type="text" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" class="common-input" [formControl]="control" *ngIf="type == 'text'">
+        <input type="number" appAllowInput allow="integer" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" class="common-input" [formControl]="control" *ngIf="type == 'integer'">
+        <input type="number" appAllowInput allow="float" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" class="common-input" [formControl]="control" *ngIf="type == 'float'">
+    </div>
+
+    <div *ngIf="control.invalid && (control.dirty || control.touched)" class="input-error">
+        <span *ngIf="control.errors?.['required']">{{'FORM.VALIDATION_MESSAGE.EMPTY' | translate}}</span>
+        <span *ngIf="control.errors?.['min']">{{'FORM.VALIDATION_MESSAGE.MIN' | translate}} {{control.errors?.['min'].min}}</span>
+        <span *ngIf="control.errors?.['max']">{{'FORM.VALIDATION_MESSAGE.MAX' | translate}} {{control.errors?.['max'].max}}</span>
+        <span *ngIf="control.errors?.['format']">{{control.errors?.['format']}}</span>
+    </div>
+</div>

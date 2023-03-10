@@ -1,72 +1,47 @@
-<section>
-    <app-top-bar for="D" type="add"></app-top-bar>
-    <form [formGroup]="numerotationForm" class="grid grid-cols-1 gap-9 sm-md:grid-cols-2 " >
-        <div class="flex flex-col gap-6" >
+<section class="flex flex-col gap-6">
+    <span class="primary-title text-lg">{{'TITLE.PN' | translate}}</span>
+    <form [formGroup]="numerotationForm" class="grid grid-cols-1 gap-9 sm-md:grid-cols-2 ">
+        <div class="flex flex-col gap-6">
             <span class="secondary-title">{{'FORM.TITLE.FM' | translate}}</span>
             <div class="flex flex-col gap-6">
 
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label " *ngIf="numerotationForm.controls['format'].value">{{'FORM.INPUT.FNR' | translate}}</label>
-                    <input type="text" placeholder="{{'FORM.INPUT.FNR' | translate}} " class="common-input"
-                        formControlName="format">
-                </div>
+                <app-custom-input (ngModelChange)="setFormatResult()" type="text" [control]="numerotationForm.controls['format']"
+                    placeholder="{{'FORM.INPUT.FNR' | translate}}"></app-custom-input>
 
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label" *ngIf="numerotationForm.controls['minCounterSize'].value" >{{'FORM.INPUT.TMC' | translate}}</label>
-                    <input type="number" appAllowInput allow="integer"
-                        placeholder="{{'FORM.INPUT.TMC' | translate}} " class="common-input"
-                        formControlName="minCounterSize">
-                </div>
+                <app-custom-input type="integer" (ngModelChange)="setFormatResult()" [control]="numerotationForm.controls['minCounterSize']"
+                    placeholder="{{'FORM.INPUT.TMC' | translate}}"></app-custom-input>
 
                 <div class="relative">
-                    <label class="common-label"  >{{'FORM.INPUT.RC' | translate}}</label>
-                    <ng-select class="custom" placeholder="{{'FORM.INPUT.RC' | translate}}" [items]="resertCounterList" [clearable]="false"
-                         formControlName="resertCounter" >
+                    <label class="common-label">{{'FORM.INPUT.RC' | translate}}</label>
+                    <ng-select class="custom" placeholder="{{'FORM.INPUT.RC' | translate}}" [items]="resetCounterSelectList"
+                        [clearable]="false" bindLabel="label" [compareWith]="comparWith" formControlName="resetCounter">
                     </ng-select>
                 </div>
 
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label" *ngIf="numerotationForm.controls['formatResult'].value">{{'FORM.INPUT.AR' | translate}}</label>
-                    <input type="text" placeholder="{{'FORM.INPUT.AR' | translate}} " class="common-input disabled:opacity-100"
-                        formControlName="formatResult">
-                </div>
+                <app-custom-input type="text" [control]="numerotationForm.controls['formatResult']"
+                    placeholder="{{'FORM.INPUT.AR' | translate}}"></app-custom-input>
 
             </div>
 
 
         </div>
 
-        <div class="flex flex-col gap-6" >
+        <div class="flex flex-col gap-6">
             <span class="secondary-title">{{'FORM.TITLE.CP' | translate}}</span>
 
             <div class="flex flex-col gap-6">
 
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterDevis'].value" >{{'FORM.INPUT.DCD' | translate}}</label>
-                    <input type="number" appAllowInput allow="integer"
-                        placeholder="{{'FORM.INPUT.DCD' | translate}} " class="common-input"
-                        formControlName="startCounterDevis">
-                </div>
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterFacture'].value" >{{'FORM.INPUT.DCF' | translate}}</label>
-                    <input type="number" appAllowInput allow="integer"
-                        placeholder="{{'FORM.INPUT.DCF' | translate}} " class="common-input"
-                        formControlName="startCounterFacture">
-                </div>
+                <app-custom-input type="integer" [control]="numerotationForm.controls['startCounterDevis']"
+                    placeholder="{{'FORM.INPUT.DCD' | translate}}"></app-custom-input>
 
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterAvoir'].value" >{{'FORM.INPUT.DCA' | translate}}</label>
-                    <input type="number" appAllowInput allow="integer"
-                        placeholder="{{'FORM.INPUT.DCA' | translate}} " class="common-input"
-                        formControlName="startCounterAvoir">
-                </div>
-                
-                <div class="relative flex gap-4 items-center">
-                    <label class="common-label" *ngIf="numerotationForm.controls['startCounterAcompte'].value" >{{'FORM.INPUT.DCFA' | translate}}</label>
-                    <input type="number" appAllowInput allow="integer"
-                        placeholder="{{'FORM.INPUT.DCFA' | translate}} " class="common-input"
-                        formControlName="startCounterAcompte">
-                </div>
+                <app-custom-input type="integer" [control]="numerotationForm.controls['startCounterFacture']"
+                    placeholder="{{'FORM.INPUT.DCF' | translate}}"></app-custom-input>
+
+                <app-custom-input type="integer" [control]="numerotationForm.controls['startCounterAvoir']"
+                    placeholder="{{'FORM.INPUT.DCA' | translate}}"></app-custom-input>
+
+                <app-custom-input type="integer" [control]="numerotationForm.controls['startCounterAcompte']"
+                    placeholder="{{'FORM.INPUT.DCFA' | translate}}"></app-custom-input>
 
             </div>
 
@@ -83,5 +58,3 @@
 
     </form>
 </section>
-
-

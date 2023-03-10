@@ -29,6 +29,7 @@ import { SelectRecipientComponent } from './components/select-recipient/select-r
 import { ArticlePanelComponent } from './components/article-panel/article-panel.component';
 import { ReglementFormComponent } from './components/reglement-form/reglement-form.component';
 import { TextFieldFormComponent } from './components/text-field-form/text-field-form.component';
+import { CustomInputComponent } from './components/custom-input/custom-input.component';
 
 
 
@@ -54,6 +55,7 @@ import { TextFieldFormComponent } from './components/text-field-form/text-field-
     DebounceClickDirective,
     PaginationComponent,
     AllowInputDirective,
+    CustomInputComponent,
   ],
   imports: [
     CommonModule,
@@ -95,7 +97,7 @@ import { TextFieldFormComponent } from './components/text-field-form/text-field-
     NgxPaginationModule,
     PaginationComponent,
     AllowInputDirective,
-    
+    CustomInputComponent,
     IvyCarouselModule
   ],
   providers :[

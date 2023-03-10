@@ -10,7 +10,8 @@
     "C": "Clients",
     "D": "Devis",
     "F": "Factures",
-    "P": "Paramètres" 
+    "P": "Paramètres",
+    "PN" : "Préférences pour la numérotation"
   },
   "FORM": {
     "TITLE": {
@@ -89,7 +90,10 @@
       "NF" : "Pas trouvé",
       "CN" : "Créer un nouveau",
       "NC" : "Nouveau client",
-      "NS" : "Nouveau societe"
+      "NS" : "Nouveau societe",
+      "M" : "Tous les mois",
+      "Y" : "Tous les ans",
+      "N" : "Jamais"
     },
     "BUTTON": {
       "C": "Créer",
@@ -105,6 +109,14 @@
       "TVA": "TVA",
       "T": "Total",
       "J" : "jours"
+    },
+    "VALIDATION_MESSAGE" : {
+      "EMPTY" : "Doit être rempli(e)",
+      "MAX" : "Doit être inférieur ou égal à",
+      "MIN" : "Doit être supérieur ou égal à",
+      "CMP" : "Votre format n'est pas unique ! Vous devez impérativement inclure le compteur (<cmp>).",
+      "AA" : "Votre format n'est pas unique ! Avec une réinitialisation du compteur annuelle vous devez impérativement inclure dans le format l'année (<aaaa> ou <aa>).",
+      "DOC" : "Votre format n'est pas unique ! Vous devez impérativement inclure le type de document (<doc> ou <facture|devis|avoir|acompte>)."
     }
   },
   "EMPTY_DATA_MESSAGE": {

@@ -19,4 +19,6 @@ export class ConstantUrl {
     public readonly modeReglementUrl  : string = this.baseUrl+"modes-reglement";
     public readonly conditionReglementUrl : string = this.baseUrl+"conditions-reglement";
     public readonly interetUrl : string = this.baseUrl+"interets";
+    public readonly numerotationUrl : string = this.baseUrl+"numerotations";
+
 }
