@@ -12,6 +12,7 @@ export class Devis{
     id: number
     slug: string
     code :string
+    cmp :number
     validationDuration: number
     devise : string
     remise : number

@@ -54,6 +54,7 @@ export class NumerotationComponent implements OnInit {
   resetCounterSelectList : ResetCounterSelect[] = []
   numerotation : Numerotation 
   readonly maxMinCounterSize : number = 14
+  isDoc : boolean = false;
   constructor(
     private formBuilder: FormBuilder, 
     private numerotationService : NumerotationService,

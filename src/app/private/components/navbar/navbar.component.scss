@@ -18,7 +18,7 @@ $stroke-color: theme('colors.gray[2]');
         max-width: fit-content !important;
         transition: width 0.8s ease-in-out !important;
 
-        .div-icon > svg-icon{
+        > svg-icon{
             @apply stroke-white-1;
         }
 
@@ -36,14 +36,6 @@ $stroke-color: theme('colors.gray[2]');
         }
 
 
-    }
-
-    .span-text{
-        @apply pt-0.5;
-    }
-
-    .myicon{
-        @apply w-4;
     }
 
     .icon-btn{
@@ -147,22 +139,22 @@ input[type="search"]{
     &:focus > .span-text {
         visibility: visible;
         opacity: 1;
-        transition: visibility 1s linear 0s, opacity 300ms;
+        transition: visibility 1s linear 0s, opacity 1s;
         
     }
     &:focus > .icon-facture {
         visibility: visible;
         opacity: 1;
-        transition: visibility 1s linear 0s, opacity 300ms;
+        transition: visibility 1s linear 0s, opacity 1s;
         
     }
 
-    &:focus >  .div-icon > svg-icon{
+    &:focus > svg-icon{
             stroke: $normal-color ;
         }
     
 
-    &:hover >  .div-icon > svg-icon{
+    &:hover >  svg-icon{
             stroke: $normal-color;
     }
     

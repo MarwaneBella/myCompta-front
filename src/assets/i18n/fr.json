@@ -216,5 +216,16 @@
     "SIGNED" : "SIGNÉ",
     "FINALIZED" : "FINALISÉ",
     "REFUSED" : "REFUSÉ"
+  },
+  "DOCUMENTATION":{
+    "N" : {
+      "HEAD" : "Spécifié ci-dessus le format que vous utilisez pour la numérotation de vos documents. Vous pouvez configurer votre propre format de numérotation, en sélectionnant les champs ci-dessous.",
+      "L1" : "Une lettre ou plusieurs lettres représentant le type de document (F pour les factures, D pour les devis, A pour les avoirs, FA pour les factures d'acompte).",
+      "L2" : "<aa> est l'année avec deux chiffres donc 23. <aaaa> est l'année en entier 2023.",
+      "L3" : "<m> est le mois avec un ou deux chiffres, donc pour août : 8. <mm> est le mois toujours avec deux chiffres, pour août : 08.",
+      "L4" : "<j> est le jour avec un ou deux chiffres (1, 15...). <jj> est le jour toujours avec deux chiffres (01, 15...).",
+      "L5" : "Le compteur, voir les champs ci-dessous pour le configurer.",
+      "L6" : "Par exemple pour <fct|dvs|avr|acp|aac>, si le document est une facture cela sera remplacé par fct, pour devis par dvs, pour avoir par avr et pour les acomptes par acp. L'ordre est important factures|devis|avoirs|acompte."
+    }
   }
 }

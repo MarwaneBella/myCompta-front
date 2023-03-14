@@ -4,9 +4,53 @@
         <div class="flex flex-col gap-6">
             <span class="secondary-title">{{'FORM.TITLE.FM' | translate}}</span>
             <div class="flex flex-col gap-6">
-
-                <app-custom-input (ngModelChange)="setFormatResult()" type="text" [control]="numerotationForm.controls['format']"
-                    placeholder="{{'FORM.INPUT.FNR' | translate}}"></app-custom-input>
+                <div class="flex gap-2 items-center">
+                    <app-custom-input (ngModelChange)="setFormatResult()" type="text" [control]="numerotationForm.controls['format']"
+                    placeholder="{{'FORM.INPUT.FNR' | translate}}" class="grow" ></app-custom-input>
+                    <button class="common-btn-gray w-fit h-fit " (click)="isDoc = !isDoc" [class.common-btn-black]="isDoc ">
+                        <svg-icon name="export" svgClass="w-5"></svg-icon>
+                    </button>
+                </div>
+                <div class="flex flex-col text-xs gap-2 p-1 " *ngIf="isDoc">
+                    <p>
+                        {{'DOCUMENTATION.N.HEAD'|translate}}
+                    </p>
+                    <table class="doc-table">
+                        <tr>
+                          <td><span class="rounded-lg-gray">&lt;doc&gt;</span></td>
+                          <td>{{'DOCUMENTATION.N.L1'|translate}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="rounded-lg-gray">&lt;aa&gt;</span> ou 
+                                <span class="rounded-lg-gray">&lt;aaaa&gt;</span>
+                            </td>
+                          <td>{{'DOCUMENTATION.N.L2'|translate}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="rounded-lg-gray">&lt;m&gt;</span> ou 
+                                <span class="rounded-lg-gray">&lt;mmmm&gt;</span>
+                            </td>
+                            <td>{{'DOCUMENTATION.N.L3'|translate}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="rounded-lg-gray">&lt;j&gt;</span> ou 
+                                <span class="rounded-lg-gray">&lt;jjjj&gt;</span>
+                            </td>
+                            <td>{{'DOCUMENTATION.N.L4'|translate}}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rounded-lg-gray">&lt;cmp&gt;</span></td>
+                            <td>{{'DOCUMENTATION.N.L5'|translate}}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rounded-lg-gray">&lt;facture|devis|avoir|acompte&gt;</span></td>
+                            <td>{{'DOCUMENTATION.N.L6'|translate}}</td>
+                        </tr>
+                      </table>
+                </div>
 
                 <app-custom-input type="integer" (ngModelChange)="setFormatResult()" [control]="numerotationForm.controls['minCounterSize']"
                     placeholder="{{'FORM.INPUT.TMC' | translate}}"></app-custom-input>

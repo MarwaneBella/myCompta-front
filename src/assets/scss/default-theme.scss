@@ -18,6 +18,10 @@
         @apply p-3 bg-white-1 rounded-lg;
     }
 
+    .rounded-lg-gray{
+        @apply p-1 px-2 bg-gray-1 rounded-lg;
+    }
+
     .rounded-full-black{
         @apply bg-black-1 text-white-2 py-1 px-2 rounded-full ;
     }
@@ -202,13 +206,41 @@
 
     // End pagination-templte Style
 
+
+
+
     // Start Label Style
 
     .common-label{
         @apply absolute text-xs py-0.5 px-2 text-gray-2 rounded-full  bg-white-1 z-10 top-[-10px] left-3;
     }
 
-    // End label Style 
+    // End label Style
+    
 
 
+
+    // Start Table Style
+    .doc-table{
+        @apply border-[1.5px] border-black-1 border-separate rounded-lg border-spacing-0;
+
+        > tr > td{
+            @apply p-1;
+        }
+
+        td:not(:last-child){
+            @apply border-r-[1.5px] border-black-1;
+        }
+        
+        >tr:not(:last-child)>td{
+            @apply border-b-[1.5px] border-black-1;
+        }
+        
+    }
+
+    
+
+    
+
+    // End Table Style
 }
