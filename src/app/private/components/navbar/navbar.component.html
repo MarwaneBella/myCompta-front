@@ -1,10 +1,11 @@
-<nav class="bg-gray-1 p-2">
+<nav class="bg-gray-1 p-4">
   <div class="flex justify-between">
-    <div class="flex gap-5">
+
+    <div class="flex gap-5 w-fit ">
       <div class="flex flex-shrink-0 items-center">
         <img class="h-6" src="assets/svg/logo.svg" alt="logo" />
       </div>
-      <div class="flex space-x-2 ">
+      <div class="flex gap-2 ">
         <a class="item-style flex space-x-2 w-30 items-center  " routerLink="" routerLinkActive="is-active">
           <span class="span-text">Espaces de travail </span>
           <svg-icon name="arrowdown" svgClass="w-4"></svg-icon>
@@ -27,18 +28,17 @@
           <svg-icon name="devis" svgClass="w-4"></svg-icon>
           <span class="span-text">Devis</span>
         </a>
-        <a class="item-style flex space-x-2 items-center" routerLink="/devis" routerLinkActive="is-active">
+        <a class="item-style flex space-x-2 items-center " routerLink="/devis" routerLinkActive="is-active">
           <svg-icon name="factures" svgClass="w-4"></svg-icon>
           <span class="span-text flex gap-2 items-center">
             Factures
             <svg-icon name="arrowdown" svgClass="w-4 "></svg-icon>
           </span>
         </a>
-       
-        
 
       </div>
     </div>
+
     <div class="flex gap-2">
       <div class="flex ">
         <span class="bg-white-1 rounded-l-full px-3 flex items-center">
@@ -61,7 +61,48 @@
         <button type="button" class="icon-btn">
           <svg-icon name="notification" svgClass=" myicon "></svg-icon>
         </button>
+      </div>
 
+      <div class="relative ml-3">
+        <button class="common-btn-white" >test </button>
+        <div>
+          <button  class="common-btn-white flex p-1 " (click)="toggleDropMenuProfile($event)">
+            <img class="h-7 w-7 rounded-full "
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt="">
+            <svg-icon name="arrowdown" svgClass="w-4 " [class.rotate-180]="dropMenuProfile"></svg-icon>
+          </button>
+        </div>
+
+
+        <div class="drop-menu-profile" [ngClass]="dropMenuProfile ?  'block' : 'hidden'">
+
+          <a  href="#" class="item-menu-profile">
+            <img class="w-5 h-5 rounded-full ring-1 ring-black-1 mr-1"
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt="">
+            <span class="pt-0.5">Profile</span>
+          </a>
+
+          <hr class="dropmenu-line">
+
+          <a class="item-menu-profile " routerLink="/settings">
+            <svg-icon name="settings" svgClass="myicon"></svg-icon>
+            <span>Paramètres</span>
+          </a>
+          <a href="#" class="item-menu-profile">
+            <svg-icon name="feedback" svgClass="myicon"></svg-icon>
+            <span>Feedback</span>
+          </a>
+          <a href="#" class="item-menu-profile">
+            <svg-icon name="help" svgClass="myicon"></svg-icon>
+            <span>Aide</span>
+          </a>
+          <a href="#" class="item-menu-profile ">
+            <svg-icon name="logout" svgClass="myicon"></svg-icon>
+            <span>Déconnexion</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -150,7 +191,7 @@
       </div>
 
       <div
-        class=" space-x-3 absolute z-10 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+class=" space-x-3 absolute z-10 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
         <div class="hidden sm:block ">
           <div class="flex h-10 mr-3">
@@ -160,6 +201,10 @@
             <input type="search" name="search" placeholder="Rechercher" [(ngModel)]="data"
               (ngModelChange)="dataSearchChange()" class=" text-sm h-full focus:outline-none rounded-r-full ">
           </div>
+        </div>
+
+        <div>
+
         </div>
 
         <button type="button" class="icon-btn sm:hidden">
