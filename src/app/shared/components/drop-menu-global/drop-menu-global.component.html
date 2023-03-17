@@ -1,0 +1,16 @@
+<div class="relative flex gap-5" clickOutside (clickOutside)="closeMenu()">
+    <button class="common-btn-gray" (click)="toggleDropMenu()" >
+        <svg-icon name="3dots" svgClass="w-5"></svg-icon>
+    </button>
+
+    <div class="drop-menu" *ngIf="dropMenu ">
+
+        <a class="item-menu-sm" routerLink="add">
+            <svg-icon name="add" svgClass="w-4"></svg-icon>
+            <span>{{'DROP_MENU.LIST.ESP.L1' |translate}}</span>
+        </a>
+
+
+    </div>
+
+</div>

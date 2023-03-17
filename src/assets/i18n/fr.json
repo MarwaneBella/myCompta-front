@@ -122,20 +122,24 @@
   "EMPTY_DATA_MESSAGE": {
     "COMMON": "Cliquez sur le bouton pour l'ajouter",
     "S": {
-      "M1": "Aucun société a afficher",
+      "M1": "Aucun société à afficher",
       "M2": "Ajouter une société"
     },
     "C": {
-      "M1": "Aucun client a afficher",
+      "M1": "Aucun client à afficher",
       "M2": "Ajouter un client"
     },
     "D": {
-      "M1": "Aucun devis a afficher",
+      "M1": "Aucun devis à afficher",
       "M2": "Ajouter un devis"
     },
     "F": {
-      "M1": "Aucun facture a afficher",
+      "M1": "Aucun facture à afficher",
       "M2": "Ajouter une facture"
+    },
+    "ESP": {
+      "M1": "Aucun espace à afficher",
+      "M2": "Ajouter un nouveau espace"
     }
   },
   "DROP_MENU":{
@@ -155,6 +159,9 @@
       "F" :{
         "L1" : "Ajouter une facture",
         "L2" : "Exporter les factures"
+      },
+      "ESP" :{
+        "L1" : "Nouveau espace de travail"
       }
     },
     "EDIT":{
