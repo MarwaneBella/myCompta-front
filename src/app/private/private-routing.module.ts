@@ -1,50 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EnvironmentComponent } from './components/environment/environment.component';
 import { PrivateComponent } from './private.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'environment',
     component: PrivateComponent,
     children: [
       {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-      {
-        path: 'societes',
-        loadChildren: () =>
-          import('./components/societe/societe.module').then(
-            (m) => m.SocieteModule
-          ),
-      },
-      {
-        path: 'clients',
-        loadChildren: () =>
-          import('./components/client/client.module').then(
-            (m) => m.ClientModule
-          ),
-      },
-      {
-        path: 'devis',
-        loadChildren: () =>
-          import('./components/devis/devis.module').then((m) => m.DevisModule),
-      },
-      {
-        path: 'settings',
-        loadChildren: () =>
-          import('./components/settings/settings.module').then(
-            (m) => m.SettingsModule
-          ),
-      },
-      {
         path: '',
-        redirectTo: '/devis',
-        pathMatch: 'full',
+        component: EnvironmentComponent,
+      },
+      
+      {
+        path: 'facturation',
+        loadChildren: () =>
+          import('./gestion-facturation/gestion-facturation.module').then(
+            (m) => m.GestionFacturationModule
+          ),
+      },
+      {
+        path: 'personnel',
+        loadChildren: () =>
+          import('./gestion-personnel/gestion-personnel.module').then(
+            (m) => m.GestionPersonnelModule
+          ),
       },
     ],
   },
+  {
+    path:'',
+    redirectTo:'environment',
+    pathMatch:'full'
+  }
 ];
 
 @NgModule({

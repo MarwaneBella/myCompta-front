@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { AddressService } from '../../../private/http/address.service';
-import { ClientService } from '../../../private/http/client.service';
-import { Address } from '../../../private/models/address';
-import { Client } from '../../../private/models/client';
-import { Societe } from '../../../private/models/societe';
+import { ClientService } from 'src/app/private/gestion-facturation/http/client.service';
+import { Address } from 'src/app/private/gestion-facturation/models/address';
+import { Client } from 'src/app/private/gestion-facturation/models/client';
+import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+import { AddressService } from '../../../private/gestion-facturation/http/address.service';
+
 
 @Component({
   selector: 'app-select-client-form',

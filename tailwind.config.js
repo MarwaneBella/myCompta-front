@@ -48,6 +48,7 @@ module.exports = {
       'sm': ' 660px',
       'sm-md':'840px',
       'md': '1024px',
+      'md2' : "1150px",
       'md-lg': '1240px',
       'lg': '1280px',
 

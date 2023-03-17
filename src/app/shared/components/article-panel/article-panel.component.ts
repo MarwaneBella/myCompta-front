@@ -2,12 +2,12 @@ import { DecimalPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { ArticleService } from 'src/app/private/http/article.service';
-import { Article } from 'src/app/private/models/article';
-import { Devis } from 'src/app/private/models/devis';
-import { Facture } from 'src/app/private/models/facture';
-import { TypeArticleService } from '../../../private/http/type-article.service';
-import { TypeArticle } from '../../../private/models/type-article';
+import { ArticleService } from 'src/app/private/gestion-facturation/http/article.service';
+import { TypeArticleService } from 'src/app/private/gestion-facturation/http/type-article.service';
+import { Article } from 'src/app/private/gestion-facturation/models/article';
+import { Devis } from 'src/app/private/gestion-facturation/models/devis';
+import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { TypeArticle } from 'src/app/private/gestion-facturation/models/type-article';
 
 class Totals{
   totalHT :number = 0

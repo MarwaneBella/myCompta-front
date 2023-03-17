@@ -1,15 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { firstValueFrom, forkJoin } from 'rxjs';
-import { ConditionReglementService } from 'src/app/private/http/condition-reglement.service';
-import { DevisService } from 'src/app/private/http/devis.service';
-import { InteretService } from 'src/app/private/http/interet.service';
-import { ModeReglementService } from 'src/app/private/http/mode-reglement.service';
-import { ConditionReglement } from 'src/app/private/models/condition-reglement';
-import { Devis } from 'src/app/private/models/devis';
-import { Facture } from 'src/app/private/models/facture';
-import { Interet } from 'src/app/private/models/interet';
-import { ModeReglement } from 'src/app/private/models/mode-reglement';
+import { forkJoin } from 'rxjs';
+import { ConditionReglementService } from 'src/app/private/gestion-facturation/http/condition-reglement.service';
+import { DevisService } from 'src/app/private/gestion-facturation/http/devis.service';
+import { InteretService } from 'src/app/private/gestion-facturation/http/interet.service';
+import { ModeReglementService } from 'src/app/private/gestion-facturation/http/mode-reglement.service';
+import { ConditionReglement } from 'src/app/private/gestion-facturation/models/condition-reglement';
+import { Devis } from 'src/app/private/gestion-facturation/models/devis';
+import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { Interet } from 'src/app/private/gestion-facturation/models/interet';
+import { ModeReglement } from 'src/app/private/gestion-facturation/models/mode-reglement';
+
 
 @Component({
   selector: 'app-reglement-form',

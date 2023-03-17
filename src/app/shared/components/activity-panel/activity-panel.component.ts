@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
-import { Activity } from 'src/app/private/models/activity';
+import { Activity } from 'src/app/private/gestion-facturation/models/activity';
 import * as fr from '@angular/common/locales/fr';
 
 

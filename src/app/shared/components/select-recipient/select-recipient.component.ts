@@ -2,13 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom, forkJoin } from 'rxjs';
-import { DevisService } from 'src/app/private/http/devis.service';
-import { Devis } from 'src/app/private/models/devis';
-import { Facture } from 'src/app/private/models/facture';
-import { ClientService } from '../../../private/http/client.service';
-import { SocieteService } from '../../../private/http/societe.service';
-import { Client } from '../../../private/models/client';
-import { Societe } from '../../../private/models/societe';
+import { ClientService } from 'src/app/private/gestion-facturation/http/client.service';
+import { SocieteService } from 'src/app/private/gestion-facturation/http/societe.service';
+import { Client } from 'src/app/private/gestion-facturation/models/client';
+import { Devis } from 'src/app/private/gestion-facturation/models/devis';
+import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+
 
 interface Recipient {
   data : Client | Societe

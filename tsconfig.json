@@ -17,17 +17,21 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    //for AlertifyJS
-    "typeRoots": ["node_modules/@types","src/app/alertifytype.d.ts"],
-    "target": "es2020",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/app/alertifytype.d.ts"
+    ],
+    "target": "ES2022",
     "module": "es2020",
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
+    "noImplicitAny": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true

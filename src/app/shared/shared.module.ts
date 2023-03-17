@@ -15,7 +15,6 @@ import { ActivityPanelComponent } from './components/activity-panel/activity-pan
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EmptyDataMessageComponent } from './components/empty-data-message/empty-data-message.component';
-import { TagInputModule } from 'ngx-chips';
 import { ChipsInputComponent } from './components/chips-input/chips-input.component';
 import { DebounceClickDirective } from './directives/debounce-click.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -66,7 +65,6 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    TagInputModule,
     NgxPaginationModule
   ],
   exports : [
@@ -92,7 +90,6 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
     ReactiveFormsModule,
     NgSelectModule,
     EmptyDataMessageComponent,
-    TagInputModule,
     ChipsInputComponent,
     NgxPaginationModule,
     PaginationComponent,

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
-import { ClientService } from 'src/app/private/http/client.service';
-import { SocieteService } from 'src/app/private/http/societe.service';
-import { Client } from 'src/app/private/models/client';
-import { Devis } from 'src/app/private/models/devis';
-import { Facture } from 'src/app/private/models/facture';
-import { Societe } from 'src/app/private/models/societe';
+import { ClientService } from 'src/app/private/gestion-facturation/http/client.service';
+import { SocieteService } from 'src/app/private/gestion-facturation/http/societe.service';
+import { Client } from 'src/app/private/gestion-facturation/models/client';
+import { Devis } from 'src/app/private/gestion-facturation/models/devis';
+import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+
 
 @Injectable({
   providedIn: 'root',

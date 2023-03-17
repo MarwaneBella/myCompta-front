@@ -1,28 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { SocieteComponent } from 'src/app/private/components/societe/societe.component';
+import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
 import { FilterService } from 'src/app/shared/services/filter.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   dropMenuMobile = false;
   dropMenuProfile = false;
-  data :string = '';
-  constructor(private filterService : FilterService) { 
-  }
+  data: string = '';
+  navBarType : 'facturation'|'personnel'|'global'
+  event$ : any
+
+  constructor(private filterService: FilterService, private router: Router) {
+    }
 
   ngOnInit(): void {
-    
+    this.setNavBarType()
   }
 
-  dataSearchChange(){
+  setNavBarType(){
+    if(/.*\/facturation.*/g.test(this.router.url)){
+      this.navBarType = 'facturation'
+      return
+    }
+    else if(/.*\/personnel.*/g.test(this.router.url)){
+      this.navBarType = 'personnel'
+      return
+    }
+
+    this.navBarType = 'global'
+  }
+
+  
+
+  dataSearchChange() {
     this.filterService.callMethodSearch(this.data);
   }
 
-  toggleDropMenuMobile(event:Event){
+  toggleDropMenuMobile(event: Event) {
     event.preventDefault();
     if (this.dropMenuMobile) {
       this.dropMenuMobile = false;
@@ -31,7 +49,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  toggleDropMenuProfile(event:Event){
+  toggleDropMenuProfile(event: Event) {
     event.preventDefault();
     if (this.dropMenuProfile) {
       this.dropMenuProfile = false;
@@ -39,5 +57,4 @@ export class NavbarComponent implements OnInit {
       this.dropMenuProfile = true;
     }
   }
-
 }

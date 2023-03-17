@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DevisStatus } from 'src/app/private/enums/devis-status';
-import { Client } from 'src/app/private/models/client';
-import { Devis } from 'src/app/private/models/devis';
-import { Facture } from 'src/app/private/models/facture';
-import { Societe } from 'src/app/private/models/societe';
-import { NavigateService } from 'src/app/private/services/navigate.service';
+import { DevisStatus } from 'src/app/private/gestion-facturation/enums/devis-status';
+import { Client } from 'src/app/private/gestion-facturation/models/client';
+import { Devis } from 'src/app/private/gestion-facturation/models/devis';
+import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+import { NavigateService } from 'src/app/private/gestion-facturation/services/navigate.service';
 import { FilterService } from '../../services/filter.service';
 
 @Component({

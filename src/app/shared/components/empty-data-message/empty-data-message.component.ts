@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavigateService } from 'src/app/private/services/navigate.service';
+import { NavigateService } from 'src/app/private/gestion-facturation/services/navigate.service';
 
 @Component({
   selector: 'app-empty-data-message',

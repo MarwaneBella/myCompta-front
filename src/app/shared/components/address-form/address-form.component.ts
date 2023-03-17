@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { Address } from 'src/app/private/gestion-facturation/models/address';
+import { Client } from 'src/app/private/gestion-facturation/models/client';
+import { Societe } from 'src/app/private/gestion-facturation/models/societe';
 import { FormGroupService } from 'src/app/shared/services/form-group.service';
-import { AddressService } from '../../../private/http/address.service';
-import { Address } from '../../../private/models/address';
-import { Client } from '../../../private/models/client';
-import { Societe } from '../../../private/models/societe';
+import { AddressService } from '../../../private/gestion-facturation/http/address.service';
 
 @Component({
   selector: 'app-address-form',

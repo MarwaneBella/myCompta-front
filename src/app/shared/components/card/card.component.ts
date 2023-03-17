@@ -1,15 +1,15 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
-import { Address } from 'src/app/private/models/address';
-import { Client } from 'src/app/private/models/client';
-import { Devis } from 'src/app/private/models/devis';
-import { DevisStatus } from 'src/app/private/enums/devis-status';
-import { Facture } from 'src/app/private/models/facture';
-import { MotCle } from 'src/app/private/models/mot-cle';
-import { Phone } from 'src/app/private/models/phone';
-import { Societe } from 'src/app/private/models/societe';
-import { NavigateService } from 'src/app/private/services/navigate.service';
+import { DevisStatus } from 'src/app/private/gestion-facturation/enums/devis-status';
+import { Address } from 'src/app/private/gestion-facturation/models/address';
+import { Client } from 'src/app/private/gestion-facturation/models/client';
+import { Devis } from 'src/app/private/gestion-facturation/models/devis';
+import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { MotCle } from 'src/app/private/gestion-facturation/models/mot-cle';
+import { Phone } from 'src/app/private/gestion-facturation/models/phone';
+import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+import { NavigateService } from 'src/app/private/gestion-facturation/services/navigate.service';
 import { AlertifyService } from '../../services/alertify.service';
 
 interface Card {
