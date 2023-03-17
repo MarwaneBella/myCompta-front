@@ -9,13 +9,13 @@ import { NavigateService } from 'src/app/private/gestion-facturation/services/na
 export class EmptyDataMessageComponent implements OnInit {
 
   @Input()
-  for: 'C'|'S'|'D'|'F'
+  for: 'C'|'S'|'D'|'F'|'ESP'
 
   constructor(public navigate  : NavigateService) {  }
 
   ngOnInit(): void {
-    
+
   }
-  
+
 
 }

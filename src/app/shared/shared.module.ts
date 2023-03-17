@@ -29,6 +29,7 @@ import { ArticlePanelComponent } from './components/article-panel/article-panel.
 import { ReglementFormComponent } from './components/reglement-form/reglement-form.component';
 import { TextFieldFormComponent } from './components/text-field-form/text-field-form.component';
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import { DropMenuGlobalComponent } from './components/drop-menu-global/drop-menu-global.component';
 
 
 
@@ -55,6 +56,7 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
     PaginationComponent,
     AllowInputDirective,
     CustomInputComponent,
+    DropMenuGlobalComponent,
   ],
   imports: [
     CommonModule,
@@ -95,6 +97,7 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
     PaginationComponent,
     AllowInputDirective,
     CustomInputComponent,
+    DropMenuGlobalComponent,
     IvyCarouselModule
   ],
   providers :[
