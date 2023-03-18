@@ -64,10 +64,10 @@
                         <ng-container *ngIf="isAddMode  else editButton">{{'FORM.BUTTON.C' | translate}}</ng-container>
                         <ng-template #editButton>{{'FORM.BUTTON.E' | translate}}</ng-template>
                     </button>
-                    <button #add class="common-btn-gray" routerLink="/societes">{{'FORM.BUTTON.A' | translate}}</button>
+                    <button #add class="common-btn-gray" routerLink="{{navigate.f_societePath}}">{{'FORM.BUTTON.A' | translate}}</button>
                 </div>
             </div>
-            
+
 
         </div>
 

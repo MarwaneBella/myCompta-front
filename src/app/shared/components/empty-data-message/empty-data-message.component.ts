@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavigateService } from 'src/app/private/gestion-facturation/services/navigate.service';
+import { NavigateService } from '../../services/navigate.service';
 
 @Component({
   selector: 'app-empty-data-message',
@@ -11,11 +11,11 @@ export class EmptyDataMessageComponent implements OnInit {
   @Input()
   for: 'C'|'S'|'D'|'F'
 
-  constructor(public navigate  : NavigateService) {  }
+  constructor(protected navigate  : NavigateService) {  }
 
   ngOnInit(): void {
-    
+
   }
-  
+
 
 }

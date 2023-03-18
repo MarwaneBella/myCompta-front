@@ -8,11 +8,12 @@ import { Client } from 'src/app/private/gestion-facturation/models/client';
 import { Devis } from 'src/app/private/gestion-facturation/models/devis';
 import { Facture } from 'src/app/private/gestion-facturation/models/facture';
 import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+import { NavigateService } from '../../services/navigate.service';
 
 
 interface Recipient {
   data : Client | Societe
-  type: 'C'| 'S' 
+  type: 'C'| 'S'
 }
 
 class Item{
@@ -38,12 +39,13 @@ export class SelectRecipientComponent implements OnInit {
   items : Item[] = []
   clients : Client[]
   societes : Societe[]
-  recipient : Recipient 
+  recipient : Recipient
   constructor(
     private clientService: ClientService,
     private societeService : SocieteService,
     private translate : TranslateService,
-    private router : Router
+    private router : Router,
+    private navigate : NavigateService
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class SelectRecipientComponent implements OnInit {
   }
 
   setClientAndSociete() {
-    
+
     forkJoin({
       res1 : this.clientService.getClientsByFirstNameAndLastName(),
       res2 : this.societeService.getSocieteByName()
@@ -67,7 +69,7 @@ export class SelectRecipientComponent implements OnInit {
 
   }
 
-  
+
 
   async setRecipients() {
 
@@ -83,7 +85,7 @@ export class SelectRecipientComponent implements OnInit {
 
     this.clients.forEach(client =>{
       item = new Item()
-      item.recipient.data = client 
+      item.recipient.data = client
       item.recipient.type = 'C'
       item.icon = 'par'
       item.name = client.firstName + ' ' +client.lastName
@@ -94,7 +96,7 @@ export class SelectRecipientComponent implements OnInit {
 
     this.societes.forEach(async societe =>{
       item = new Item()
-      item.recipient.data = societe 
+      item.recipient.data = societe
       item.name = societe.name
       item.recipient.type = 'S'
       item.icon = 'pro'
@@ -105,9 +107,9 @@ export class SelectRecipientComponent implements OnInit {
 
   async selectChange(event :Item){
     if(event.name == await firstValueFrom(this.translate.get('FORM.SELECT.NC')))
-    this.router.navigateByUrl('/clients/add')
+    this.router.navigateByUrl(this.navigate.toAddPath('C'))
     else if(event.name == await firstValueFrom(this.translate.get('FORM.SELECT.NS')))
-    this.router.navigateByUrl('/societes/add')
+    this.router.navigateByUrl(this.navigate.toAddPath('S'))
     else this.selected.emit();
   }
 
@@ -144,21 +146,21 @@ export class SelectRecipientComponent implements OnInit {
       }
     }
   }
-  
+
   comparewith(item : Item, selected :Recipient) {
-    return item?.recipient?.data?.id === selected.data.id && item?.recipient?.type === selected.type 
+    return item?.recipient?.data?.id === selected.data.id && item?.recipient?.type === selected.type
   }
 
 
   // onSubmit(data : Devis | Facture){
-    
+
   //   if(this.data.type == 'C'){
   //     var client : Client = this.data.recipient as Client
-      
+
   //     if(this.for == 'D'){
-        
+
   //       var devis : Devis = data as Devis
-  //       devis.client = client 
+  //       devis.client = client
   //       devis.societe = null
   //       this.updateDevis(devis)
   //     }

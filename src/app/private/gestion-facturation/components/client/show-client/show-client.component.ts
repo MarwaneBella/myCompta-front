@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 import { ClientService } from '../../../http/client.service';
 import { Client } from '../../../models/client';
-import { NavigateService } from '../../../services/navigate.service';
 
 
 @Component({
@@ -42,16 +42,16 @@ export class ShowClientComponent implements OnInit {
         },
       });
     } else {
-      this.router.navigateByUrl('clients');
+      this.router.navigateByUrl(this.navigate.f_clientPath);
     }
   }
 
   checkSlug() {
     if (this.client.slug != this.slug) {
-      this.router.navigateByUrl(`clients/show/${this.id}-${this.client.slug}`);
+      this.router.navigateByUrl(this.navigate.toShowPath('C',this.id,this.client.slug));
     }
   }
 
-  
+
 
 }

@@ -47,7 +47,7 @@
 				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.TITLE.C' | translate}} :</span>
 					<div class="col-span-3 flex flex-wrap gap-2">
-						<button class="common-btn-black py-1 whitespace-nowrap" routerLink="/clients/show/{{client.id+'-'+client.slug}}" *ngFor="let client of societe.clientList" > {{client.firstName+' '+client.lastName}}</button>
+						<button class="common-btn-black py-1 whitespace-nowrap" routerLink="{{navigate.toShowPath('S',client.id,client.slug)}}" *ngFor="let client of societe.clientList" > {{client.firstName+' '+client.lastName}}</button>
 					</div>
 				</div>
 				<hr>
@@ -58,7 +58,7 @@
 					<span class="text-gray-2">{{'FORM.INPUT.ADD' | translate}} :</span>
 					<div class="col-span-3 flex flex-col">
 						<span *ngIf="societe.address.address">{{societe.address.address}}</span>
-						<ng-container *ngIf="societe.address.complementAddress && societe.address.complementAddress.length">					
+						<ng-container *ngIf="societe.address.complementAddress && societe.address.complementAddress.length">
 							<div  *ngFor="let complementAddress of societe.address.complementAddress">
 								{{complementAddress}}
 							</div>
@@ -71,11 +71,11 @@
 			<div class="flex flex-col space-y-3" *ngIf="societe.phoneList && societe.phoneList.length">
 				<div class=" grid grid-cols-4 gap-4">
 					<span class="text-gray-2">{{'FORM.INPUT.NT' | translate}} :</span>
-					<div class="col-span-3 flex flex-col">		
+					<div class="col-span-3 flex flex-col">
 						<div  *ngFor="let phone of societe.phoneList">
 							{{phone.phoneNumber}}
 						</div>
-						
+
 					</div>
 				</div>
 				<hr>
@@ -87,7 +87,7 @@
 					<div class="col-span-3"> {{societe.address.city}} </div>
 				</div>
 				<hr>
-			</div> 
+			</div>
 			<div class="flex flex-col space-y-3" *ngIf="societe.address && societe.address.country">
 				<div class=" grid grid-cols-4 gap-4 ">
 					<span class="text-gray-2">{{'FORM.INPUT.P' | translate}} :</span>
@@ -124,14 +124,14 @@
 
 		</div>
 
-		
+
 
 
 	</div>
 
 	<!-- Activites column -->
 	<app-activity-panel></app-activity-panel>
-	
+
 </section>
 
 
@@ -151,13 +151,13 @@
 
 
 <!-- <section class="pt-24 h-screen bg-blue">
-    
+
     <div class="container  mx-auto">
         <app-slider class="block rounded-3xl bg-emerald-50 p-2 py-5 sm:p-10" *ngIf="this.categories.length > 0" [items]="this.categories"  >
-            
+
         </app-slider>
     </div>
-    
+
 </section> -->
 
 <!-- <div class="container">
@@ -168,8 +168,8 @@
 			<carousel
 				[images]="images"
 				[objectFit]="'cover'">
-				
-				
+
+
 			</carousel>
 
 		</div>

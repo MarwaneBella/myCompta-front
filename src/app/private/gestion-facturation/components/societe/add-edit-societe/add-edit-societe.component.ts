@@ -1,3 +1,4 @@
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddressFormComponent } from 'src/app/shared/components/address-form/address-form.component';
@@ -38,7 +39,8 @@ export class AddEditSocieteComponent implements OnInit {
     private formBuilder: FormBuilder,
     private societeService: SocieteService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    protected navigate : NavigateService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -66,16 +68,14 @@ export class AddEditSocieteComponent implements OnInit {
         },
       });
     } else {
-      this.router.navigateByUrl('societes');
+      this.router.navigateByUrl(this.navigate.f_societePath);
     }
   }
 
   checkSlug() {
     if (this.societe.slug === this.slug) {
     } else {
-      this.router.navigateByUrl(
-        `societes/edit/${this.id}-${this.societe.slug}`
-      );
+      this.router.navigateByUrl(this.navigate.toEditPath('S',this.id,this.societe.slug));
     }
   }
 
@@ -98,7 +98,7 @@ export class AddEditSocieteComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     if (this.societeForm.valid) {
       this.getFormValues();
 
@@ -118,7 +118,7 @@ export class AddEditSocieteComponent implements OnInit {
       error: (e) => console.log(e),
       complete: () => {
         this.submitOtherForms();
-        
+
       },
     });
   }
@@ -140,7 +140,7 @@ export class AddEditSocieteComponent implements OnInit {
     await this.childKeyWord.onSubmit(societe,this.isAddMode);
     await this.childPhone.onSubmit(societe,this.isAddMode);
     await this.childSelectClient.onSubmit(societe,this.isAddMode);
-    this.router.navigateByUrl('societes');
+    this.router.navigateByUrl(this.navigate.f_societePath);
   }
 
   getFormValues() {

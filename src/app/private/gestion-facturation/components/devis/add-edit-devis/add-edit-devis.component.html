@@ -64,32 +64,32 @@
                         <ng-container *ngIf="isAddMode  else editButton">{{'FORM.BUTTON.C' | translate}}</ng-container>
                         <ng-template #editButton>{{'FORM.BUTTON.E' | translate}}</ng-template>
                     </button>
-                    <button #add class="common-btn-gray" routerLink="/devis">{{'FORM.BUTTON.A' | translate}}</button>
+                    <button #add class="common-btn-gray" routerLink="{{navigate.f_devisPath}}">{{'FORM.BUTTON.A' | translate}}</button>
                 </div>
             </div>
 
         </div>
 
     </form>
-    
+
     <ng-template  #isNotProvisional>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 ">
             <div class="flex flex-col gap-16">
-                
+
                 <app-key-word-form for="D"></app-key-word-form>
-    
+
                 <div class="grid grid-cols-3 gap-5 ">
                     <button class="common-btn-black col-span-2 " *ngIf="!isAddMode" appDebounceClick (debounceClick)="submitOtherForms()">
                         {{'FORM.BUTTON.E' | translate}}
                     </button>
-                    <button #add class="common-btn-gray" routerLink="/devis">{{'FORM.BUTTON.A' | translate}}</button>
+                    <button #add class="common-btn-gray" routerLink="{{navigate.f_devisPath}}">{{'FORM.BUTTON.A' | translate}}</button>
                 </div>
             </div>
-            
+
 
         </div>
-        
+
     </ng-template>
 
 </section>

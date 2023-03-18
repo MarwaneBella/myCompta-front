@@ -10,6 +10,7 @@ import { Client } from '../../../models/client';
 import { Societe } from '../../../models/societe';
 import { ClientService } from '../../../http/client.service';
 import { SocieteService } from '../../../http/societe.service';
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 
 @Component({
   selector: 'app-add-edit-client',
@@ -43,9 +44,10 @@ export class AddEditClientComponent implements OnInit{
     private societeService :SocieteService,
     private addressService :AddressService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    protected navigate : NavigateService
   ) {}
-  
+
 
   async ngOnInit(): Promise<void> {
 
@@ -55,7 +57,7 @@ export class AddEditClientComponent implements OnInit{
     }
     this.initializeForms();
   }
-  
+
 
 
   async verifyRouteAndGetClient() {
@@ -67,25 +69,23 @@ export class AddEditClientComponent implements OnInit{
         error: (err) => console.log(err),
         complete: () => {
 
-          this.checkSlug();          
+          this.checkSlug();
           if(this.client.societe) this.toProfessionel()
           else this.toParticulier();
           this.setFormValues();
           this.setOtherForms()
         },
       });
-      
+
     } else {
-      this.router.navigateByUrl('clients');
+      this.router.navigateByUrl(this.navigate.f_clientPath);
     }
   }
 
   checkSlug() {
     if (this.client.slug != this.slug)
-      this.router.navigateByUrl(
-        `clients/edit/${this.id}-${this.client.slug}`
-      );
-    
+      this.router.navigateByUrl(this.navigate.toEditPath('C',this.id,this.client.slug));
+
   }
 
   initializeForms() {
@@ -108,7 +108,7 @@ export class AddEditClientComponent implements OnInit{
       this.clientForm.addControl('website' ,new FormControl(null))
     }
     if(!this.isAddMode) {
-      this.setOtherForms() 
+      this.setOtherForms()
     }
   }
 
@@ -143,11 +143,11 @@ export class AddEditClientComponent implements OnInit{
       if(this.client.motCleList.length) this.childKeyWord.setFormValues(this.client.motCleList)
       if(this.client.phoneList.length)this.childPhone.setFormValues(this.client.phoneList)
     }, 1);
-    
+
   }
 
   onSubmit() {
-    
+
     if (this.clientForm.valid) {
       this.getFormValues();
 
@@ -167,7 +167,7 @@ export class AddEditClientComponent implements OnInit{
       error: (e) => console.log(e),
       complete: () => {
         this.submitOtherForms();
-        
+
       },
     });
   }
@@ -189,7 +189,7 @@ export class AddEditClientComponent implements OnInit{
     else this.deleteAddress();
     await this.childKeyWord.onSubmit(client,this.isAddMode);
     await this.childPhone.onSubmit(client,this.isAddMode);
-    this.router.navigateByUrl('clients');
+    this.router.navigateByUrl(this.navigate.f_clientPath);
   }
 
   getFormValues() {
@@ -206,7 +206,7 @@ export class AddEditClientComponent implements OnInit{
     else{
       this.client.societe = this.clientForm.controls['societe'].value;
       delete this.client.website ;
-    } 
+    }
   }
 
   setFormValues() {

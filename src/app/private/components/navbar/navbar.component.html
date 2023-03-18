@@ -6,7 +6,7 @@
         <img class="h-6" src="assets/svg/logo.svg" alt="logo" />
       </div>
       <div class="hidden gap-2 md2:flex ">
-        <a class="item-style flex space-x-2 w-30 items-center  " routerLink="" routerLinkActive="is-active">
+        <a class="item-style flex space-x-2 w-30 items-center" routerLink="" routerLinkActive="is-active">
           <span class="span-text">Espaces de travail </span>
           <svg-icon name="arrowdown" svgClass="w-4"></svg-icon>
         </a>
@@ -14,28 +14,28 @@
         <div class="flex gap-2" *ngIf="navBarType == 'facturation' ">
 
 
-          <a class="item-style flex space-x-2 w-30 items-center  " routerLink="/environment/facturation"
+          <a class="item-style flex space-x-2 w-30 items-center" routerLink="{{navigate.facturationPath}}"
             [routerLinkActiveOptions]="{exact: true}" routerLinkActive="is-active">
             <svg-icon name="dashboard" svgClass="w-4"></svg-icon>
             <span class="span-text">Dashboard</span>
           </a>
 
-          <a class="item-style flex space-x-2 items-center" routerLink="/environment/facturation/clients"
+          <a class="item-style flex space-x-2 items-center" routerLink="{{navigate.f_clientPath}}"
             routerLinkActive="is-active">
             <svg-icon name="clients" svgClass="w-4"></svg-icon>
             <span class="span-text">Clients</span>
           </a>
-          <a class="item-style flex space-x-2 items-center" routerLink="/environment/facturation/societes"
+          <a class="item-style flex space-x-2 items-center" routerLink="{{navigate.f_societePath}}"
             routerLinkActive="is-active">
             <svg-icon name="societes" svgClass="w-4"></svg-icon>
             <span class="span-text ">Sociétés</span>
           </a>
-          <a class="item-style flex space-x-2 items-center" routerLink="/environment/facturation/devis"
+          <a class="item-style flex space-x-2 items-center" routerLink="{{navigate.f_devisPath}}"
             routerLinkActive="is-active">
             <svg-icon name="devis" svgClass="w-4"></svg-icon>
             <span class="span-text">Devis</span>
           </a>
-          <a class="item-style flex space-x-2 items-center " routerLink="cj" routerLinkActive="is-active">
+          <a class="item-style flex space-x-2 items-center " routerLink="{{navigate.f_facturePath}}" routerLinkActive="is-active">
             <svg-icon name="factures" svgClass="w-4"></svg-icon>
             <span class="span-text flex gap-2 items-center">
               Factures
@@ -95,7 +95,7 @@
 
           <hr class="dropmenu-line">
 
-          <a class="item-menu-sm" routerLink="/settings">
+          <a class="item-menu-sm" routerLink="{{navigate.f_settingsPath}}">
             <svg-icon name="settings" svgClass="w-4"></svg-icon>
             <span>Paramètres</span>
           </a>

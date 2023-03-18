@@ -7,6 +7,7 @@ import { Client } from 'src/app/private/gestion-facturation/models/client';
 import { Devis } from 'src/app/private/gestion-facturation/models/devis';
 import { Facture } from 'src/app/private/gestion-facturation/models/facture';
 import { Societe } from 'src/app/private/gestion-facturation/models/societe';
+import { NavigateService } from './navigate.service';
 
 
 @Injectable({
@@ -16,7 +17,8 @@ export class AlertifyService {
   constructor(
     private router : Router,
     private clientService : ClientService,
-    private societeService : SocieteService
+    private societeService : SocieteService,
+    private navigate : NavigateService
   ) {
 
     alertify.defaults = {
@@ -43,10 +45,10 @@ export class AlertifyService {
       transition:'pulse',
       transitionOff:false,
       tabbable:'button:not(:disabled):not(.ajs-reset),[href]:not(:disabled):not(.ajs-reset),input:not(:disabled):not(.ajs-reset),select:not(:disabled):not(.ajs-reset),textarea:not(:disabled):not(.ajs-reset),[tabindex]:not([tabindex^="-"]):not(:disabled):not(.ajs-reset)',  // <== global default not per instance, applies to all dialogs
-  
+
       // notifier defaults
       notifier:{
-      // auto-dismiss wait time (in seconds)  
+      // auto-dismiss wait time (in seconds)
           delay:2,
       // default position
           position:'bottom-right',
@@ -67,24 +69,24 @@ export class AlertifyService {
               close: 'ajs-close'
           }
       },
-  
-      // language resources 
+
+      // language resources
       glossary:{
           // dialogs default title
           title:'Delete',
           // ok button text
           ok: 'Delete',
           // cancel button text
-          cancel: 'Cancel'            
+          cancel: 'Cancel'
       },
-  
+
       // theme settings
       theme:{
           // class name attached to prompt dialog input textbox.
           input:'ajs-input',
           // class name attached to ok button
           ok:'ajs-ok',
-          // class name attached to cancel button 
+          // class name attached to cancel button
           cancel:'ajs-cancel'
       },
       // global hooks
@@ -96,9 +98,9 @@ export class AlertifyService {
       },
   };
   }
-  
 
-  
+
+
 
   success(message: string) {
     alertify.success(message);
@@ -124,10 +126,10 @@ export class AlertifyService {
         },
         () => {
           alertify.error('error')
-          
+
         },
       )
-      
+
   }
 
   deleteData( data : Societe|Client|Devis|Facture, type : 'C'|'S'|'D'|'F'){
@@ -160,20 +162,20 @@ export class AlertifyService {
         this.success(res)
         this.router.routeReuseStrategy.shouldReuseRoute = () => {return false}
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigateByUrl('/clients')
+        this.router.navigateByUrl(this.navigate.f_clientPath)
         },
       error : e => this.error(e),
     })
   }
 
   deleteSociete(id :number){
-    
+
     this.societeService.deleteSocieteById(id).subscribe({
       next : res => {
         this.success(res)
         this.router.routeReuseStrategy.shouldReuseRoute = () => {return false}
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigateByUrl('/societes')
+        this.router.navigateByUrl(this.navigate.f_societePath)
         },
       error : e => this.error(e),
     })
