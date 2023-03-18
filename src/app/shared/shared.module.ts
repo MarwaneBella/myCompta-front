@@ -1,3 +1,4 @@
+import { ModalComponent } from './directives/modal.components';
 import {  NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -57,6 +58,7 @@ import { DropMenuGlobalComponent } from './components/drop-menu-global/drop-menu
     AllowInputDirective,
     CustomInputComponent,
     DropMenuGlobalComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -98,12 +100,13 @@ import { DropMenuGlobalComponent } from './components/drop-menu-global/drop-menu
     AllowInputDirective,
     CustomInputComponent,
     DropMenuGlobalComponent,
+    ModalComponent,
     IvyCarouselModule
   ],
   providers :[
     LanguageService
   ]
 })
-export class SharedModule { 
+export class SharedModule {
 
 }

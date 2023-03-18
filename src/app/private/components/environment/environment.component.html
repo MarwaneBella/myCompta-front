@@ -13,6 +13,11 @@
     </div>
 
     <div>
-      <app-empty-data-message for="ESP"></app-empty-data-message>
+      <app-empty-data-message for="ESP" (btnClicked)="openModel()"></app-empty-data-message>
+      <!-- <button class="common-btn-black" (click)="openModel()"> test</button> -->
     </div>
+
 </section>
+
+<app-add-modal></app-add-modal>
+

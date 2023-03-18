@@ -5,7 +5,7 @@
 
 @layer components{
 
-    // START SPANS STYLE 
+    // START SPANS STYLE
 
     .rounded-full-gray{
         @apply p-3 bg-gray-1 rounded-full ;
@@ -13,7 +13,7 @@
     .rounded-full-white{
         @apply p-1 bg-white-1 rounded-full ;
     }
-    
+
     .rounded-lg-white{
         @apply p-3 bg-white-1 rounded-lg;
     }
@@ -44,7 +44,7 @@
     }
     .common-btn-black{
         @apply bg-black-1 text-white-1 hover:bg-white-1  hover:text-black-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 disabled:opacity-70 disabled:ring-0 disabled:bg-black-1 disabled:text-white-1;
-        
+
         svg-icon{
             @apply stroke-white-1;
         }
@@ -62,7 +62,7 @@
 
         &:hover > .icon-span{
             @apply bg-white-1
-            
+
         }
     }
 
@@ -71,12 +71,12 @@
     }
 
 
-    // END BUTTONS 
-
-    
+    // END BUTTONS
 
 
-    // START INPUTS STYLE 
+
+
+    // START INPUTS STYLE
 
     .common-input{
         @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full  ;
@@ -90,14 +90,14 @@
         > span{
             @apply text-red text-xs;
         }
-        
+
     }
-    
+
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
         @apply appearance-none m-0
     }
-    
+
     // END INPUTS STYLE
 
 
@@ -116,7 +116,7 @@
 
 
 
-    // START DROP MENU STYLE 
+    // START DROP MENU STYLE
 
     .drop-menu{
         @apply absolute z-10 w-fit bg-opacity-95  space-y-3 p-3 right-0 top-11 origin-top-right rounded-lg bg-white-1  shadow-lg ring-1 ring-black-1;
@@ -132,10 +132,10 @@
     .item-menu-active{
         @apply font-black text-gray-5 ;
     }
-    
+
     .drop-menu-line{
         @apply border-black-1 border-b rounded-full border-opacity-50;
-        
+
     }
     .item-menu-xs{
         @apply text-xs;
@@ -147,7 +147,7 @@
     .item-menu-sm,.item-menu-xs{
         @apply flex space-x-2 font-thin text-black-2  items-center;
         span{
-            @apply whitespace-nowrap 
+            @apply whitespace-nowrap
         }
         svg-icon{
             @apply stroke-black-2  ;
@@ -161,14 +161,14 @@
         }
     }
 
-    
-
-    // END DROP MENU STYLE 
 
 
+    // END DROP MENU STYLE
 
 
-    // START CARD STYLE 
+
+
+    // START CARD STYLE
 
     .card{
         @apply text-xs p-7 space-y-4  bg-gray-1 rounded-lg shadow-sm flex flex-col;
@@ -183,7 +183,7 @@
 
 
 
-    // START ICONS STYLE 
+    // START ICONS STYLE
 
     svg-icon{
         fill:none;
@@ -216,7 +216,7 @@
     }
 
     // End label Style
-    
+
 
 
 
@@ -231,16 +231,16 @@
         td:not(:last-child){
             @apply border-r-[1.5px] border-black-1;
         }
-        
+
         >tr:not(:last-child)>td{
             @apply border-b-[1.5px] border-black-1;
         }
-        
+
     }
 
-    
 
-    
+
+
 
     // End Table Style
 }

@@ -14,12 +14,16 @@ import { ReglementFormComponent } from '../shared/components/reglement-form/regl
 import { TextFieldFormComponent } from '../shared/components/text-field-form/text-field-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EnvironmentComponent } from './components/environment/environment.component';
+import { EspaceComponent } from './components/environment/espace/espace.component';
+import { AddModalComponent } from './components/environment/add-modal/add-modal.component';
 
 @NgModule({
   declarations: [
     PrivateComponent,
     NavbarComponent,
     EnvironmentComponent,
+    EspaceComponent,
+    AddModalComponent,
   ],
   imports: [
     CommonModule,

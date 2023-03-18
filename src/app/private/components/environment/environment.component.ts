@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
   selector: 'app-environment',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./environment.component.scss']
 })
 export class EnvironmentComponent {
+
+constructor(private modalService : ModalService){}
+
+openModel() {
+  this.modalService.open()
+}
+
+
 
 }
