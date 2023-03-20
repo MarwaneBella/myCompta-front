@@ -4,7 +4,7 @@ import { Client } from 'src/app/private/gestion-facturation/models/client';
 import { Devis } from 'src/app/private/gestion-facturation/models/devis';
 import { Facture } from 'src/app/private/gestion-facturation/models/facture';
 import { Societe } from 'src/app/private/gestion-facturation/models/societe';
-import { NavigateService } from 'src/app/private/gestion-facturation/services/navigate.service';
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 import { FilterService } from '../../services/filter.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class TopBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   changeFilterStatus(status : DevisStatus | null){
@@ -49,21 +49,21 @@ export class TopBarComponent implements OnInit {
     if(this.type == 'show'){
       if( this.for == 'C' ){
         var client :Client = this.data as Client;
-        this.showData[0] = client.firstName+' '+client.lastName 
+        this.showData[0] = client.firstName+' '+client.lastName
         if(client.societe) this.showData[1] = "Professionel"
         else this.showData[1] = "Particulier"
       }
       else if(this.for == 'S'){
-        var societe : Societe = this.data as Societe 
+        var societe : Societe = this.data as Societe
         this.showData[0] = societe.name
       }
     }
-    
+
   }
 
   toggleDropMenuAdd(){
     this.dropMenuAdd = !this.dropMenuAdd
-    
+
   }
 
   closeMenuAdd(){

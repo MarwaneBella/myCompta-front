@@ -11,6 +11,7 @@ import { DevisStatus } from 'src/app/private/gestion-facturation/enums/devis-sta
 import { KeyWordFormComponent } from 'src/app/shared/components/key-word-form/key-word-form.component';
 import { Devis } from '../../../models/devis';
 import { DevisService } from '../../../http/devis.service';
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 @Component({
   selector: 'app-add-edit-devis',
   templateUrl: './add-edit-devis.component.html',
@@ -32,8 +33,8 @@ export class AddEditDevisComponent implements OnInit {
 
   @ViewChild(KeyWordFormComponent)
   childKeyWord: KeyWordFormComponent;
-  
-  
+
+
 
   id: number;
   slug: string;
@@ -45,13 +46,14 @@ export class AddEditDevisComponent implements OnInit {
   isSelected : boolean = false
   currencies : any[] = currencies
   currentCurrency : string
-  isArticleFormValid : boolean = false 
+  isArticleFormValid : boolean = false
   isProvisional : boolean = true
   constructor(
     private formBuilder: FormBuilder,
     private devisService: DevisService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    protected navigate : NavigateService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -61,7 +63,6 @@ export class AddEditDevisComponent implements OnInit {
       this.isAddMode = false;
       this.verifyRouteAndGetDevis();
     }
-
   }
 
   async verifyRouteAndGetDevis() {
@@ -73,7 +74,7 @@ export class AddEditDevisComponent implements OnInit {
       this.devisService.getDevisById(this.id).subscribe({
         next: (data) => {
           this.devis = data
-          
+
         },
         error: (err) => console.log(err),
         complete: () => {
@@ -84,18 +85,16 @@ export class AddEditDevisComponent implements OnInit {
         },
       });
     } else {
-      this.router.navigateByUrl('devis');
+      this.router.navigateByUrl(this.navigate.f_devisPath);
     }
   }
 
-  
+
 
   checkSlug() {
     if (this.devis.slug === this.slug) {
     } else {
-      this.router.navigateByUrl(
-        `devis/edit/${this.id}-${this.devis.slug}`
-      );
+      this.router.navigateByUrl(this.navigate.toEditPath('D',this.id,this.devis.slug));
     }
   }
 
@@ -172,7 +171,7 @@ export class AddEditDevisComponent implements OnInit {
     else{
       await this.childKeyWord.onSubmit(devis,this.isAddMode);
     }
-    this.router.navigateByUrl('devis');
+    this.router.navigateByUrl(this.navigate.f_devisPath);
   }
 
   getFormValues() {
@@ -184,7 +183,7 @@ export class AddEditDevisComponent implements OnInit {
     this.devis = this.childArticlePanel.getRemiseForm(this.devis) as Devis
     this.devis = this.childSelectRecipient.getRecipient(this.devis) as Devis
     this.devis = this.childReglementForm.getReglementForm(this.devis) as Devis
-    
+
   }
 
   setFormValues() {
@@ -197,7 +196,7 @@ export class AddEditDevisComponent implements OnInit {
   }
 
   currencyChanged(event : any){
-    this.childArticlePanel.changeReductionType(event.symbol); 
+    this.childArticlePanel.changeReductionType(event.symbol);
   }
 
 }

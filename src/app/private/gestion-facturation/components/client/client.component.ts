@@ -13,14 +13,14 @@ export class ClientComponent implements OnInit {
 
   clients :Array<Client> = []
   isEmpty : boolean = false;
-  
+
   currentClient: Client = new Client();
   currentIndex = -1;
   data :string = '';
   page :number = 1;
   count :number = 0;
   pageSize :number = 8;
-  
+
   constructor(private clientService : ClientService, private filterService : FilterService) {
     this.filterService.methodSearchCalled$.subscribe(
       (data) => {
@@ -29,7 +29,7 @@ export class ClientComponent implements OnInit {
       }
     );
   }
-  
+
   async ngOnInit(): Promise<void> {
     await this.setAllClients();
     if(this.clients.length == 0) this.isEmpty = true
@@ -67,7 +67,7 @@ export class ClientComponent implements OnInit {
     return params;
   }
 
- 
+
 
   pageChange(page: number): void {
     this.page = page;

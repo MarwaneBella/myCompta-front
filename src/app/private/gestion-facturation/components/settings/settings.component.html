@@ -14,7 +14,7 @@
 
         <div class="drop-menu" *ngIf="dropPreferenceMenu" >
 
-          <a class="item-menu-sm  " (click)="closePreferenceMenu()" routerLink="preferences/general" routerLinkActive="font-black text-gray-5">
+          <a class="item-menu-sm  " (click)="closePreferenceMenu()" routerLink="{{navigate.f_s_generalPath}}" routerLinkActive="font-black text-gray-5">
             <span>{{'DROP_MENU.SETTINGS.G' |translate}}</span>
           </a>
           <a class="item-menu-sm " (click)="closePreferenceMenu()"  routerLinkActive="font-black text-gray-5">
@@ -30,7 +30,7 @@
           <a class="item-menu-sm" (click)="closePreferenceMenu()" routerLinkActive="font-black text-gray-5">
             <span>{{'DROP_MENU.SETTINGS.FA' |translate}}</span>
           </a>
-          <a class="item-menu-sm" (click)="closePreferenceMenu()" routerLink="preferences/uids" routerLinkActive="font-black text-gray-5">
+          <a class="item-menu-sm" (click)="closePreferenceMenu()" routerLink="{{navigate.f_s_uidsPath}}" routerLinkActive="font-black text-gray-5">
             <span>{{'DROP_MENU.SETTINGS.N' |translate}}</span>
           </a>
           <a class="item-menu-sm"  (click)="closePreferenceMenu()" routerLinkActive="font-black text-gray-5">
@@ -39,7 +39,7 @@
 
         </div>
       </div>
-      <button class="common-btn-gray" routerLink="item-types" routerLinkActive="common-btn-gray-active"  >{{'DROP_MENU.SETTINGS.TA' | translate}}</button>
+      <button class="common-btn-gray" routerLink="{{navigate.f_s_itemTypesPath}}" routerLinkActive="common-btn-gray-active"  >{{'DROP_MENU.SETTINGS.TA' | translate}}</button>
       <button class="common-btn-gray" routerLink="#" routerLinkActive="common-btn-gray-active">{{'DROP_MENU.SETTINGS.C' | translate}}</button>
       <button class="common-btn-gray" routerLink="#" routerLinkActive="common-btn-gray-active">{{'DROP_MENU.SETTINGS.CB' | translate}}</button>
       <button class="common-btn-gray" routerLink="#" routerLinkActive="common-btn-gray-active">{{'DROP_MENU.SETTINGS.CP' | translate}}</button>
@@ -55,20 +55,20 @@
 
         <div class="drop-menu" *ngIf="dropMobileMenu" >
 
-          
+
 
           <div class="flex flex-col gap-1 ">
 
             <span class="opacity-60">{{'DROP_MENU.SETTINGS.P' |translate}}</span>
             <div class="flex flex-col gap-2 ml-4">
 
-              <a class="item-menu-sm  " (click)="closeMobileMenu()" routerLink="preferences/general" routerLinkActive="font-black text-gray-5">
+              <a class="item-menu-sm  " (click)="closeMobileMenu()" routerLink="{{navigate.f_s_generalPath}}" routerLinkActive="font-black text-gray-5">
                 <span>{{'DROP_MENU.SETTINGS.G' |translate}}</span>
               </a>
               <a class="item-menu-sm " (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
                 <span>{{'DROP_MENU.SETTINGS.D' |translate}}</span>
               </a>
-      
+
               <a class="item-menu-sm" (click)="closeMobileMenu()" routerLinkActive="font-black text-gray-5">
                 <span>{{'DROP_MENU.SETTINGS.F' |translate}}</span>
               </a>
@@ -78,7 +78,7 @@
               <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
                 <span>{{'DROP_MENU.SETTINGS.FA' |translate}}</span>
               </a>
-              <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLink="preferences/uids" routerLinkActive="font-black text-gray-5">
+              <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLink="{{navigate.f_s_uidsPath}}" routerLinkActive="font-black text-gray-5">
                 <span>{{'DROP_MENU.SETTINGS.N' |translate}}</span>
               </a>
               <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5">
@@ -88,7 +88,7 @@
             </div>
           </div>
 
-          <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLink="item-types" routerLinkActive="font-black text-gray-5">
+          <a class="item-menu-sm" (click)="closeMobileMenu()"  routerLink="{{navigate.f_s_itemTypesPath}}" routerLinkActive="font-black text-gray-5">
             <span>{{'DROP_MENU.SETTINGS.TA' |translate}}</span>
           </a>
           <a class="item-menu-sm"  (click)="closeMobileMenu()"  routerLinkActive="font-black text-gray-5" >
@@ -102,8 +102,8 @@
             <span>{{'DROP_MENU.SETTINGS.CP' |translate}}</span>
           </a>
 
-          
-  
+
+
         </div>
       </div>
 

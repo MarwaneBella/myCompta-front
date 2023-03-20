@@ -82,7 +82,7 @@
 
                 <!-- phone Form -->
                 <app-phone-form for="C"></app-phone-form>
-                
+
             </ng-container>
             <ng-template #pro>
                 <div class="gap-11 flex flex-col">
@@ -133,7 +133,7 @@
                         <ng-container *ngIf="isAddMode  else editButton">{{'FORM.BUTTON.C' | translate}}</ng-container>
                         <ng-template #editButton>{{'FORM.BUTTON.E' | translate}}</ng-template>
                     </button>
-                    <button #add class="common-btn-gray" routerLink="/clients">{{'FORM.BUTTON.A' | translate}}</button>
+                    <button #add class="common-btn-gray" routerLink="{{navigate.f_clientPath}}">{{'FORM.BUTTON.A' | translate}}</button>
                 </div>
             </div>
 

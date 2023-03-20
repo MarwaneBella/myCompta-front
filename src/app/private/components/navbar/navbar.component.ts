@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
 import { FilterService } from 'src/app/shared/services/filter.service';
+import { NavigateService } from '../../../shared/services/navigate.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +15,7 @@ export class NavbarComponent implements OnInit {
   navBarType : 'facturation'|'personnel'|'global'
   event$ : any
 
-  constructor(private filterService: FilterService, private router: Router) {
-    }
+  constructor(private filterService: FilterService, private router: Router, protected navigate : NavigateService) {}
 
   ngOnInit(): void {
     this.setNavBarType()
@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
     this.navBarType = 'global'
   }
 
-  
+
 
   dataSearchChange() {
     this.filterService.callMethodSearch(this.data);

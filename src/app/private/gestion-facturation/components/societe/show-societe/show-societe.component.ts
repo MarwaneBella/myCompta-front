@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 import { SocieteService } from '../../../http/societe.service';
 import { Societe } from '../../../models/societe';
 
@@ -16,7 +17,8 @@ export class ShowSocieteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private societeService: SocieteService
+    private societeService: SocieteService,
+    protected navigate : NavigateService
   ) {}
 
   ngOnInit() {
@@ -37,14 +39,14 @@ export class ShowSocieteComponent implements OnInit {
         },
       });
     } else {
-      this.router.navigateByUrl('societes');
+      this.router.navigateByUrl(this.navigate.f_societePath);
     }
   }
 
   checkSlug() {
     if (this.societe.slug != this.slug) {
       this.router.navigateByUrl(
-        `societes/show/${this.id}-${this.societe.slug}`
+        this.navigate.toShowPath('S',this.id,this.societe.slug)
       );
     }
   }

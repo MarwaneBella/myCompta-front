@@ -9,7 +9,7 @@ import { Facture } from 'src/app/private/gestion-facturation/models/facture';
 import { MotCle } from 'src/app/private/gestion-facturation/models/mot-cle';
 import { Phone } from 'src/app/private/gestion-facturation/models/phone';
 import { Societe } from 'src/app/private/gestion-facturation/models/societe';
-import { NavigateService } from 'src/app/private/gestion-facturation/services/navigate.service';
+import { NavigateService } from 'src/app/shared/services/navigate.service';
 import { AlertifyService } from '../../services/alertify.service';
 
 interface Card {
@@ -31,8 +31,8 @@ interface Card {
 export class CardComponent implements OnInit {
 
   @Output()
-  refreshListPage : EventEmitter<void> = new EventEmitter(); 
-  
+  refreshListPage : EventEmitter<void> = new EventEmitter();
+
   @Input()
   data: Societe | Client | Devis | Facture;
 
@@ -78,7 +78,7 @@ export class CardComponent implements OnInit {
     this.setMotCleToCard(client.motCleList);
     this.setEmailToCard(client.email)
     this.setPhoneToCard(client.phoneList)
-    
+
   }
 
   async getFromSociete() {
@@ -87,11 +87,11 @@ export class CardComponent implements OnInit {
     this.card.mainIcon = 'societes';
     this.card.primaryTitle1 = societe.name
 
-    if(societe.clientList && societe.clientList.length) 
+    if(societe.clientList && societe.clientList.length)
     this.card.secondaryTitle = societe.clientList.length +' '+ await firstValueFrom(this.translate.get('TITLE.C')).catch(console.log)
     else
     this.card.secondaryTitle = 0 +' '+ await firstValueFrom(this.translate.get('TITLE.C')).catch(console.log)
-    
+
     this.card.line = false;
     this.setMotCleToCard(societe.motCleList);
     this.setPhoneToCard(societe.phoneList)
@@ -116,7 +116,7 @@ export class CardComponent implements OnInit {
     // })
 
   }
-  
+
 
   setMotCleToCard(motCleList: MotCle[]) {
     if (motCleList.length != 0) {
@@ -129,7 +129,7 @@ export class CardComponent implements OnInit {
 
   setAddressToCard(address:Address){
     if (address) {
-      var data: string 
+      var data: string
       if(address.city && !address.country) data = address.city
       else if(!address.city && address.country) data = address.country
       else if(address.city && address.country)  data = address.city+', '+address.country
@@ -165,12 +165,12 @@ export class CardComponent implements OnInit {
         this.card.secondaryTitle =  await firstValueFrom(this.translate.get('DATA_NAME.C')) +
         ': ' + client.firstName + ' '+ client.lastName
       }
-      
+
       if(societe && !client){
-        this.card.secondaryTitle =  await firstValueFrom(this.translate.get('DATA_NAME.S')) + 
+        this.card.secondaryTitle =  await firstValueFrom(this.translate.get('DATA_NAME.S')) +
         ': ' + societe.name
       }
-      
+
     }
     else{
       this.card.secondaryTitle =  await firstValueFrom(this.translate.get('STATUS.NOT_DESTINED'))
@@ -194,7 +194,7 @@ export class CardComponent implements OnInit {
       this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.REFUSED'))
       this.textColor = 'text-red'
     }
-    
+
   }
 
 }
