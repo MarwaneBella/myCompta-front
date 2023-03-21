@@ -2,7 +2,7 @@
 
     <form [formGroup]="form" >
         <ng-select [multiple]="true" [hideSelected]="true" addTagText="Create New" [addTag]="createNew" (remove)="test($event)"
-            [items]="mots" bindLabel="name" class="custom w-full text-sm" placeholder="{{'FORM.INPUT.ASMC' | translate}}"
+            [items]="mots" bindLabel="name" class="custom-select-gray w-full text-sm" placeholder="{{'FORM.INPUT.ASMC' | translate}}"
             formControlName="mot">
         </ng-select>
     </form>

@@ -53,9 +53,15 @@
         }
     }
 
+
+
     .common-btn-white{
         @apply bg-white-1 rounded-full p-2 hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1;
     }
+
+    .common-btn-gray-3{
+      @apply bg-gray-3 rounded-full p-2 hover:ring-1 hover:ring-black-1 focus:ring-1 focus:ring-black-1;
+  }
 
     .common-btn-hover-gray{
         @apply px-2 py-1 flex gap-2 items-center hover:bg-gray-1 rounded-full;
@@ -81,6 +87,9 @@
     .common-input{
         @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full  ;
     }
+    .common-input-white{
+      @apply py-3 px-4 text-sm placeholder-gray-2 bg-white-1 focus:outline-none rounded-full w-full  ;
+  }
     .common-textarea{
         @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full ;
     }

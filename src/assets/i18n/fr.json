@@ -3,7 +3,8 @@
     "S": "Société",
     "C": "Client",
     "D": "Devis",
-    "F": "Facture"
+    "F": "Facture",
+    "ESP":"Espace"
   },
   "TITLE": {
     "S": "Sociétés",
@@ -11,7 +12,10 @@
     "D": "Devis",
     "F": "Factures",
     "P": "Paramètres",
-    "PN" : "Préférences pour la numérotation"
+    "PN" : "Préférences pour la numérotation",
+    "ESP": "Ajouter un espace",
+    "ENV": "Environnements"
+
   },
   "FORM": {
     "TITLE": {
@@ -27,7 +31,11 @@
       "R": "Règlement",
       "TAD":"Textes affichés sur le documen",
       "FM" : "Format",
-      "CP" : "Compteurs"
+      "CP" : "Compteurs",
+      "ESP": "Espace",
+      "NE": "Nom d’espace ",
+      "O": "(Optionel)",
+      "I": "Inviter "
     },
     "INPUT": {
       "NS": "Nom de la société",
@@ -75,6 +83,8 @@
       "DCF" : "Débutter le compteur pour les factures à",
       "DCA" : "Débutter le compteur pour les avoirs à",
       "DCFA" : "Débutter le compteur pour les factures d’acompte à",
+      "NE": "Nom d’espace",
+      "NOE" : "@nom ou email",
       "TEXT_FIELD":{
         "TI": "Texte d'introduction",
         "TC": "Texte de conclusion",
@@ -87,6 +97,10 @@
       }
     },
     "SELECT":{
+      "ESPS" :{
+        "FACT" : "Facturation",
+        "PAIE": "Gestion Paie"
+      },
       "NF" : "Pas trouvé",
       "CN" : "Créer un nouveau",
       "NC" : "Nouveau client",
@@ -100,7 +114,9 @@
       "A": "Annuler",
       "E": "Editer",
       "EN": "Enregistrer",
-      "AL" : "Ajouter une ligne"
+      "AL" : "Ajouter une ligne",
+      "AJ": "Ajouter",
+      "AU": "Autre espace"
     },
     "TEXT":{
       "THT": "Total HT",

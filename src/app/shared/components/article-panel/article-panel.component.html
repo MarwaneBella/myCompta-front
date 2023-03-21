@@ -27,7 +27,7 @@
                 <div class="flex flex-row gap-2">
                     <div class="relative grow">
                         <label class="common-label">{{'FORM.INPUT.T' | translate}}</label>
-                        <ng-select class="custom" placeholder="{{'FORM.INPUT.LANG' | translate}}" [items]="typesArticle"
+                        <ng-select class="custom-select-gray" placeholder="{{'FORM.INPUT.LANG' | translate}}" [items]="typesArticle"
                             bindLabel="name_fr" [clearable]="false" [searchable]="false" formControlName="typeArticle">
                         </ng-select>
                     </div>
@@ -75,7 +75,7 @@
                                 placeholder="{{'FORM.INPUT.R' | translate}}" class="common-input"
                                 formControlName="reduction" (ngModelChange)="calculate()">
                         </div>
-                        <ng-select [searchable]="false" [clearable]="false" class="custom" [items]="reductionType"
+                        <ng-select [searchable]="false" [clearable]="false" class="custom-select-gray" [items]="reductionType"
                             formControlName="reductionType" (ngModelChange)="calculate()">
 
                         </ng-select>
@@ -125,7 +125,7 @@
                 <input type="number" appAllowInput allow="float" placeholder="{{'FORM.INPUT.RG' | translate}}"
                     class="common-input" formControlName="remise" (ngModelChange)="calculate()" >
             </div>
-            <ng-select [searchable]="false" [clearable]="false" class="custom" [items]="reductionType"
+            <ng-select [searchable]="false" [clearable]="false" class="custom-select-gray" [items]="reductionType"
                 formControlName="remiseType" (ngModelChange)="calculate()">
             </ng-select>
         </form>

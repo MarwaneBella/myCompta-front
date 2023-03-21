@@ -31,6 +31,7 @@ import { ReglementFormComponent } from './components/reglement-form/reglement-fo
 import { TextFieldFormComponent } from './components/text-field-form/text-field-form.component';
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
 import { DropMenuGlobalComponent } from './components/drop-menu-global/drop-menu-global.component';
+import { CardGlobalComponent } from './components/card-global/card-global.component';
 
 
 
@@ -58,7 +59,8 @@ import { DropMenuGlobalComponent } from './components/drop-menu-global/drop-menu
     AllowInputDirective,
     CustomInputComponent,
     DropMenuGlobalComponent,
-    ModalComponent
+    ModalComponent,
+    CardGlobalComponent
   ],
   imports: [
     CommonModule,
@@ -101,6 +103,7 @@ import { DropMenuGlobalComponent } from './components/drop-menu-global/drop-menu
     CustomInputComponent,
     DropMenuGlobalComponent,
     ModalComponent,
+    CardGlobalComponent,
     IvyCarouselModule
   ],
   providers :[

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-modal.component.scss']
 })
 export class AddModalComponent {
+espaces: string[] =["Facturation","Gestion Paie"];
 
 }

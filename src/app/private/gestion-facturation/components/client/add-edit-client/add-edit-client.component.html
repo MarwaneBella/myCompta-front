@@ -63,7 +63,7 @@
                     formControlName="function">
                 <input type="text" placeholder="{{'FORM.INPUT.SI' | translate}} " class="common-input"
                     formControlName="website" *ngIf="isPar">
-                <ng-select class="custom " placeholder="{{'FORM.INPUT.LANG' | translate}} *" [items]="languages"
+                <ng-select class="custom-select-gray " placeholder="{{'FORM.INPUT.LANG' | translate}} *" [items]="languages"
                     formControlName="language">
                 </ng-select>
             </div>
@@ -95,7 +95,7 @@
                         <div>
                             <span class="secondary-title">{{'FORM.TITLE.S' | translate}}</span>
                         </div>
-                        <ng-select [items]="societes" bindLabel="name" class="custom w-full text-sm"
+                        <ng-select [items]="societes" bindLabel="name" class="custom-select-gray w-full text-sm"
                             placeholder="{{'FORM.INPUT.SS' | translate}}" formControlName="societe">
                         </ng-select>
                     </div>
@@ -133,7 +133,7 @@
                         <ng-container *ngIf="isAddMode  else editButton">{{'FORM.BUTTON.C' | translate}}</ng-container>
                         <ng-template #editButton>{{'FORM.BUTTON.E' | translate}}</ng-template>
                     </button>
-                    <button #add class="common-btn-gray" routerLink="{{navigate.f_clientPath}}">{{'FORM.BUTTON.A' | translate}}</button>
+                    <button #add class="common-btn-gray" routerLink="/clients">{{'FORM.BUTTON.A' | translate}}</button>
                 </div>
             </div>
 
