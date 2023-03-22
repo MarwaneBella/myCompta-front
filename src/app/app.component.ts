@@ -31,6 +31,12 @@ const listIconsvg: string[] = [
   'par',
   'pro',
   'menu',
+  'date',
+  'money',
+  'time',
+  'chart',
+  'copy',
+  'valid'
 ];
 
 @Component({

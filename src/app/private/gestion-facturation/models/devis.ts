@@ -23,11 +23,12 @@ export class Devis{
     condVente : string
     totalHT : number
     totalTTC : number
+    date : Date
     status : DevisStatus
     motCleList : MotCle[]
     societe : Societe | null
     client : Client | null
-    
+
     conditionReglement: ConditionReglement
     modeReglement : ModeReglement
     interet : Interet

@@ -4,20 +4,20 @@
 
     <div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr p-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr p-3">
             <app-card *ngFor="let devi of devis | paginate : {
                 itemsPerPage: pageSize,
                 currentPage: page,
                 totalItems: count
-              }; let i = index" 
+              }; let i = index"
             for="D" [data]="devi" (refreshListPage)="onRefresh()"></app-card>
         </div>
 
-        
+
         <app-pagination (pageChange)="pageChange($event)" (pageSizeChange)="pageSizeChange($event)"></app-pagination>
-        
+
 
     </div>
-    
+
 
 </section>

@@ -1,6 +1,6 @@
 import { ModalComponent } from './directives/modal.components';
 import {  NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { SliderComponent } from './components/slider/slider.component';
@@ -107,7 +107,9 @@ import { CardGlobalComponent } from './components/card-global/card-global.compon
     IvyCarouselModule
   ],
   providers :[
-    LanguageService
+    LanguageService,
+    DatePipe,
+    DecimalPipe
   ]
 })
 export class SharedModule {
