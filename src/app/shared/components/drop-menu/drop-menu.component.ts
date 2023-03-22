@@ -17,7 +17,7 @@ import { Societe } from 'src/app/private/gestion-facturation/models/societe';
 export class DropMenuComponent implements OnInit {
 
   @Output()
-  refreshListPage : EventEmitter<void> = new EventEmitter(); 
+  refreshListPage : EventEmitter<void> = new EventEmitter();
 
   @Input()
   data: Societe | Client | Devis | Facture;
@@ -29,7 +29,7 @@ export class DropMenuComponent implements OnInit {
   size : 'sm'|'xs'
 
   @Input()
-  for: 'C'|'S'|'D'|'F'
+  for: 'C'|'S'|'D'|'F'|'A'|'FA'
 
   dropMenu :boolean = false;
   DevisStatus = DevisStatus;
@@ -42,7 +42,7 @@ export class DropMenuComponent implements OnInit {
   ){
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
 
   changeFilterStatus(status : DevisStatus | null){
@@ -50,7 +50,7 @@ export class DropMenuComponent implements OnInit {
     this.statusActive = status
     this.filterService.callMethodFilterStatus(status);
   }
-  
+
 
   toggleDropMenu(){
     this.dropMenu = !this.dropMenu
@@ -61,7 +61,7 @@ export class DropMenuComponent implements OnInit {
 
 
   delete(){
-    this.alertify.deleteData(this.data, this.for);
+    // this.alertify.deleteData(this.data, this.for);
   }
 
   finalizeIt(){

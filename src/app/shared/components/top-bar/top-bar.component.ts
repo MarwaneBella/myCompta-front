@@ -19,7 +19,7 @@ export class TopBarComponent implements OnInit {
   data: Societe | Client | Devis | Facture;
 
   @Input()
-  for: 'C'|'S'|'D'|'F'
+  for: 'C'|'S'|'D'|'F'|'A'|'FA'
 
   @Input()
   type : 'add'|'edit'|'show'|'list'

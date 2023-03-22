@@ -7,8 +7,8 @@
                 <svg-icon svgClass="w-6" [name]="card.mainIcon" *ngIf="card.mainIcon" ></svg-icon>
             </div>
             <div class="flex flex-col justify-center">
-                <div >
-                    <span class="text-sm font-semibold w-32 " *ngIf="card.primaryTitle1">{{card.primaryTitle1}}</span>
+                <div  >
+                    <span class="text-sm font-semibold whitespace-nowrap w-32 " *ngIf="card.primaryTitle1">{{card.primaryTitle1}}</span>
                     <span class="text-sm font-semibold ml-2 w-32   {{textColor}} " *ngIf="card.primaryTitle2">{{card.primaryTitle2}}</span>
                 </div>
                 <span class="text-gray-2 whitespace-nowrap" *ngIf="card.secondaryTitle" >{{card.secondaryTitle}}</span>
@@ -18,7 +18,7 @@
         <div class="flex items-center justify-self-end">
             <app-drop-menu type="edit" size = "xs" [for]="for" [data]="data" (refreshListPage)="refreshListPage.emit()"></app-drop-menu>
         </div>
-        
+
     </div>
     <div *ngIf="card.paragraph">
         <p class="text-gray-2 text-justify">
@@ -27,15 +27,15 @@
     </div>
     <div class="space-y-1" *ngIf="card.secondaryData">
         <div class="flex space-x-2" *ngFor="let element of card.secondaryData ">
-            <span class="rounded-full-white" > 
-                <svg-icon svgClass="w-3" [name]="element.icon"></svg-icon> 
+            <span class="rounded-full-white" >
+                <svg-icon svgClass="w-3" [name]="element.icon"></svg-icon>
             </span>
             <span class="flex items-center">{{element.data}}</span>
         </div>
     </div>
     <div class="flex space-x-1" *ngIf="this.card.keyWord">
-        
-        
+
+
         <span class="rounded-full-black" *ngFor="let word of card.keyWord | slice:0:3 ">{{word}}</span>
         <span class="rounded-full-black" *ngIf="card.keyWord.length > 3">+{{card.keyWord.length-3}}</span>
     </div>

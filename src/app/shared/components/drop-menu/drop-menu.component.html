@@ -76,7 +76,7 @@
                 <ng-template #modifyMotCle><span>{{'DROP_MENU.EDIT.M' |translate}}</span></ng-template>
             </a>
 
-            <button class="item-menu-{{size}}" (click)="delete()" *ngIf="for == 'C' || for == 'S' || 
+            <button class="item-menu-{{size}}" (click)="delete()" *ngIf="for == 'C' || for == 'S' ||
             (for == 'D'  && $any(data).status  == DevisStatus.PROVISIONAL )">
                 <svg-icon name="delete" [ngClass]="type == 'edit'? 'w-3' : 'w-4' "></svg-icon>
                 <span>{{'DROP_MENU.EDIT.SP' |translate}}</span>

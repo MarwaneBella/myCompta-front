@@ -35,13 +35,32 @@
             <svg-icon name="devis" svgClass="w-4"></svg-icon>
             <span class="span-text">Devis</span>
           </a>
-          <a class="item-style flex space-x-2 items-center " routerLink="{{navigate.f_facturePath}}" routerLinkActive="is-active">
-            <svg-icon name="factures" svgClass="w-4"></svg-icon>
-            <span class="span-text flex gap-2 items-center">
-              Factures
-              <svg-icon name="arrowdown" svgClass="w-4 "></svg-icon>
-            </span>
-          </a>
+          <div class="relative" clickOutside (clickOutside)="dropMenuFacture = false">
+
+            <button class="item-style flex space-x-2 items-center" (click)="dropMenuFacture  = !dropMenuFacture"
+              [class.is-active]="checkfacturesRouteIsActive()">
+              <svg-icon name="factures" svgClass="w-4"></svg-icon>
+              <span class="span-text flex gap-2 items-center">
+                Factures
+                <svg-icon name="arrowdown" svgClass="w-4 "></svg-icon>
+              </span>
+            </button>
+
+            <div class="drop-menu" *ngIf="dropMenuFacture">
+              <a class="item-menu-sm" routerLink="{{navigate.f_simplePath}}" (click)="dropMenuFacture = false"
+                routerLinkActive="item-active">
+                <span>{{'DROP_MENU.NAVBAR.F.S' |translate}}</span>
+              </a>
+              <a href="#" class="item-menu-sm" routerLink="{{navigate.f_avoirPath}}" (click)="dropMenuFacture = false"
+                routerLinkActive="item-active">
+                <span>{{'DROP_MENU.NAVBAR.F.A' |translate}}</span>
+              </a>
+              <a href="#" class="item-menu-sm " routerLink="{{navigate.f_acomptePath}}"
+                (click)="dropMenuFacture = false" routerLinkActive="item-active">
+                <span>{{'DROP_MENU.NAVBAR.F.FA' |translate}}</span>
+              </a>
+            </div>
+          </div>
 
         </div>
 

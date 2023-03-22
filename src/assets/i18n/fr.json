@@ -218,6 +218,13 @@
       "CP" : "Compte",
       "SC" : "Supprimer mon compte",
       "AD" : "Aide"
+    },
+    "NAVBAR":{
+      "F" :{
+        "S" : "Simple",
+        "A" : "Avoir",
+        "FA" : "Factures d’Acompte"
+      }
     }
   },
   "CLIENT_CARD":{

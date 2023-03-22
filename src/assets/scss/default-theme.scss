@@ -129,6 +129,15 @@
 
     .drop-menu{
         @apply absolute z-20 w-fit bg-opacity-95  space-y-3 p-3 right-0 top-11 origin-top-right rounded-lg bg-white-1  shadow-lg ring-1 ring-black-1;
+
+        >.item-active{
+          >span{
+            @apply font-black text-gray-5;
+          }
+          >svg-icon{
+              @apply stroke-2 ;
+          }
+        }
     }
     .item-menu-sm{
         @apply text-sm;
