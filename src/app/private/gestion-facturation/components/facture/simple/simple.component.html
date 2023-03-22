@@ -1,0 +1,22 @@
+<section>
+  <app-top-bar for="F" type="list"  ></app-top-bar>
+  <app-empty-data-message for="F" *ngIf="isEmpty"></app-empty-data-message>
+
+  <div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr p-3">
+          <app-card *ngFor="let factureSimple of factureSimples | paginate : {
+              itemsPerPage: pageSize,
+              currentPage: page,
+              totalItems: count
+            }; let i = index"
+          for="F" [data]="factureSimple" (refreshListPage)="onRefresh()"></app-card>
+      </div>
+
+
+      <app-pagination (pageChange)="pageChange($event)" (pageSizeChange)="pageSizeChange($event)"></app-pagination>
+
+
+  </div>
+
+</section>

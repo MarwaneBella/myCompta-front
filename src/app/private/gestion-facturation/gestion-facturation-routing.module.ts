@@ -26,6 +26,37 @@ const routes: Routes = [
       import('./components/devis/devis.module').then((m) => m.DevisModule),
   },
   {
+    path : 'factures',
+    children:[
+      {
+        path: 'simple',
+        loadChildren: () =>
+          import('./components/facture/simple/simple.module').then(
+            (m) => m.SimpleModule
+          ),
+      },
+      {
+        path: 'avoir',
+        loadChildren: () =>
+          import('./components/facture/avoir/avoir.module').then(
+            (m) => m.AvoirModule
+          ),
+      },
+      {
+        path: 'acompte',
+        loadChildren: () =>
+          import('./components/facture/acompte/acompte.module').then(
+            (m) => m.AcompteModule
+          ),
+      },
+      {
+        path: '',
+        redirectTo:'simple',
+        pathMatch:'full'
+      }
+    ]
+  },
+  {
     path: 'settings',
     loadChildren: () =>
       import('./components/settings/settings.module').then(

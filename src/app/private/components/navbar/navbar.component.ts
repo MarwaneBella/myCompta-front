@@ -11,30 +11,36 @@ import { NavigateService } from '../../../shared/services/navigate.service';
 export class NavbarComponent implements OnInit {
   dropMenuMobile = false;
   dropMenuProfile = false;
+  dropMenuFacture = false;
   data: string = '';
-  navBarType : 'facturation'|'personnel'|'global'
-  event$ : any
+  navBarType: 'facturation' | 'personnel' | 'global';
+  event$: any;
 
-  constructor(private filterService: FilterService, private router: Router, protected navigate : NavigateService) {}
+  constructor(
+    private filterService: FilterService,
+    private router: Router,
+    protected navigate: NavigateService
+  ) {}
 
   ngOnInit(): void {
-    this.setNavBarType()
+    this.setNavBarType();
   }
 
-  setNavBarType(){
-    if(/.*\/facturation.*/g.test(this.router.url)){
-      this.navBarType = 'facturation'
-      return
-    }
-    else if(/.*\/personnel.*/g.test(this.router.url)){
-      this.navBarType = 'personnel'
-      return
-    }
-
-    this.navBarType = 'global'
+  checkfacturesRouteIsActive() : boolean{
+    return this.router.isActive(this.navigate.f_facturePath,{paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'subset'})
   }
 
+  setNavBarType() {
+    if (/.*\/facturation.*/g.test(this.router.url)) {
+      this.navBarType = 'facturation';
+      return;
+    } else if (/.*\/personnel.*/g.test(this.router.url)) {
+      this.navBarType = 'personnel';
+      return;
+    }
 
+    this.navBarType = 'global';
+  }
 
   dataSearchChange() {
     this.filterService.callMethodSearch(this.data);

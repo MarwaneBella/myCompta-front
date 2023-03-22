@@ -17,7 +17,11 @@ export class NavigateService {
   public readonly f_societePath = this.facturationPath+'/societes'
   public readonly f_clientPath = this.facturationPath+'/clients'
   public readonly f_devisPath = this.facturationPath+'/devis'
+
   public readonly f_facturePath = this.facturationPath+'/factures'
+  public readonly f_simplePath = this.f_facturePath+'/simple'
+  public readonly f_avoirPath = this.f_facturePath+'/avoir'
+  public readonly f_acomptePath = this.f_facturePath+'/acompte'
 
   public readonly f_settingsPath = this.facturationPath+'/settings'
   public readonly f_s_itemTypesPath = this.f_settingsPath+'/item-types'
@@ -58,7 +62,7 @@ export class NavigateService {
     else return ''
   }
 
-  toEditPath(from : 'C'|'S'|'D'|'F', id : number ,slug : string) : string {
+  toEditPath(from : 'C'|'S'|'D'|'F'|'A'|'FA' , id : number ,slug : string) : string {
 
     if(from == 'C') return this.f_clientPath+this.editPath+id+'-'+slug
 
@@ -66,12 +70,16 @@ export class NavigateService {
 
     else if(from == 'D') return this.f_devisPath+this.editPath+id+'-'+slug
 
-    else if(from == 'F') return this.f_facturePath+this.editPath+id+'-'+slug
+    else if(from == 'F') return this.f_simplePath+this.editPath+id+'-'+slug
+
+    else if(from == 'A') return this.f_acomptePath+this.editPath+id+'-'+slug
+
+    else if(from == 'FA') return this.f_avoirPath+this.editPath+id+'-'+slug
 
     else return ''
   }
 
-   toShowPath(from : 'C'|'S'|'D'|'F', id : number ,slug : string) : string {
+   toShowPath(from : 'C'|'S'|'D'|'F'|'A'|'FA', id : number ,slug : string) : string {
 
     if(from == 'C')  return this.f_clientPath+this.showPath+id+'-'+slug
 
@@ -79,7 +87,11 @@ export class NavigateService {
 
     else if(from == 'D') return this.f_devisPath+this.showPath+id+'-'+slug
 
-    else if(from == 'F') return this.f_facturePath+this.showPath+id+'-'+slug
+    else if(from == 'F') return this.f_simplePath+this.showPath+id+'-'+slug
+
+    else if(from == 'A') return this.f_acomptePath+this.editPath+id+'-'+slug
+
+    else if(from == 'FA') return this.f_avoirPath+this.editPath+id+'-'+slug
 
     else return ''
   }

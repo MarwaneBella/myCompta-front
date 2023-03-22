@@ -26,7 +26,7 @@ export class DevisService {
   addDevis(devis: Devis): Observable<any> {
     return this.http.post(`${this.constant.devisUrl}`, devis);
   }
-  
+
   updateDevisById( id :number, devis: Devis) :Observable<Devis>{
     return this.http.put<Devis>(`${this.constant.devisUrl}/${id}`,devis);
   }
@@ -35,10 +35,5 @@ export class DevisService {
    return this.http.delete(`${this.constant.devisUrl}/${id}`,{ responseType: 'text'});
   }
 
-  getDevisListPar(): Observable<Devis[]>{
-    return this.http.get<Devis[]>(`${this.constant.devisUrl}/par`)
-  }
-  getDevisListPro(): Observable<Devis[]>{
-    return this.http.get<Devis[]>(`${this.constant.devisUrl}/pro`)
-  }
+
 }

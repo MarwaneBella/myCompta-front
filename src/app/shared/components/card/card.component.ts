@@ -1,3 +1,6 @@
+import { FactureAvoir } from './../../../private/gestion-facturation/models/facture-avoir';
+import { FactureSimple } from './../../../private/gestion-facturation/models/facture-simple';
+import { FactureAcompte } from './../../../private/gestion-facturation/models/facture-acompte';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
@@ -34,10 +37,10 @@ export class CardComponent implements OnInit {
   refreshListPage : EventEmitter<void> = new EventEmitter();
 
   @Input()
-  data: Societe | Client | Devis | Facture;
+  data: Societe | Client | Devis | FactureSimple | FactureAvoir | FactureAcompte;
 
   @Input()
-  for: 'C' | 'S' | 'D' | 'F';
+  for: 'C' | 'S' | 'D' | 'F'|'A'|'FA';
 
   card: Card = {} as Card;
   textColor: string = 'text-green'
@@ -58,6 +61,33 @@ export class CardComponent implements OnInit {
     if (this.for == 'C') this.getFromClient()
     else if (this.for == 'S') this.getFromSociete();
     else if (this.for =='D') this.getFromDevis()
+    else if (this.for =='F') this.getFromFactureSimple()
+    else if (this.for =='A') this.getFromFactureAvoir()
+    else if (this.for =='FA') this.getFromFactureAcompte()
+  }
+
+  getFromFactureAcompte() {
+    var factureAcompte : FactureAcompte = this.data as FactureAcompte
+    this.card.mainIcon = 'factures'
+    this.card.primaryTitle1 = factureAcompte.code
+    this.card.primaryTitle2 = factureAcompte.status
+    if(factureAcompte.devis.client)
+    this.card.secondaryTitle = factureAcompte.devis.client?.firstName +  " " + factureAcompte.devis.client?.lastName
+    else if(factureAcompte.devis.societe)
+    this.card.secondaryTitle = factureAcompte.devis.societe.name
+  }
+
+  getFromFactureAvoir() {
+    var factureAvoir : FactureAvoir = this.data as FactureAvoir
+    this.card.mainIcon = 'factures'
+    this.card.primaryTitle1 = factureAvoir.code
+
+  }
+
+  getFromFactureSimple() {
+    var factureSimple : FactureSimple = this.data as FactureSimple
+    this.card.mainIcon = 'factures'
+    this.card.primaryTitle1 = factureSimple.code
   }
 
   async getFromClient() {

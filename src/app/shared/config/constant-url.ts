@@ -20,5 +20,9 @@ export class ConstantUrl {
     public readonly conditionReglementUrl : string = this.baseUrl+"conditions-reglement";
     public readonly interetUrl : string = this.baseUrl+"interets";
     public readonly numerotationUrl : string = this.baseUrl+"numerotations";
+    public readonly factureSimpleUrl : string = this.baseUrl+"factures-simple";
+    public readonly factureAvoirUrl : string = this.baseUrl+"factures-avoir";
+    public readonly factureAcompteUrl : string = this.baseUrl+"factures-acompte";
+
 
 }
