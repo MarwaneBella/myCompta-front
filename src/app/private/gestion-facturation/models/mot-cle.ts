@@ -1,6 +1,9 @@
 import { Client } from "./client"
 import { Devis } from "./devis"
 import { Facture } from "./facture"
+import { FactureAcompte } from "./facture-acompte"
+import { FactureAvoir } from "./facture-avoir"
+import { FactureSimple } from "./facture-simple"
 import { Societe } from "./societe"
 
 export class MotCle{
@@ -10,4 +13,7 @@ export class MotCle{
     client : Client
     devis : Devis
     facture : Facture
+    factureSimple : FactureSimple
+    factureAvoir : FactureAvoir
+    factureAcompte : FactureAcompte
 }

@@ -4,6 +4,8 @@
     "C": "Client",
     "D": "Devis",
     "F": "Facture",
+    "A": "Avoir",
+    "FA": "Facture d'acompte",
     "ESP":"Espace"
   },
   "TITLE": {
@@ -11,11 +13,12 @@
     "C": "Clients",
     "D": "Devis",
     "F": "Factures",
+    "A": "Avoirs",
+    "FA": "Factures d'acompte",
     "P": "Paramètres",
     "PN" : "Préférences pour la numérotation",
     "ESP": "Ajouter un espace",
     "ENV": "Environnements"
-
   },
   "FORM": {
     "TITLE": {
@@ -153,6 +156,14 @@
       "M1": "Aucun facture à afficher",
       "M2": "Ajouter une facture"
     },
+    "A": {
+      "M1": "Aucun avoir à afficher",
+      "M2": "Ajouter un avoir"
+    },
+    "FA": {
+      "M1": "Aucun facture d'acompte à afficher",
+      "M2": "Ajouter une facture d'acompte"
+    },
     "ESP": {
       "M1": "Aucun espace à afficher",
       "M2": "Ajouter un nouveau espace"
@@ -175,6 +186,14 @@
       "F" :{
         "L1" : "Ajouter une facture",
         "L2" : "Exporter les factures"
+      },
+      "A" :{
+        "L1" : "Ajouter un avoir",
+        "L2" : "Exporter les avoires"
+      },
+      "FA" :{
+        "L1" : "Ajouter une facture d'acompte",
+        "L2" : "Exporter les factures d'acompte"
       },
       "ESP" :{
         "L1" : "Nouveau espace de travail"
@@ -245,7 +264,9 @@
     "PROVISIONAL" : "PROVISOIRE",
     "SIGNED" : "SIGNÉ",
     "FINALIZED" : "FINALISÉ",
-    "REFUSED" : "REFUSÉ"
+    "REFUSED" : "REFUSÉ",
+    "PAYED" : "PAYÉE",
+    "REFUNDED" : "REMBOURSÉ"
   },
   "DOCUMENTATION":{
     "N" : {

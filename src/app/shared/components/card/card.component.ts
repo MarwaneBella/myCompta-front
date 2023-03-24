@@ -78,6 +78,8 @@ export class CardComponent implements OnInit {
     this.card.primaryTitle2 = factureAcompte.status
     this.setRecipientToCard(factureAcompte.devis.client , factureAcompte.devis.societe)
     this.setStatusToCard(factureAcompte.status);
+    this.card.line = true
+    this.card.primaryData = [];
     this.setHTAndTTC(factureAcompte.totalHT,factureAcompte.totalTTC);
     this.setDate(factureAcompte.date)
   }
@@ -89,6 +91,8 @@ export class CardComponent implements OnInit {
     this.card.primaryTitle2 = factureAvoir.status
     this.setRecipientToCard(factureAvoir.client , factureAvoir.societe)
     this.setStatusToCard(factureAvoir.status);
+    this.card.line = true
+    this.card.primaryData = [];
     this.setHTAndTTC(factureAvoir.totalHT,factureAvoir.totalTTC);
     this.setDate(factureAvoir.date)
 
@@ -96,12 +100,15 @@ export class CardComponent implements OnInit {
 
   getFromFactureSimple() {
     var factureSimple : FactureSimple = this.data as FactureSimple
+    console.log(factureSimple)
     this.card.mainIcon = 'factures'
     this.card.primaryTitle1 = factureSimple.code
     this.card.primaryTitle1 = factureSimple.code
     this.card.primaryTitle2 = factureSimple.status
     this.setRecipientToCard(factureSimple.client , factureSimple.societe)
     this.setStatusToCard(factureSimple.status);
+    this.card.line = true
+    this.card.primaryData = [];
     this.setHTAndTTC(factureSimple.totalHT,factureSimple.totalTTC);
     this.setDate(factureSimple.date)
   }
@@ -146,14 +153,13 @@ export class CardComponent implements OnInit {
 
   async getFromDevis() {
     var devi: Devis = this.data as Devis;
-    this.card.primaryData = [];
     this.card.mainIcon = 'devis';
     this.card.primaryTitle1 = devi.code
     this.setRecipientToCard(devi.client, devi.societe)
     this.card.line = true;
     this.setMotCleToCard(devi.motCleList);
     await this.setStatusToCard(devi.status);
-
+    this.card.primaryData = [];
     this.setHTAndTTC(devi.totalHT,devi.totalTTC);
     this.setDate(devi.date)
 
@@ -174,8 +180,8 @@ export class CardComponent implements OnInit {
   setHTAndTTC(ht:number , ttc : number){
     this.card.primaryData.push({
       icon: 'money',
-      data1: this.decimalPipe.transform(ttc , '1.2')!+ ' HT',
-      data2: this.decimalPipe.transform(ttc , '1.2')!+ ' TTC'
+      data1: this.decimalPipe.transform(ht, '.2-2')!+ ' HT',
+      data2: this.decimalPipe.transform(ttc , '.2-2')!+ ' TTC'
     })
   }
 

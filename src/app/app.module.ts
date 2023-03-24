@@ -40,12 +40,10 @@ function defaultLang() {
 function getCurrentLocal(){
   if(localStorage.getItem('lang') == 'en'){
     registerLocaleData(localeEn)
-    console.log(localeEn)
     return 'en-EN'
   }
   else{
     registerLocaleData(localeFr)
-    console.log(localeFr)
     return 'fr-FR'
   }
 }
