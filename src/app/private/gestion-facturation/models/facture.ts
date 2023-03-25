@@ -10,6 +10,8 @@ export class Facture{
     piedPage: string
     condVente: string
     date: Date
+    totalTTC: number
+    totalHT : number
     motCleList: MotCle[]
 }
 

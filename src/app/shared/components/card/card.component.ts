@@ -14,6 +14,7 @@ import { Phone } from 'src/app/private/gestion-facturation/models/phone';
 import { Societe } from 'src/app/private/gestion-facturation/models/societe';
 import { NavigateService } from 'src/app/shared/services/navigate.service';
 import { AlertifyService } from '../../services/alertify.service';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 interface Card {
   mainIcon: string;
@@ -23,7 +24,9 @@ interface Card {
   paragraph: string;
   line: boolean;
   secondaryData: { icon: string; data: string }[];
+  primaryData: { icon: string; data1: string ; data2?: string}[];
   keyWord: Array<String>;
+
 }
 
 @Component({
@@ -47,7 +50,9 @@ export class CardComponent implements OnInit {
 
   constructor(
     public navigate: NavigateService,
-    private translate : TranslateService
+    private translate : TranslateService,
+    private decimalPipe : DecimalPipe,
+    private datePipe : DatePipe
   ) {}
 
 
@@ -71,23 +76,41 @@ export class CardComponent implements OnInit {
     this.card.mainIcon = 'factures'
     this.card.primaryTitle1 = factureAcompte.code
     this.card.primaryTitle2 = factureAcompte.status
-    if(factureAcompte.devis.client)
-    this.card.secondaryTitle = factureAcompte.devis.client?.firstName +  " " + factureAcompte.devis.client?.lastName
-    else if(factureAcompte.devis.societe)
-    this.card.secondaryTitle = factureAcompte.devis.societe.name
+    this.setRecipientToCard(factureAcompte.devis.client , factureAcompte.devis.societe)
+    this.setStatusToCard(factureAcompte.status);
+    this.card.line = true
+    this.card.primaryData = [];
+    this.setHTAndTTC(factureAcompte.totalHT,factureAcompte.totalTTC);
+    this.setDate(factureAcompte.date)
   }
 
   getFromFactureAvoir() {
     var factureAvoir : FactureAvoir = this.data as FactureAvoir
     this.card.mainIcon = 'factures'
     this.card.primaryTitle1 = factureAvoir.code
+    this.card.primaryTitle2 = factureAvoir.status
+    this.setRecipientToCard(factureAvoir.client , factureAvoir.societe)
+    this.setStatusToCard(factureAvoir.status);
+    this.card.line = true
+    this.card.primaryData = [];
+    this.setHTAndTTC(factureAvoir.totalHT,factureAvoir.totalTTC);
+    this.setDate(factureAvoir.date)
 
   }
 
   getFromFactureSimple() {
     var factureSimple : FactureSimple = this.data as FactureSimple
+    console.log(factureSimple)
     this.card.mainIcon = 'factures'
     this.card.primaryTitle1 = factureSimple.code
+    this.card.primaryTitle1 = factureSimple.code
+    this.card.primaryTitle2 = factureSimple.status
+    this.setRecipientToCard(factureSimple.client , factureSimple.societe)
+    this.setStatusToCard(factureSimple.status);
+    this.card.line = true
+    this.card.primaryData = [];
+    this.setHTAndTTC(factureSimple.totalHT,factureSimple.totalTTC);
+    this.setDate(factureSimple.date)
   }
 
   async getFromClient() {
@@ -130,23 +153,37 @@ export class CardComponent implements OnInit {
 
   async getFromDevis() {
     var devi: Devis = this.data as Devis;
-    this.card.secondaryData = [];
     this.card.mainIcon = 'devis';
     this.card.primaryTitle1 = devi.code
     this.setRecipientToCard(devi.client, devi.societe)
-    this.card.line = false;
+    this.card.line = true;
     this.setMotCleToCard(devi.motCleList);
     await this.setStatusToCard(devi.status);
-
-    // Object.keys(DevisStatus).filter((v) => isNaN(Number(v)))
-    // .forEach(async status =>{
-    //   if(devi.status.toString() == status){
-    //     this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.'+status))
-    //   }
-    // })
+    this.card.primaryData = [];
+    this.setHTAndTTC(devi.totalHT,devi.totalTTC);
+    this.setDate(devi.date)
 
   }
 
+  setDate(date : Date ){
+    this.card.primaryData.push({
+      icon: 'time',
+      data1: this.datePipe.transform(date,'hh : mm : ss')!
+    })
+
+    this.card.primaryData.push({
+      icon: 'date',
+      data1: this.datePipe.transform(date,'dd MMMM y')!,
+    })
+  }
+
+  setHTAndTTC(ht:number , ttc : number){
+    this.card.primaryData.push({
+      icon: 'money',
+      data1: this.decimalPipe.transform(ht, '.2-2')!+ ' HT',
+      data2: this.decimalPipe.transform(ttc , '.2-2')!+ ' TTC'
+    })
+  }
 
   setMotCleToCard(motCleList: MotCle[]) {
     if (motCleList.length != 0) {
@@ -207,22 +244,30 @@ export class CardComponent implements OnInit {
     }
   }
 
-  async setStatusToCard(status : DevisStatus) {
-    if(status === DevisStatus.PROVISIONAL){
+  async setStatusToCard(status : string) {
+    if(status == "PROVISIONAL"){
       this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.PROVISIONAL'))
       this.textColor = 'text-gray-4'
     }
-    else if(status === DevisStatus.FINALIZED){
+    else if(status == "FINALIZED"){
       this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.FINALIZED'))
+      this.textColor = 'text-blue'
+    }
+    else if(status == "SIGNED"){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.SIGNED'))
       this.textColor = 'text-green'
     }
-    else if(status === DevisStatus.SIGNED){
-      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.SIGNED'))
-      this.textColor = 'text-yellow'
-    }
-    else if(status === DevisStatus.REFUSED){
+    else if(status == "REFUSED"){
       this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.REFUSED'))
       this.textColor = 'text-red'
+    }
+    else if(status == "PAYED"){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.PAYED'))
+      this.textColor = 'text-green'
+    }
+    else if(status == "REFUNDED"){
+      this.card.primaryTitle2 =  await firstValueFrom(this.translate.get('STATUS.REFUNDED'))
+      this.textColor = 'text-green'
     }
 
   }

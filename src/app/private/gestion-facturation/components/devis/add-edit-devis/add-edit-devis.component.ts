@@ -91,7 +91,7 @@ export class AddEditDevisComponent implements OnInit {
 
 
 
-  checkSlug() {
+  checkSlug(){
     if (this.devis.slug === this.slug) {
     } else {
       this.router.navigateByUrl(this.navigate.toEditPath('D',this.id,this.devis.slug));

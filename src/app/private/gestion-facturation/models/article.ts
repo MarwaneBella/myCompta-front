@@ -1,9 +1,11 @@
 import { Devis } from "./devis"
 import { Facture } from "./facture"
+import { FactureAvoir } from "./facture-avoir"
+import { FactureSimple } from "./facture-simple"
 import { TypeArticle } from "./type-article"
 
 export class Article {
-    
+
     id: number
     quantity : number
     prixHT: number
@@ -13,5 +15,6 @@ export class Article {
     description: string
     typeArticle : TypeArticle
     devis : Devis
-    facture : Facture
+    factureSimple : FactureSimple
+    factureAvoir : FactureAvoir
 }

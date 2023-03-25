@@ -11,7 +11,7 @@ import { Facture } from 'src/app/private/gestion-facturation/models/facture';
 export class TextFieldFormComponent implements OnInit {
 
   @Input()
-  for : 'D'|'F'
+  for : 'D'|'F'|'A'|'FA'
 
   textForm :FormGroup
   constructor(
@@ -31,24 +31,18 @@ export class TextFieldFormComponent implements OnInit {
     })
   }
 
-  getTextForm(data : Devis |Facture) : Devis |Facture{
-    if(this.for == 'D'){
-      var devis : Devis  = data as Devis
-      devis.textIntro = this.textForm.controls['textIntro'].value
-      devis.textCond = this.textForm.controls['textCond'].value
-      devis.piedPage = this.textForm.controls['piedPage'].value
-      devis.condVente = this.textForm.controls['condVente'].value
-    }
+  getTextForm(data : any) : any{
+    data.textIntro = this.textForm.controls['textIntro'].value
+    data.textCond = this.textForm.controls['textCond'].value
+    data.piedPage = this.textForm.controls['piedPage'].value
+    data.condVente = this.textForm.controls['condVente'].value
     return data
   }
 
-  setTextForm(data : Devis | Facture) {
-    if(this.for == 'D'){
-      var devis : Devis = data as Devis
-      this.textForm.controls['textIntro'].setValue(devis.textIntro)
-      this.textForm.controls['textCond'].setValue(devis.textCond)
-      this.textForm.controls['piedPage'].setValue(devis.piedPage)
-      this.textForm.controls['condVente'].setValue(devis.condVente)
-    }
+  setTextForm(data : any) {
+      this.textForm.controls['textIntro'].setValue(data.textIntro)
+      this.textForm.controls['textCond'].setValue(data.textCond)
+      this.textForm.controls['piedPage'].setValue(data.piedPage)
+      this.textForm.controls['condVente'].setValue(data.condVente)
   }
 }

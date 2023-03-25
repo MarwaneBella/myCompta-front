@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FormsModule } from '@angular/forms';
 import { PrivateComponent } from './private/private.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeEn from '@angular/common/locales/en';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -17,7 +20,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 export function createTranslateLoader(http: HttpClient) {    return new TranslateHttpLoader(http, './assets/i18n/', '.json');}
 
 function defaultLang() {
-  if(localStorage.getItem('lang') != null || localStorage.getItem('lang')){
+  if(localStorage.getItem('lang')){
     if(localStorage.getItem('lang') != 'fr' && localStorage.getItem('lang') != 'en'){
       localStorage.removeItem('lang')
       localStorage.setItem('lang','fr');
@@ -28,10 +31,23 @@ function defaultLang() {
     }
   }
   else{
+    localStorage.setItem('lang','fr');
     return 'fr';
   }
 }
-// export function createTranslateLoader(http: HttpClient) {    return new TranslateHttpLoader(http, './assets/i18n/', '.json');}
+
+
+function getCurrentLocal(){
+  if(localStorage.getItem('lang') == 'en'){
+    registerLocaleData(localeEn)
+    return 'en-EN'
+  }
+  else{
+    registerLocaleData(localeFr)
+    return 'fr-FR'
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -52,7 +68,9 @@ function defaultLang() {
       defaultLanguage: defaultLang(),
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: getCurrentLocal() },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

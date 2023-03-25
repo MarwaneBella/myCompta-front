@@ -9,8 +9,8 @@ export class FactureSimple extends Facture{
   remise : number
   remIsPercentage : boolean
   status : FactureSimpleStatus
-  societe : Societe
-  client : Client
+  societe : Societe | null
+  client : Client | null
   articleList : Article[]
   debours : Debours[]
 }

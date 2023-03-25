@@ -20,7 +20,7 @@ import { ModeReglement } from 'src/app/private/gestion-facturation/models/mode-r
 export class ReglementFormComponent implements OnInit {
 
   @Input()
-  for : 'D' |'F'
+  for : 'D' |'F'|'A'|'FA'
 
   reglementForm :FormGroup
   phoneForm : FormGroup
@@ -40,7 +40,7 @@ export class ReglementFormComponent implements OnInit {
     this.setReglements()
   }
 
-  
+
 
   iniatReglementForm() {
     this.reglementForm = this.formBuilder.group({
@@ -70,54 +70,22 @@ export class ReglementFormComponent implements OnInit {
             modeReglement :this.modesReglement[0],
             interet : this.interets[0]
           })
-        } 
+        }
       })
   }
 
-  getReglementForm(data : Devis |Facture) : Devis |Facture{
-    if(this.for == 'D'){
-      var devis : Devis  = data as Devis
-      devis.conditionReglement = this.reglementForm.controls['conditionReglement'].value
-      devis.modeReglement = this.reglementForm.controls['modeReglement'].value
-      devis.interet = this.reglementForm.controls['interet'].value
-    }
+  getReglementForm(data : any) : any{
+    data.conditionReglement = this.reglementForm.controls['conditionReglement'].value
+    data.modeReglement = this.reglementForm.controls['modeReglement'].value
+    data.interet = this.reglementForm.controls['interet'].value
     return data
   }
 
-  setReglementForm(data : Devis |Facture) {
-    if(this.for == 'D'){
-      var devis : Devis  = data as Devis
-      this.reglementForm.controls['conditionReglement'].setValue(devis.conditionReglement)
-      this.reglementForm.controls['modeReglement'].setValue(devis.modeReglement)
-      this.reglementForm.controls['interet'].setValue(devis.interet)
-    }
+  setReglementForm(data : any) {
+    this.reglementForm.controls['conditionReglement'].setValue(data.conditionReglement)
+    this.reglementForm.controls['modeReglement'].setValue(data.modeReglement)
+    this.reglementForm.controls['interet'].setValue(data.interet)
   }
 
-
-  // onSubmit(data : Devis | Facture){
-    
-  //     if(this.for == 'D'){
-  //       var devis : Devis = data as Devis
-  //       devis.conditionReglement = this.reglementForm.controls['conditionReglement'].value
-  //       devis.modeReglement = this.reglementForm.controls['modeReglement'].value
-  //       devis.interet = this.reglementForm.controls['interet'].value
-  //       this.updateDevis(devis)
-  //     }
-
-  //     if(this.for == 'F'){
-
-  //     }
-    
-  // }
-
-  // updateDevis(devis : Devis){
-  //   this.devisService.updateDevisById(devis.id, devis).subscribe({
-  //     error : e => console.log(e)
-  //   })
-  // }
-
-  // updateFacture(){
-
-  // }
 
 }

@@ -7,6 +7,9 @@ import { SocieteService } from 'src/app/private/gestion-facturation/http/societe
 import { Client } from 'src/app/private/gestion-facturation/models/client';
 import { Devis } from 'src/app/private/gestion-facturation/models/devis';
 import { Facture } from 'src/app/private/gestion-facturation/models/facture';
+import { FactureAcompte } from 'src/app/private/gestion-facturation/models/facture-acompte';
+import { FactureAvoir } from 'src/app/private/gestion-facturation/models/facture-avoir';
+import { FactureSimple } from 'src/app/private/gestion-facturation/models/facture-simple';
 import { Societe } from 'src/app/private/gestion-facturation/models/societe';
 import { NavigateService } from '../../services/navigate.service';
 
@@ -34,7 +37,7 @@ export class SelectRecipientComponent implements OnInit {
   selected : EventEmitter<void>  = new EventEmitter()
 
   @Input()
-  for : 'D'|'F'
+  for : 'D'|'F'|'A'|'FA'
 
   items : Item[] = []
   clients : Client[]
@@ -113,82 +116,58 @@ export class SelectRecipientComponent implements OnInit {
     else this.selected.emit();
   }
 
-  getRecipient(data : Devis |Facture) : Devis |Facture{
-    if(this.for == 'D'){
-      var devis : Devis  = data as Devis
+  getRecipient(data : any) : any{
+    if(this.for == 'D'|| this.for === 'F' || this.for === 'A'){
       if(this.recipient.type == 'C'){
-        devis.client = this.recipient.data as Client
-        devis.societe = null
+        data.client = this.recipient.data as Client
+        data.societe = null
       }
       else if(this.recipient.type == 'S'){
-        devis.societe = this.recipient.data as Societe
-        devis.client = null
+        data.societe = this.recipient.data as Societe
+        data.client = null
       }
     }
+
+    else if(this.for == 'FA'){
+      var factureAcompte : FactureAcompte  = data as FactureAcompte
+      // factureAcompte.devis = this.recipient.data
+    }
+
     return data;
   }
 
-  setRecipient(data : Devis |Facture) {
-    if(this.for == 'D'){
-      var devis : Devis  = data as Devis
+  setRecipient(data : any) {
+
+    if(this.for == 'D' || this.for === 'F' || this.for === 'A'){
       var recipient : Recipient  = {} as Recipient
-      if(devis.client){
-        this.items
-        recipient.data = devis.client as Client
+      if(data.client){
+        recipient.data = data.client as Client
         recipient.type = 'C'
         this.recipient = recipient
       }
 
-      else if(devis.societe){
-        recipient.data = devis.societe as Societe
+      else if(data.societe){
+        recipient.data = data.societe as Societe
         recipient.type = 'S'
         this.recipient = recipient
       }
     }
+
+    else if(this.for == 'FA'){
+      var factureAcompte : FactureAcompte  = data as FactureAcompte
+      var recipient : Recipient  = {} as Recipient
+      // if(factureAcompte.devis){
+      //   recipient.data = factureAcompte.devis as Client
+      //   recipient.type = 'D'
+      //   this.recipient = recipient
+      // }
+    }
+
+
   }
 
   comparewith(item : Item, selected :Recipient) {
     return item?.recipient?.data?.id === selected.data.id && item?.recipient?.type === selected.type
   }
-
-
-  // onSubmit(data : Devis | Facture){
-
-  //   if(this.data.type == 'C'){
-  //     var client : Client = this.data.recipient as Client
-
-  //     if(this.for == 'D'){
-
-  //       var devis : Devis = data as Devis
-  //       devis.client = client
-  //       devis.societe = null
-  //       this.updateDevis(devis)
-  //     }
-
-  //   }
-
-  //   else if(this.data.type == 'S'){
-  //     var societe : Societe = this.data.recipient as Societe
-  //     console.log("test")
-  //     if(this.for == 'D'){
-  //       console.log("test")
-  //       console.log(this.data)
-  //       var devis : Devis = data as Devis
-  //       devis.client = null
-  //       devis.societe = societe
-  //       this.updateDevis(devis)
-  //     }
-  //   }
-  // }
-
-  // updateDevis(devis : Devis){
-  //   this.devisService.updateDevisById(devis.id, devis).subscribe({
-  //     error : e => console.log(e)
-  //   })
-  // }
-
-  // updateFacture(){
-
-  // }
 
 }

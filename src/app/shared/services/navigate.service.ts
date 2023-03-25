@@ -10,7 +10,7 @@ export class NavigateService {
   public readonly editPath = '/edit/'
   public readonly showPath = '/show/'
   public readonly environmentListPath = '/environments'
-  public readonly environmentPath = '/environment'
+  public readonly environmentPath = '/environment/1'
   public readonly personnelPath = this.environmentPath+'/personnel'
   public readonly facturationPath = this.environmentPath+'/facturation'
 
@@ -34,23 +34,8 @@ export class NavigateService {
 
   constructor(){ }
 
-  // toBasePath(from : 'C'|'S'|'D'|'F'|'ESP_F') : string {
 
-  //   if(from == 'ESP_F') return this.facturationPath
-
-  //   else if(from == 'C') return this.f_clientPath
-
-  //   else if(from == 'S') return this.f_societePath
-
-  //   else if(from == 'D') return this.f_devisPath
-
-  //   else if(from == 'F') return this.f_facturePath
-
-  //   return ''
-
-  // }
-
-  toAddPath(from : 'C'|'S'|'D'|'F') : string {
+  toAddPath(from : 'C'|'S'|'D'|'F'|'A'|'FA') : string {
 
     if(from == 'C') return this.f_clientPath+this.addPath
 
@@ -58,7 +43,11 @@ export class NavigateService {
 
     else if(from == 'D') return this.f_devisPath+this.addPath
 
-    else if(from == 'F') return this.f_facturePath+this.addPath
+    else if(from == 'F') return this.f_simplePath+this.addPath
+
+    else if(from == 'A') return this.f_avoirPath+this.addPath
+
+    else if(from == 'FA') return this.f_acomptePath+this.addPath
 
     else return ''
   }

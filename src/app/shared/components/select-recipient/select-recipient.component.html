@@ -5,7 +5,7 @@
     </div>
 
     <ng-select  [items]="items" [searchable]="true" groupBy="group" [clearable]="false"
-        bindLabel="name"  bindValue="recipient" class="custom w-full text-sm" placeholder="{{'FORM.INPUT.SD' | translate}}"
+        bindLabel="name"  bindValue="recipient" class="custom-select-gray w-full text-sm" placeholder="{{'FORM.INPUT.SD' | translate}}"
         [(ngModel)]="recipient" [compareWith]="comparewith"  (change)="selectChange($event)"
     >
 

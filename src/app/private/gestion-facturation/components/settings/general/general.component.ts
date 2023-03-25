@@ -16,7 +16,7 @@ export class GeneralComponent implements OnInit {
   constructor(
     private  translate: TranslateService,
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -25,6 +25,7 @@ export class GeneralComponent implements OnInit {
   changeLang(code : string ){
     localStorage.setItem('lang',code)
     this.translate.use(code);
+    window.location.reload();
   }
 
 }
