@@ -50,7 +50,7 @@ function defaultLang() {
         deps: [HttpClient]
       },
       defaultLanguage: defaultLang(),
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

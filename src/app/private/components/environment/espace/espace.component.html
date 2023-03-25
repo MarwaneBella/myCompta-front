@@ -3,3 +3,10 @@
 <a routerLink="/environment/1-gdhdjd8/personnel">espace personnel</a>
 
 </div>
+
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr p-3"  >
+
+  <app-card-global *ngFor="let card of cards" route="{{'/environment/'+card.id+'/espaces'}}" [card]="card"></app-card-global>
+
+</div>

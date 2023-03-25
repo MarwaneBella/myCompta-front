@@ -7,6 +7,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./private/private.module').then((m) => m.PrivateModule),
   },
+  { path: 'departement', loadChildren: () => import('./private/gestion-personnel/components/departement/departement.module').then(m => m.DepartementModule) },
 ];
 
 @NgModule({

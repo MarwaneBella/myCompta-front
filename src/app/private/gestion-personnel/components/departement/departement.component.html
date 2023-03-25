@@ -1,0 +1,34 @@
+<section>
+    <div class="flex justify-between mb-5">
+        <span class="primary-title" >{{'TITLE.DP' | translate}}</span>
+        <div class="flex gap-4">
+            <!-- 3dots menu | edit| list | show -->
+            <!-- <app-drop-menu-global ></app-drop-menu-global> -->
+            <app-drop-menu-per for="DP" (addClicked)="openModel()"></app-drop-menu-per>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center " *ngIf="isEmpty">
+      <app-empty-data-message for="DP" (btnClicked)="openModel()"></app-empty-data-message>
+    </div>
+
+    <!-- <button class="common-btn-black" (click)="openModel()"> test</button> -->
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr p-3"  >
+        <app-card-global  [card]="card" *ngFor="let card of cards| paginate : {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: count
+          }"></app-card-global>
+    </div>
+
+<app-pagination (pageChange)="pageChange($event)" (pageSizeChange)="pageSizeChange($event)"></app-pagination>
+
+</section>
+
+
+<app-add-edit-dept-modal ></app-add-edit-dept-modal>
+
+
+

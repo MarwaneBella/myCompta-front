@@ -12,7 +12,7 @@ export class CustomInputComponent implements OnInit {
 
   @Output()
   ngModelChange : EventEmitter<any> = new EventEmitter()
-  
+
 
   control : FormControl
   @Input('control') set _control(value: AbstractControl<any,any> ){
@@ -20,14 +20,30 @@ export class CustomInputComponent implements OnInit {
   }
 
   @Input()
+  color : 'white' | 'gray' = 'gray'
+
+  @Input()
   placeholder : string
 
   @Input()
-  type: 'text' | 'integer'| 'float'
+  type: 'text' | 'integer'| 'float'|'textarea'
+
+  labelClass : string  = 'common-label-gray'
+  inputClass : string = 'common-input-gray'
+  textareaClass : string = 'common-textarea-gray'
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setClasses()
+  }
+
+  setClasses(){
+    if(this.color == 'white'){
+      this.labelClass = 'common-label-white'
+      this.inputClass = 'common-input-white'
+      this.textareaClass  = 'common-textarea-white'
+    }
   }
 
   modelChanged( event : any){

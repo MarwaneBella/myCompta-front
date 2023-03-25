@@ -9,8 +9,9 @@ export class NavigateService {
   public readonly addPath = '/add'
   public readonly editPath = '/edit/'
   public readonly showPath = '/show/'
-
+  public readonly environmentListPath = '/environments'
   public readonly environmentPath = '/environment'
+  public readonly personnelPath = this.environmentPath+'/personnel'
   public readonly facturationPath = this.environmentPath+'/facturation'
 
   // Start of routes of Espace Facturation

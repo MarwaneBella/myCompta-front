@@ -87,13 +87,25 @@
     .common-input{
         @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full  ;
     }
-    .common-input-white{
-      @apply py-3 px-4 text-sm placeholder-gray-2 bg-white-1 focus:outline-none rounded-full w-full  ;
-  }
-    .common-textarea{
-        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full ;
+    .common-input-gray{
+      @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-full w-full  ;
     }
 
+    .common-input-white{
+      @apply py-3 px-4 text-sm placeholder-gray-2 bg-white-1 focus:outline-none rounded-full w-full  ;
+    }
+
+    .common-textarea{
+        @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full resize-none;
+    }
+
+    .common-textarea-gray{
+      @apply py-3 px-4 text-sm placeholder-gray-2 bg-gray-1 focus:outline-none rounded-2xl w-full resize-none;
+    }
+
+    .common-textarea-white{
+      @apply py-3 px-4 text-sm placeholder-gray-2 bg-white-1 focus:outline-none rounded-2xl w-full resize-none ;
+    }
     .input-error{
         @apply ml-4;
         > span{
@@ -231,6 +243,12 @@
 
     .common-label{
         @apply absolute text-xs py-0.5 px-2 text-gray-2 rounded-full  bg-white-1 z-10 top-[-10px] left-3;
+    }
+    .common-label-gray{
+      @apply absolute text-xs py-0.5 px-2 text-gray-2 rounded-full  bg-white-1 z-10 top-[-10px] left-3;
+    }
+    .common-label-white{
+      @apply absolute text-xs py-0.5 px-2 text-gray-2 rounded-full  bg-gray-1 z-10 top-[-10px] left-3;
     }
 
     // End label Style

@@ -1,0 +1,17 @@
+<div class="relative flex gap-5" clickOutside (clickOutside)="closeMenu()">
+  <button class="common-btn-gray" (click)="toggleDropMenu()" >
+      <svg-icon name="3dots" svgClass="w-5"></svg-icon>
+  </button>
+
+  <div class="drop-menu" *ngIf="dropMenu ">
+
+      <button class="item-menu-sm" (click)="onClicked()">
+          <svg-icon name="add" svgClass="w-4"></svg-icon>
+          <span *ngIf="for == 'DP' ">{{'DROP_MENU.LIST.DP.L1' |translate}}</span>
+      </button>
+
+
+
+  </div>
+
+</div>

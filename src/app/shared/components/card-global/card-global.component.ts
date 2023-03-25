@@ -10,10 +10,10 @@ export class CardGlobalComponent {
 
   @Input()
   card: Card = {} as Card;
-
+  
   @Input()
   route : string
-  
+
   textColor: string = 'text-green'
 
 

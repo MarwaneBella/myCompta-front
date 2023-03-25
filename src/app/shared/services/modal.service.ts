@@ -22,4 +22,9 @@ export class ModalService {
 
       this.modal.close();
   }
+
+  // destroy(){
+  //   this.modal.
+  // }
 }
+

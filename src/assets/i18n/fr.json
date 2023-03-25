@@ -4,7 +4,8 @@
     "C": "Client",
     "D": "Devis",
     "F": "Facture",
-    "ESP":"Espace"
+    "ESP":"Espace",
+    "DP" :"Département"
   },
   "TITLE": {
     "S": "Sociétés",
@@ -14,7 +15,9 @@
     "P": "Paramètres",
     "PN" : "Préférences pour la numérotation",
     "ESP": "Ajouter un espace",
-    "ENV": "Environnements"
+    "ENV": "Environnements",
+    "DP" :"Départements",
+    "DPA": "Ajouter un déparetement"
 
   },
   "FORM": {
@@ -35,7 +38,8 @@
       "ESP": "Espace",
       "NE": "Nom d’espace ",
       "O": "(Optionel)",
-      "I": "Inviter "
+      "I": "Inviter ",
+      "DP" :"Département"
     },
     "INPUT": {
       "NS": "Nom de la société",
@@ -94,7 +98,9 @@
           "D": "(visible sur le devis)",
           "F": "(visible sur la facture)"
         }
-      }
+      },
+      "NDP" :"Nom du département",
+      "DD" :"Désignation"
     },
     "SELECT":{
       "ESPS" :{
@@ -157,6 +163,11 @@
       "M1": "Aucun espace à afficher",
       "M2": "Ajouter un nouveau espace"
     }
+    ,
+    "DP": {
+      "M1": "Aucun département à afficher",
+      "M2": "Ajouter un nouveau département"
+    }
   },
   "DROP_MENU":{
     "LIST":{
@@ -178,6 +189,10 @@
       },
       "ESP" :{
         "L1" : "Nouveau espace de travail"
+      }
+      ,
+      "DP" :{
+        "L1" : "Nouveau département"
       }
     },
     "EDIT":{

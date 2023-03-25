@@ -4,7 +4,7 @@
 
         <div class="flex justify-center items-center">
 
-            <button class="common-btn-gray space-x-2 flex" routerLink="add" *ngIf="for !='ESP' ; else onClick" >
+            <button class="common-btn-gray space-x-2 flex" routerLink="add" *ngIf="for !='ESP' && for!='DP' ; else onClick" >
                 <svg-icon name="add" class="w-5 pt-0.5"></svg-icon>
                 <span>{{'EMPTY_DATA_MESSAGE.'+for+'.M2' | translate}}</span>
             </button>

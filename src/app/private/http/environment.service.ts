@@ -8,7 +8,6 @@ import { Environment } from "../models/environment";
   providedIn: 'root'
 })
 export class EnvironmentService {
-  url=environment.url;
   private api = environment.url+ '/environments'
 
   constructor(private http : HttpClient) { }

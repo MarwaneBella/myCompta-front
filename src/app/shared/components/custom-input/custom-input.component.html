@@ -1,10 +1,14 @@
 <div class="flex flex-col gap-0.5 ">
     <div class="relative flex gap-4 items-center">
-        <label class="common-label " *ngIf="control.value && type =='text'">{{placeholder}}</label>
-        <label class="common-label " *ngIf="control.value != null && (type =='integer' || type =='float') ">{{placeholder}}</label>
-        <input type="text" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" class="common-input" [formControl]="control" *ngIf="type == 'text'">
-        <input type="number" appAllowInput allow="integer" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" class="common-input" [formControl]="control" *ngIf="type == 'integer'">
-        <input type="number" appAllowInput allow="float" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" class="common-input" [formControl]="control" *ngIf="type == 'float'">
+        <label [class]="labelClass" *ngIf="control.value && (type =='text' ||  type =='textarea')">{{placeholder}}</label>
+        <label [class]="labelClass" *ngIf="control.value != null && (type =='integer' || type =='float') ">{{placeholder}}</label>
+
+        <input type="text" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" [class]="inputClass" [formControl]="control" *ngIf="type == 'text'">
+        <input type="number" appAllowInput allow="integer" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" [class]="inputClass" [formControl]="control" *ngIf="type == 'integer'">
+        <input type="number" appAllowInput allow="float" (ngModelChange)="modelChanged($event)" [placeholder]="placeholder" [class]="inputClass" [formControl]="control" *ngIf="type == 'float'">
+
+        <textarea [class]="textareaClass" (ngModelChange)="modelChanged($event)"  [placeholder]="placeholder" rows="3"
+        [formControl]="control" *ngIf="type == 'textarea'"></textarea>
     </div>
 
     <div *ngIf="control.invalid && (control.dirty || control.touched)" class="input-error">
